@@ -13,37 +13,37 @@ namespace MyBank.API
         }
 
         [HttpGet("accounts")]
-        public IActionResult GetCustomerAccounts(int CustId)
+        public IActionResult GetCustomerAccounts(long CustId)
         {
             throw new NotImplementedException();
         }
 
         [HttpPost("accounts")]
-        public IActionResult AddCustomerAccount(int CustId)
+        public IActionResult AddCustomerAccount(long CustId)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet("accounts/{AccNo}")]
-        public IActionResult GetCustomerAccount(int CustId, int AccNo)
+        public IActionResult GetCustomerAccount(long CustId, long AccNo)
         {
             throw new NotImplementedException();
         }
 
         [HttpDelete("accounts/{AccNo}")]
-        public IActionResult DeleteCustomerAccount(int CustId, int AccNo)
+        public IActionResult DeleteCustomerAccount(long CustId, long AccNo)
         {
             throw new NotImplementedException();
         }
 
         [HttpPut("accounts/{AccNo}")]
-        public IActionResult UpdateCustomerAccount(int CustId, int AccNo)
+        public IActionResult UpdateCustomerAccount(long CustId, long AccNo)
         {
             throw new NotImplementedException();
         }
 
         [HttpPatch("accounts/{AccNo}")]
-        public IActionResult PatchCustomerAccount(int CustId, int AccNo)
+        public IActionResult PatchCustomerAccount(long CustId, long AccNo)
         {
             throw new NotImplementedException();
         }
