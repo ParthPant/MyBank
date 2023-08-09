@@ -25,6 +25,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyBankContext>(dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:MyBankDBConnectionString"]));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
