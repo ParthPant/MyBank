@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function LoginCard() {
   return (
@@ -7,7 +8,9 @@ function LoginCard() {
           <input type="text" placeholder="Username" className="input input-bordered input-primary w-full max-w-xs" />
           <input type="text" placeholder="Password" className="input input-bordered input-primary w-full max-w-xs" />
           <div className="card-actions">
-            <button class="btn">Login</button>
+            <Link to ="/admin">
+                <button class="btn">Login</button>
+            </Link>
           </div>
         </div>
       </div>
