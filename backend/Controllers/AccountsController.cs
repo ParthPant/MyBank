@@ -4,6 +4,7 @@ using MyBank.API.Services;
 
 namespace MyBank.API
 {
+    [ApiController]
     [Route("api/customers/{custId}")]
     public class AccountsController : ControllerBase
     {
