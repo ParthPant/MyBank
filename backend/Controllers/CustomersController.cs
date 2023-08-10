@@ -83,7 +83,6 @@ namespace MyBank.API
             }
 
             var customerToUpdate = await _repository.GetCustomerAsync(custId, false);
-            _logger.LogInformation($"{updateDto}");
             _mapper.Map(updateDto, customerToUpdate);
 
             await _repository.SaveChangesAsync();

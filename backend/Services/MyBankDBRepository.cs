@@ -45,5 +45,32 @@ namespace MyBank.API.Services
         {
             return await _context.Customers.AnyAsync(c => c.CustId == custId);
         }
+
+        public async Task<IEnumerable<Account>> GetAccountsAsync(long custId)
+        {
+            return await _context.Accounts
+                .Where(acc => acc.CustId == custId).ToListAsync();
+        }
+
+        public async Task<Account?> GetAccountAsync(long custId, long accNo)
+        {
+            return await _context.Accounts
+                .Where(acc => acc.CustId == custId && acc.AccNo == accNo)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task AddAccount(long custId, Account account)
+        {
+            var customer = await GetCustomerAsync(custId, false);
+            if (customer != null)
+            {
+                customer.Accounts.Add(account);
+            }
+        }
+
+        public void DeleteAccount(Account account)
+        {
+            _context.Accounts.Remove(account);
+        }
     }
 }
