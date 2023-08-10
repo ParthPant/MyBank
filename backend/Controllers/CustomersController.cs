@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Models;
+using MyBank.API.Entities;
 using MyBank.API.Services;
 
 namespace MyBank.API
@@ -28,42 +29,70 @@ namespace MyBank.API
         }
 
         [HttpPost]
-        public IActionResult AddCustomer()
+        public async Task<IActionResult> AddCustomer([FromBody] CustomerNewDto newCustomer)
         {
-            throw new NotImplementedException();
+            var customerEntity = _mapper.Map<Customer>(newCustomer);
+            _repository.AddCustomer(customerEntity);
+            await _repository.SaveChangesAsync();
+            var createdCustomer = _mapper.Map<CustomerDto>(customerEntity);
+
+            return CreatedAtRoute("GetCustomer", new
+            {
+                custId = createdCustomer.CustId,
+                includeAccounts = false,
+            }, createdCustomer);
         }
 
-        [HttpGet("{custId}")]
+        [HttpGet("{custId}", Name = "GetCustomer")]
         public async Task<IActionResult> GetCustomer(long custId, bool includeAccounts = false)
         {
-            var customerEntity = await _repository.GetCustomerAsync(custId, includeAccounts);
-            if (customerEntity == null) {
+            if (!await _repository.CustomerExists(custId))
+            {
                 return NotFound();
             }
 
-            if (!includeAccounts) {
+            var customerEntity = await _repository.GetCustomerAsync(custId, includeAccounts);
+            if (!includeAccounts)
+            {
                 return Ok(_mapper.Map<CustomerWithoutAccountsDto>(customerEntity));
-            } 
+            }
             return Ok(_mapper.Map<CustomerDto>(customerEntity));
         }
 
         [HttpDelete("{custId}")]
-        public IActionResult DeleteCustomer(long custId)
+        public async Task<IActionResult> DeleteCustomer(long custId)
         {
-            throw new NotImplementedException();
+            var customerToDeleteEntity = await _repository.GetCustomerAsync(custId);
+            if (customerToDeleteEntity == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteCustomer(customerToDeleteEntity);
+            await _repository.SaveChangesAsync();
+            return NoContent();
         }
 
         [HttpPut("{custId}")]
-        public IActionResult UpdateCustomer(long custId)
+        public async Task<IActionResult> UpdateCustomer(long custId, [FromBody] CustomerUpdateDto updateDto)
         {
-            throw new NotImplementedException();
+            if (!await _repository.CustomerExists(custId))
+            {
+                return NotFound();
+            }
+
+            var customerToUpdate = await _repository.GetCustomerAsync(custId, false);
+            _logger.LogInformation($"{updateDto}");
+            _mapper.Map(updateDto, customerToUpdate);
+
+            await _repository.SaveChangesAsync();
+            return NoContent();
         }
 
-        [HttpPatch("{custId}")]
-        public IActionResult UpdatePatchCustomer(long custId)
-        {
-            throw new NotImplementedException();
-        }
-
+        // [HttpPatch("{custId}")]
+        // public IActionResult UpdatePatchCustomer(long custId)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

@@ -12,7 +12,7 @@ namespace MyBank.API.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<Customer?> GetCustomerAsync(long custId, bool includeAccounts)
+        public async Task<Customer?> GetCustomerAsync(long custId, bool includeAccounts = false)
         {
             if (includeAccounts)
             {
@@ -26,6 +26,24 @@ namespace MyBank.API.Services
             return await _context.Customers.ToListAsync();
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+        }
 
+        public void DeleteCustomer(Customer customer)
+        {
+            _context.Customers.Remove(customer);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() >= 0);
+        }
+
+        public async Task<bool> CustomerExists(long custId)
+        {
+            return await _context.Customers.AnyAsync(c => c.CustId == custId);
+        }
     }
 }

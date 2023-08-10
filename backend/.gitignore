@@ -1,7 +1,7 @@
 logs/
 obj/
 bin/
-*.db
+*.db*
 *.sln
 *.vs
 *.vscode

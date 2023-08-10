@@ -1,15 +1,21 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyBank.API.Services;
 
 namespace MyBank.API
 {
     [Route("api/customers/{custId}")]
-    public class CustomerAccountsController : ControllerBase
+    public class AccountsController : ControllerBase
     {
-        private readonly ILogger<CustomerAccountsController> _logger;
+        private readonly ILogger<AccountsController> _logger;
+        private readonly IMyBankRepository _repository;
+        private readonly IMapper _mapper;
 
-        public CustomerAccountsController(ILogger<CustomerAccountsController> logger)
+        public AccountsController(ILogger<AccountsController> logger, IMyBankRepository repository, IMapper mapper)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet("accounts")]
@@ -42,10 +48,10 @@ namespace MyBank.API
             throw new NotImplementedException();
         }
 
-        [HttpPatch("accounts/{accNo}")]
-        public IActionResult PatchCustomerAccount(long custId, long accNo)
-        {
-            throw new NotImplementedException();
-        }
+        // [HttpPatch("accounts/{accNo}")]
+        // public IActionResult PatchCustomerAccount(long custId, long accNo)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

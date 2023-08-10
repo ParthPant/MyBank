@@ -11,7 +11,8 @@ namespace MyBank.API.Profiles
             CreateMap<Customer, CustomerDto>();
             CreateMap<Customer, CustomerWithoutAccountsDto>();
 
-            CreateMap<CustomerDto, Customer>();
+            CreateMap<CustomerNewDto, Customer>();
+            CreateMap<CustomerUpdateDto, Customer>();
         }
     }
 }
