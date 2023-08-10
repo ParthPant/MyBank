@@ -21,7 +21,8 @@ namespace MyBank.API.Entities
         [ForeignKey("CustId")]
         public Customer? Customer { get; set; }
 
-        public Account(string accountType) {
+        public Account(string accountType)
+        {
             AccountType = accountType;
         }
     }

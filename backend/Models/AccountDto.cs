@@ -1,12 +1,15 @@
-namespace MyBank.API.Models {
-	public class AccountDto {
+namespace MyBank.API.Models
+{
+    public class AccountDto
+    {
         public long AccNo { get; set; }
         public string AccountType { get; set; } = null!;
         public long Balance { get; set; }
         public long CustId { get; set; }
 
-        public AccountDto(string accountType) {
+        public AccountDto(string accountType)
+        {
             AccountType = accountType;
         }
-	}
+    }
 }

@@ -1,6 +1,7 @@
 using MyBank.API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using MyBank.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyBankContext>(dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:MyBankDBConnectionString"]));
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IMyBankRepository, MyBankDBRepository>();
 
 var app = builder.Build();
 

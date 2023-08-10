@@ -2,3 +2,6 @@ logs/
 obj/
 bin/
 *.db
+*.sln
+*.vs
+*.vscode

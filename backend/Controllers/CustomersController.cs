@@ -1,4 +1,7 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyBank.API.Models;
+using MyBank.API.Services;
 
 namespace MyBank.API
 {
@@ -6,20 +9,22 @@ namespace MyBank.API
     public class CustomersController : ControllerBase
     {
         private readonly ILogger<CustomersController> _logger;
+        private readonly IMyBankRepository _repository;
+        private readonly IMapper _mapper;
 
-        public CustomersController(ILogger<CustomersController> logger)
+        public CustomersController(ILogger<CustomersController> logger, IMyBankRepository repository, IMapper mapper)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
-        public IActionResult GetCustomers()
+        public async Task<ActionResult<IEnumerable<CustomerWithoutAccountsDto>>> GetCustomers()
         {
-            _logger.LogInformation("Getting all customers");
-            return Ok(new List<object> {
-                        new {customerid = 12312, name = "Parth Pant"},
-                        new {customerid = 2342, name = "Ayush Verma"},
-                    });
+            var customerEntities = await _repository.GetCustomersAsync();
+            var customerDtos = _mapper.Map<IEnumerable<CustomerWithoutAccountsDto>>(customerEntities); ;
+            return Ok(customerDtos);
         }
 
         [HttpPost]

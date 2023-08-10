@@ -12,15 +12,18 @@ namespace MyBank.API.DbContexts
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Customer>().HasData(
-                    new Customer("Parth Pant", "parthpant4@gmail.com", "Bengaluru") {
+                    new Customer("Parth Pant", "parthpant4@gmail.com", "Bengaluru")
+                    {
                         CustId = 1,
                         Contact = 7876082603,
                         CardNo = 999999999,
                         PinNo = 23421,
                     },
-                    new Customer("John Doe", "doejohn@gmail.com", "Delhi") {
+                    new Customer("John Doe", "doejohn@gmail.com", "Delhi")
+                    {
                         CustId = 2,
                         Contact = 2342354234,
                         CardNo = 888888888,
@@ -29,7 +32,8 @@ namespace MyBank.API.DbContexts
             );
 
             modelBuilder.Entity<Account>().HasData(
-                    new Account("saving") {
+                    new Account("saving")
+                    {
                         AccNo = 2342343245,
                         Balance = 787,
                         CustId = 1,

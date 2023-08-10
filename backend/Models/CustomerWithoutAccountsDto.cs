@@ -1,6 +1,6 @@
 namespace MyBank.API.Models
 {
-    public class CustomerDto
+    public class CustomerWithoutAccountsDto
     {
         public long CustId { get; set; }
         public string Name { get; set; }
@@ -9,9 +9,8 @@ namespace MyBank.API.Models
         public long CardNo { get; set; }
         public long PinNo { get; set; }
         public string City { get; set; }
-        public ICollection<AccountDto> Accounts { get; set; } = new List<AccountDto>();
 
-        public CustomerDto(string name, string email, string city)
+        public CustomerWithoutAccountsDto(string name, string email, string city)
         {
             Name = name;
             Email = email;

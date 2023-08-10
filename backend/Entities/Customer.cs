@@ -30,9 +30,10 @@ namespace MyBank.API.Entities
         [MaxLength(50)]
         public string City { get; set; }
 
-        public ICollection<Account> Accounts {get; set;} = new List<Account>();
+        public ICollection<Account> Accounts { get; set; } = new List<Account>();
 
-        public Customer(string name, string email, string city) {
+        public Customer(string name, string email, string city)
+        {
             Name = name;
             Email = email;
             City = city;
