@@ -2,6 +2,7 @@ using MyBank.API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using MyBank.API.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,10 @@ builder.Host.UseSerilog();
 // Add services to the container.
 builder.Services.AddControllers(options =>
 {
-    // options.ReturnHttpNotAcceptable = true;
 }).AddNewtonsoftJson()
+.AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    })
 .AddXmlDataContractSerializerFormatters(); // For XML support
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

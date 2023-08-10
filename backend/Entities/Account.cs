@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyBank.API.Types;
 
 namespace MyBank.API.Entities
 {
@@ -10,7 +11,7 @@ namespace MyBank.API.Entities
         public long AccNo { get; set; }
 
         [Required]
-        public string AccountType { get; set; }
+        public AccountType AccountType { get; set; }
 
         [Required]
         public long Balance { get; set; }
@@ -20,10 +21,5 @@ namespace MyBank.API.Entities
 
         [ForeignKey("CustId")]
         public Customer? Customer { get; set; }
-
-        public Account(string accountType)
-        {
-            AccountType = accountType;
-        }
     }
 }

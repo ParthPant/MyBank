@@ -1,5 +1,6 @@
 using MyBank.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using MyBank.API.Types;
 
 namespace MyBank.API.DbContexts
 {
@@ -32,8 +33,9 @@ namespace MyBank.API.DbContexts
             );
 
             modelBuilder.Entity<Account>().HasData(
-                    new Account("saving")
+                    new Account
                     {
+                        AccountType = AccountType.Saving,
                         AccNo = 2342343245,
                         Balance = 787,
                         CustId = 1,
