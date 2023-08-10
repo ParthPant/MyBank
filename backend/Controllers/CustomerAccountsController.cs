@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyBank.API
 {
-    [Route("api/customers/{CustId}")]
+    [Route("api/customers/{custId}")]
     public class CustomerAccountsController : ControllerBase
     {
         private readonly ILogger<CustomerAccountsController> _logger;
@@ -13,37 +13,37 @@ namespace MyBank.API
         }
 
         [HttpGet("accounts")]
-        public IActionResult GetCustomerAccounts(long CustId)
+        public IActionResult GetCustomerAccounts(long custId)
         {
             throw new NotImplementedException();
         }
 
         [HttpPost("accounts")]
-        public IActionResult AddCustomerAccount(long CustId)
+        public IActionResult AddCustomerAccount(long custId)
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet("accounts/{AccNo}")]
-        public IActionResult GetCustomerAccount(long CustId, long AccNo)
+        [HttpGet("accounts/{accNo}")]
+        public IActionResult GetCustomerAccount(long custId, long accNo)
         {
             throw new NotImplementedException();
         }
 
-        [HttpDelete("accounts/{AccNo}")]
-        public IActionResult DeleteCustomerAccount(long CustId, long AccNo)
+        [HttpDelete("accounts/{accNo}")]
+        public IActionResult DeleteCustomerAccount(long custId, long accNo)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPut("accounts/{AccNo}")]
-        public IActionResult UpdateCustomerAccount(long CustId, long AccNo)
+        [HttpPut("accounts/{accNo}")]
+        public IActionResult UpdateCustomerAccount(long custId, long accNo)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPatch("accounts/{AccNo}")]
-        public IActionResult PatchCustomerAccount(long CustId, long AccNo)
+        [HttpPatch("accounts/{accNo}")]
+        public IActionResult PatchCustomerAccount(long custId, long accNo)
         {
             throw new NotImplementedException();
         }

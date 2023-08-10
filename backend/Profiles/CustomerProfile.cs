@@ -1,4 +1,6 @@
 using AutoMapper;
+using MyBank.API.Entities;
+using MyBank.API.Models;
 
 namespace MyBank.API.Profiles
 {
@@ -6,12 +8,10 @@ namespace MyBank.API.Profiles
     {
         public CustomerProfile()
         {
-            CreateMap<Entities.Customer, Models.CustomerDto>();
-            CreateMap<Entities.Customer, Models.CustomerWithoutAccountsDto>();
-            CreateMap<Entities.Account, Models.AccountDto>();
+            CreateMap<Customer, CustomerDto>();
+            CreateMap<Customer, CustomerWithoutAccountsDto>();
 
-            CreateMap<Models.CustomerDto, Entities.Customer>();
-            CreateMap<Models.AccountDto, Entities.Account>();
+            CreateMap<CustomerDto, Customer>();
         }
     }
 }

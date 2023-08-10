@@ -33,26 +33,34 @@ namespace MyBank.API
             throw new NotImplementedException();
         }
 
-        [HttpGet("{CustId}")]
-        public IActionResult GetCustomer(long CustId)
+        [HttpGet("{custId}")]
+        public async Task<IActionResult> GetCustomer(long custId, bool includeAccounts = false)
+        {
+            var customerEntity = await _repository.GetCustomerAsync(custId, includeAccounts);
+            if (customerEntity == null) {
+                return NotFound();
+            }
+
+            if (!includeAccounts) {
+                return Ok(_mapper.Map<CustomerWithoutAccountsDto>(customerEntity));
+            } 
+            return Ok(_mapper.Map<CustomerDto>(customerEntity));
+        }
+
+        [HttpDelete("{custId}")]
+        public IActionResult DeleteCustomer(long custId)
         {
             throw new NotImplementedException();
         }
 
-        [HttpDelete("{CustId}")]
-        public IActionResult DeleteCustomer(long CustId)
+        [HttpPut("{custId}")]
+        public IActionResult UpdateCustomer(long custId)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPut("{CustId}")]
-        public IActionResult UpdateCustomer(long CustId)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPatch("{CustId}")]
-        public IActionResult UpdatePatchCustomer(long CustId)
+        [HttpPatch("{custId}")]
+        public IActionResult UpdatePatchCustomer(long custId)
         {
             throw new NotImplementedException();
         }
