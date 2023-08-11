@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyBank.API.Models;
+using MyBank.API.Entities;
 using MyBank.API.Services;
 
 namespace MyBank.API
@@ -20,33 +22,64 @@ namespace MyBank.API
         }
 
         [HttpGet("accounts")]
-        public IActionResult GetCustomerAccounts(long custId)
+        public async Task<IActionResult> GetCustomerAccounts(long custId)
         {
-            throw new NotImplementedException();
+            if (!await _repository.CustomerExists(custId)) return NotFound();
+
+            var accountsEntities = await _repository.GetAccountsAsync(custId);
+            var accountsDtos = _mapper.Map<IEnumerable<AccountDto>>(accountsEntities);
+            return Ok(accountsDtos);
         }
 
         [HttpPost("accounts")]
-        public IActionResult AddCustomerAccount(long custId)
+        public async Task<IActionResult> AddCustomerAccount(long custId, AccountNewDto accountNewDto)
         {
-            throw new NotImplementedException();
+            if (!await _repository.CustomerExists(custId)) return NotFound("Customer Not Found");
+
+            var accountNewEntity = _mapper.Map<Account>(accountNewDto);
+            await _repository.AddAccount(custId, accountNewEntity);
+            await _repository.SaveChangesAsync();
+            var accountDto = _mapper.Map<AccountDto>(accountNewEntity);
+
+            return CreatedAtRoute("GetAccount", new
+            {
+                custId = accountNewEntity.CustId,
+                accNo = accountNewEntity.AccNo
+            }, accountDto);
         }
 
-        [HttpGet("accounts/{accNo}")]
-        public IActionResult GetCustomerAccount(long custId, long accNo)
+        [HttpGet("accounts/{accNo}", Name = "GetAccount")]
+        public async Task<IActionResult> GetCustomerAccount(long custId, long accNo)
         {
-            throw new NotImplementedException();
+
+            if (!await _repository.CustomerExists(custId)) return NotFound();
+
+            var accountentity = await _repository.GetAccountAsync(custId, accNo);
+            var accountDto = _mapper.Map<AccountDto>(accountentity);
+            return Ok(accountDto);
         }
 
         [HttpDelete("accounts/{accNo}")]
-        public IActionResult DeleteCustomerAccount(long custId, long accNo)
+        public async Task<IActionResult> DeleteCustomerAccount(long custId, long accNo)
         {
-            throw new NotImplementedException();
+            var deleteCustomterAccountEntity = await _repository.GetAccountAsync(custId, accNo);
+            if (deleteCustomterAccountEntity == null) return NotFound();
+            _repository.DeleteAccount(deleteCustomterAccountEntity);
+            await _repository.SaveChangesAsync();
+
+            return NoContent();
+
         }
 
         [HttpPut("accounts/{accNo}")]
-        public IActionResult UpdateCustomerAccount(long custId, long accNo)
+        public async Task<IActionResult> UpdateCustomerAccount(long custId, long accNo, AccountUpdateDto updateDto)
         {
-            throw new NotImplementedException();
+            var accountToUpdate = await _repository.GetAccountAsync(custId, accNo);
+            if (accountToUpdate == null) return NotFound();
+            _mapper.Map(updateDto, accountToUpdate);
+            await _repository.SaveChangesAsync();
+
+            return NoContent();
         }
 
         // [HttpPatch("accounts/{accNo}")]

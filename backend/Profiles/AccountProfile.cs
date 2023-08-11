@@ -9,6 +9,8 @@ namespace MyBank.API.Profiles
         public AccountProfile()
         {
             CreateMap<Account, AccountDto>();
+            CreateMap<AccountNewDto, Account>();
+            CreateMap<AccountUpdateDto, Account>();
         }
     }
 }
