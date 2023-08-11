@@ -37,7 +37,7 @@ namespace MyBank.API
             if (!await _repository.CustomerExists(custId)) return NotFound("Customer Not Found");
 
             var accountNewEntity = _mapper.Map<Account>(accountNewDto);
-            _repository.AddAccount(custId, accountNewEntity);
+            await _repository.AddAccount(custId, accountNewEntity);
             await _repository.SaveChangesAsync();
             var accountDto = _mapper.Map<AccountDto>(accountNewEntity);
 
@@ -56,15 +56,15 @@ namespace MyBank.API
 
             var accountentity = await _repository.GetAccountAsync(custId, accNo);
             var accountDto = _mapper.Map<AccountDto>(accountentity);
-           return Ok(accountDto);
+            return Ok(accountDto);
         }
 
         [HttpDelete("accounts/{accNo}")]
         public async Task<IActionResult> DeleteCustomerAccount(long custId, long accNo)
         {
-            var deletecustomteraccountentity = await _repository.GetAccountAsync(custId, accNo);
-            if(deletecustomteraccountentity==null)   return NotFound();
-            _repository.DeleteAccount(deletecustomteraccountentity);
+            var deleteCustomterAccountEntity = await _repository.GetAccountAsync(custId, accNo);
+            if (deleteCustomterAccountEntity == null) return NotFound();
+            _repository.DeleteAccount(deleteCustomterAccountEntity);
             await _repository.SaveChangesAsync();
 
             return NoContent();
@@ -74,9 +74,9 @@ namespace MyBank.API
         [HttpPut("accounts/{accNo}")]
         public async Task<IActionResult> UpdateCustomerAccount(long custId, long accNo, AccountUpdateDto updateDto)
         {
-            var accounttoupdate = await _repository.GetAccountAsync(custId, accNo);
-            if (accounttoupdate == null) return NotFound();
-            _mapper.Map(updateDto, accounttoupdate);
+            var accountToUpdate = await _repository.GetAccountAsync(custId, accNo);
+            if (accountToUpdate == null) return NotFound();
+            _mapper.Map(updateDto, accountToUpdate);
             await _repository.SaveChangesAsync();
 
             return NoContent();
