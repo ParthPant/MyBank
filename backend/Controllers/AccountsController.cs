@@ -60,15 +60,26 @@ namespace MyBank.API
         }
 
         [HttpDelete("accounts/{accNo}")]
-        public IActionResult DeleteCustomerAccount(long custId, long accNo)
+        public async Task<IActionResult> DeleteCustomerAccount(long custId, long accNo)
         {
-            throw new NotImplementedException();
+            var deletecustomteraccountentity = await _repository.GetAccountAsync(custId, accNo);
+            if(deletecustomteraccountentity==null)   return NotFound();
+            _repository.DeleteAccount(deletecustomteraccountentity);
+            await _repository.SaveChangesAsync();
+
+            return NoContent();
+
         }
 
         [HttpPut("accounts/{accNo}")]
-        public IActionResult UpdateCustomerAccount(long custId, long accNo)
+        public async Task<IActionResult> UpdateCustomerAccount(long custId, long accNo, AccountUpdateDto updateDto)
         {
-            throw new NotImplementedException();
+            var accounttoupdate = await _repository.GetAccountAsync(custId, accNo);
+            if (accounttoupdate == null) return NotFound();
+            _mapper.Map(updateDto, accounttoupdate);
+            await _repository.SaveChangesAsync();
+
+            return NoContent();
         }
 
         // [HttpPatch("accounts/{accNo}")]
