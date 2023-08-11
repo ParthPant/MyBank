@@ -1,27 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Home from './Pages/Home';
+import Admin from './Pages/Admin';
+import AddCustomer from './Pages/AddCustomer';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <button class="btn">Login</button>
-      <div className="navbar bg-base-100">
-  <div className="flex-none">
-    <button className="btn btn-square btn-ghost">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    </button>
-  </div>
-  <div className="flex-1">
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div className="flex-none">
-    <button className="btn btn-square btn-ghost">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-    </button>
-  </div>
-</div>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/admin" element={<Admin />}></Route> 
+        <Route exact path="/addCustomer" element={<AddCustomer />}></Route>
+      </Routes>  
+    </Router>
+  );}
 }
 
 export default App;
