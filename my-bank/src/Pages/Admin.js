@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import Navbar from '../Components/Navbar';
 import { useParams } from 'react-router-dom';
+import axios from "axios";
 
 function Admin(){
 
     const [formData, setFormData] = useState({});
+    const [post, setPost] = React.useState(null);
     const {mode} = useParams();
     console.log(mode);
+    const baseURL = "http://localhost:5296/api/customers/"
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -16,9 +19,39 @@ function Admin(){
     
       const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(JSON.stringify(formData));
         alert(JSON.stringify(formData));
       }
 
+      const configheaders = {
+        "content-type" : "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+
+    
+      function createPost() {
+        axios
+          .post(baseURL, {
+            name: formData.username,
+            email: formData.email,
+            contact: formData.contact,
+            cardNumber:formData.cardNumber,
+            pinNo:formData.pinNo,
+            city: formData.city,
+            accNo:formData.accNo
+          }, 
+          {
+            headers: configheaders
+          })
+          .then((response) => {
+            console.log(response);
+            setPost(response.data);
+          });
+      }
+    
+
+    
     return (
             <> 
             <Navbar/>   
@@ -44,6 +77,7 @@ function Admin(){
                                     id="email" 
                                     name="email"
                                     value={formData.email || ""}
+                                    
                                     onChange={handleChange}  
                                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required/>
                                 </div>
@@ -92,7 +126,7 @@ function Admin(){
                                     onChange={handleChange} 
                                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required/>
                                 </div>
-                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Register</button>
+                                <button type="submit" onClick={createPost} class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Register</button>
                             </form>
                         </div>
                     </div>
