@@ -5,7 +5,7 @@ function Admin(){
     return (
             <> 
             <Navbar/>   
-            <div class="mt-10" >
+            <div class="mt-10 mb-10" >
                 <div class="min-h-screen flex items-center justify-center">
                     <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
                         
