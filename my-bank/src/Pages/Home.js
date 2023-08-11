@@ -8,7 +8,6 @@ function Home(){
     return (
         <div className="App">
             <Navbar />
-            <LandingPage/>
             <LoginCard />
         </div>
     );
