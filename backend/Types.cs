@@ -16,4 +16,11 @@ namespace MyBank.API.Types
         [EnumMember(Value = "Recurring Deposit")]
         RecurringDeposit,
     }
+
+    public class UserInfo
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+    }
 }

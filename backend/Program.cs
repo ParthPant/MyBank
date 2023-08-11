@@ -1,3 +1,5 @@
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using MyBank.API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -49,6 +51,23 @@ builder.Services.AddDbContext<MyBankContext>(dbContextOptions => dbContextOption
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IMyBankRepository, MyBankDBRepository>();
 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Authentication:Issuer"],
+                    ValidAudience = builder.Configuration["Authentication:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                                Encoding.ASCII.GetBytes(builder.Configuration["Authentication:SecretForKey"])
+                            )
+                };
+            }
+            );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,6 +80,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

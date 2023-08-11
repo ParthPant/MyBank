@@ -8,6 +8,7 @@ namespace MyBank.API.DbContexts
     {
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Account> Accounts { get; set; } = null!;
+        public DbSet<Admin> Admins { get; set; } = null!;
 
         public MyBankContext(DbContextOptions<MyBankContext> options) : base(options)
         {
@@ -39,6 +40,13 @@ namespace MyBank.API.DbContexts
                         AccNo = 2342343245,
                         Balance = 787,
                         CustId = 1,
+                    }
+            );
+
+            modelBuilder.Entity<Admin>().HasData(
+                    new Admin("Admin", "admin", "admin@admin.com", "password")
+                    {
+                        Id = 1,
                     }
             );
         }
