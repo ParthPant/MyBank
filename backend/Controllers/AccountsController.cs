@@ -1,10 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyBank.API
 {
     [ApiController]
+    [Authorize]
     [Route("api/customers/{custId}")]
     public class AccountsController : ControllerBase
     {

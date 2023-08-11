@@ -1,6 +1,7 @@
 ﻿using MyBank.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using MyBank.API.DbContexts;
+using MyBank.API.Types;
 
 namespace MyBank.API.Services
 {
@@ -10,6 +11,21 @@ namespace MyBank.API.Services
         public MyBankDBRepository(MyBankContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public async Task<UserInfo?> GetAdmin(string userName, string password)
+        {
+            var user = await _context.Admins.Where(u => u.UserName == userName && u.Password == password).FirstOrDefaultAsync();
+            if (user != null)
+            {
+                return new UserInfo
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    UserName = user.UserName,
+                };
+            }
+            return null;
         }
 
         public async Task<Customer?> GetCustomerAsync(long custId, bool includeAccounts = false)

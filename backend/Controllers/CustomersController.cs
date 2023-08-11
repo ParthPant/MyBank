@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Models;
 using MyBank.API.Entities;
 using MyBank.API.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyBank.API
 {
     [ApiController]
+    [Authorize]
     [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
