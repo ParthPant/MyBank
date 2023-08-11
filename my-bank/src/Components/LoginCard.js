@@ -9,7 +9,7 @@ function LoginCard() {
             <input type="text" placeholder="Username" className="input input-bordered input-primary w-full max-w-xs" />
             <input type="password" placeholder="Password" className="input input-bordered input-primary w-full max-w-xs" />
             <div className="card-actions">
-                <Link to ="/admin">
+                <Link to ="/login">
                     <button class="btn">Login</button>
                 </Link>
             </div>
