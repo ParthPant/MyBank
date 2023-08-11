@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import Navbar from '../Components/Navbar';
+import { useParams } from 'react-router-dom';
 
 function Admin(){
 
     const [formData, setFormData] = useState({});
+    const {mode} = useParams();
+    console.log(mode);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -23,7 +26,7 @@ function Admin(){
                 <div class="min-h-screen flex items-center justify-center">
                     <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
                         
-                        <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">New Customer</h1>
+                        <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">{mode === "editCust" ? <>Update</>: <>New</>} Customer</h1>
                             <form onSubmit={handleSubmit}>
                                 
                                 <div class="mb-4">
