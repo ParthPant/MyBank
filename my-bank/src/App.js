@@ -4,6 +4,7 @@ import Admin from './Pages/Admin';
 import Login from './Pages/Login';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
+
 class App extends Component {
   render() {
     return (
