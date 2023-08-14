@@ -3,24 +3,41 @@ import Navbar from "../Components/Navbar";
 import LoginCard from "../Components/LoginCard";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Provider/AuthProvider.js";
+import { useState } from "react";
+import { configheaders, baseURL } from "../utils";
+import axios from "axios";
 
 const Login = () => {
   const { setToken } = useAuth();
+  const [ error, setError ] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setToken("this is a test token");
-    navigate("/", { replace: true });
+  const handleLogin = (userName, password) => {
+    axios
+        .post(
+          baseURL + "authentication/authenticate",
+          {
+            username: userName,
+            password: password,
+          },
+          {
+            headers: configheaders,
+          },
+        )
+        .then((response) => {
+          setToken(response.data);
+          navigate("/", {replace: true});
+        })
+        .catch(err => {
+          setError(true);
+          console.log(err);
+        });
   };
-
-  setTimeout(() => {
-    handleLogin();
-  }, 3 * 1000);
 
   return (
     <>
       <Navbar />
-      <LoginCard />
+      <LoginCard onSubmit = {handleLogin} error = {error}/>
     </>
   );
 };
