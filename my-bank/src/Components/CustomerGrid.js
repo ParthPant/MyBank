@@ -7,7 +7,7 @@ function CustomerGrid() {
         customers.push({"customerID": "ID "+ i, "name": "Customer " + i})
     }
   return (
-    <div class="pl-10 pr-10 grid grid-cols-4 gap-4">
+    <div class="pl-10 pr-10 grid gap-4">
     {customers.map((customer,index)=>{
          return <CustomerDetails key={index} customerID={customer.customerID} customerName={customer.name}/>
      })}

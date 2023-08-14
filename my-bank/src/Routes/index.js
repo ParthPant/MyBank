@@ -6,6 +6,8 @@ import Login from "../Pages/Login.js";
 import AddCustomer from "../Pages/AddCustomer.js";
 import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
+import CustomeGrid from "../Components/CustomerGrid";
+import CustomerGrid from "../Components/CustomerGrid";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -15,6 +17,7 @@ const Routes = () => {
       path: "/",
       element: <LandingPage />,
     },
+    
   ];
 
   const routesForAuthenticatedOnly = [
@@ -24,15 +27,11 @@ const Routes = () => {
       children: [
         {
           path: "/dashboard",
-          element: <DashBoard />,
+          element: <CustomerGrid />,
         },
         {
-          path: "/add-customer",
+          path: "/customer",
           element: <AddCustomer />,
-        },
-        {
-          path: "/update-customer",
-          element: <DashBoard />,
         },
         {
           path: "/user-accounts",
