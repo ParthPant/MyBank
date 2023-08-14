@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { configheaders, baseURL } from "../utils.js"
 
 function AddCustomer() {
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const { mode } = useParams();
   console.log(mode);
-  const baseURL = "http://localhost:5296/api/customers/";
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -22,16 +22,10 @@ function AddCustomer() {
     alert(JSON.stringify(formData));
   };
 
-  const configheaders = {
-    "content-type": "application/json",
-    Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-  };
-
   function createPost() {
     axios
       .post(
-        baseURL,
+        baseURL + "customers/",
         {
           name: formData.username,
           email: formData.email,
