@@ -1,4 +1,5 @@
 using MyBank.API.Entities;
+using MyBank.API.Types;
 
 namespace MyBank.API.Services
 {
@@ -14,6 +15,8 @@ namespace MyBank.API.Services
         Task<Account?> GetAccountAsync(long custId, long accNo);
         Task AddAccount(long custId, Account account);
         void DeleteAccount(Account account);
+
+        Task<UserInfo?> GetAdmin(string userName, string password);
 
         Task<bool> SaveChangesAsync();
     }

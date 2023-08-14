@@ -12,7 +12,7 @@ namespace MyBank.API.Models
         [Required]
         [DefaultValue(0)]
         public long Balance { get; set; }
-        [Required]
-        public long CustId { get; set; }
+        // [Required]
+        // public long CustId { get; set; }
     }
 }
