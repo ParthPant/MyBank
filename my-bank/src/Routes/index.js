@@ -17,7 +17,6 @@ const Routes = () => {
       path: "/",
       element: <LandingPage />,
     },
-    
   ];
 
   const routesForAuthenticatedOnly = [
@@ -27,7 +26,7 @@ const Routes = () => {
       children: [
         {
           path: "/dashboard",
-          element: <CustomerGrid />,
+          element: <DashBoard />,
         },
         {
           path: "/customer",
