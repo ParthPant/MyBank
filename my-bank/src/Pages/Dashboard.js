@@ -10,7 +10,7 @@ function DashBoard() {
       <div class="min-h-screen my-8 flex r justify-center">
         <ul class="menu bg-base-200 w-3/6 h-48 mt-1 rounded-box font-semibold flex justify-center text-xl place-content-center">
           <li>
-            <a href="./add-customer">
+            <a href="./customer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-10 w-10 w-6 h-6"
