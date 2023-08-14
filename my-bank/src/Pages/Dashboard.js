@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import { Link } from "react-router-dom";
 
-function UserHome() {
+function DashBoard() {
   return (
     <>
       <Navbar />
@@ -12,12 +12,11 @@ function UserHome() {
             <a href="./add-customer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10"
+                class="h-10 w-10 w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="3"
                 stroke="currentColor"
-                class="w-6 h-6"
               >
                 <path
                   stroke-linecap="round"
@@ -32,12 +31,11 @@ function UserHome() {
             <a href="./update-customer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10"
+                class="h-10 w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="3"
                 stroke="currentColor"
-                class="w-6 h-6"
               >
                 <path
                   stroke-linecap="round"
@@ -52,12 +50,11 @@ function UserHome() {
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10"
+                class="h-10 w-10, w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="3"
                 stroke="currentColor"
-                class="w-6 h-6"
               >
                 <path
                   stroke-linecap="round"
@@ -74,4 +71,4 @@ function UserHome() {
   );
 }
 
-export default UserHome;
+export default DashBoard;

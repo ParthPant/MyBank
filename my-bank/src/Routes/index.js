@@ -4,7 +4,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login.js";
 import AddCustomer from "../Pages/AddCustomer.js";
-import UserHome from "../Pages/UserHome.js";
+import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
 
 const Routes = () => {
@@ -23,8 +23,8 @@ const Routes = () => {
       elemenent: <ProtectedRoute />,
       children: [
         {
-          path: "/",
-          element: <UserHome />,
+          path: "/dashboard",
+          element: <DashBoard />,
         },
         {
           path: "/add-customer",
@@ -32,15 +32,15 @@ const Routes = () => {
         },
         {
           path: "/update-customer",
-          element: <UserHome />,
+          element: <DashBoard />,
         },
         {
           path: "/user-accounts",
-          element: <UserHome />,
+          element: <DashBoard />,
         },
         {
           path: "/logout",
-          element: <UserHome />,
+          element: <DashBoard />,
         },
       ],
     },
@@ -59,8 +59,7 @@ const Routes = () => {
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNonAuthenticatedOnly : []),
-    ...routesForAuthenticatedOnly,
+    ...(!token ? routesForNonAuthenticatedOnly : routesForAuthenticatedOnly),
   ]);
 
   return <RouterProvider router={router} />;

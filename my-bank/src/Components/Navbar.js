@@ -3,11 +3,11 @@ import { useAuth } from "../Provider/AuthProvider.js";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { token } = useAuth();
+  const { token, setToken } = useAuth();
 
   const handleLogout = () => {
-
-  }
+    setToken();
+  };
 
   return (
     <div className="Navbar">
@@ -21,7 +21,9 @@ function Navbar() {
           <ul className="menu menu-horizontal px-1">
             {token ? (
               <li>
-                <a href="./logout">Logout</a>
+                <a href="./" onClick={handleLogout}>
+                  Logout
+                </a>
               </li>
             ) : (
               <></>
