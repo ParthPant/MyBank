@@ -5,9 +5,10 @@ import CustomerGrid from "../Components/CustomerGrid";
 
 function DashBoard() {
   return (
-    <>
+    <div>
       <Navbar />
-      <div class="min-h-screen my-8 flex r justify-center">
+      <div className="flex-column items-center text-center">
+      {/* <div class="min-h-screen my-8 flex r justify-center">
         <ul class="menu bg-base-200 w-3/6 h-48 mt-1 rounded-box font-semibold flex justify-center text-xl place-content-center">
           <li>
             <a href="./customer">
@@ -67,9 +68,13 @@ function DashBoard() {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <CustomerGrid />
-    </>
+      <Link to="/customer">
+        <button className="m-10 btn bg-purple-600 btn-primary rounded-none">New Customer</button>
+      </Link>
+      </div>
+    </div>
   );
 }
 

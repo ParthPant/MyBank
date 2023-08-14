@@ -35,10 +35,12 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="">
       <Navbar />
-      <LoginCard onSubmit={handleLogin} error={error} />
-    </>
+      <div className="glass grid h-[80vh] place-items-center">
+        <LoginCard className="" onSubmit={handleLogin} error={error} />
+      </div>
+    </div>
   );
 };
 

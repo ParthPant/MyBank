@@ -6,13 +6,9 @@ function LoginCard({ onSubmit, error }) {
   const [password, setPassword] = useState();
 
   return (
-    <div className="card card-compact w-96 bg-base-200 shadow-xl">
+    <div className="card w-96 bg-gray-900">
       <div className="card-body items-center text-center">
-        {error ? (
-          <div className="">Wrong user credentials provided</div>
-        ) : (
-          <></>
-        )}
+        
         <input
           type="text"
           placeholder="Username"
@@ -25,9 +21,14 @@ function LoginCard({ onSubmit, error }) {
           className="input border-black input-bordered input-primary w-full max-w-xs"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error ? (
+          <div><b className="text-red-600">Wrong user credentials provided</b></div>
+        ) : (
+          <></>
+        )}
         <div className="card-actions">
           <button
-            class="btn bg-slate-300"
+            class="btn btn-primary bg-purple-600 rounded-none"
             onClick={() => onSubmit(userName, password)}
           >
             Login

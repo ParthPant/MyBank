@@ -19,6 +19,9 @@ function Navbar() {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
+            <li>
+              <a>About</a>
+            </li>
             {token ? (
               <li>
                 <a href="./" onClick={handleLogout}>
@@ -28,9 +31,6 @@ function Navbar() {
             ) : (
               <></>
             )}
-            <li>
-              <a>About</a>
-            </li>
           </ul>
         </div>
       </div>

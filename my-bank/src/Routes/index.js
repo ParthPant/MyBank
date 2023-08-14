@@ -1,13 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../Provider/AuthProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
-import Home from "../Pages/Home";
 import Login from "../Pages/Login.js";
 import AddCustomer from "../Pages/AddCustomer.js";
 import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
-import CustomeGrid from "../Components/CustomerGrid";
-import CustomerGrid from "../Components/CustomerGrid";
+import CustomerDetails from "../Pages/CustomerDetails";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -31,6 +29,10 @@ const Routes = () => {
         {
           path: "/customer",
           element: <AddCustomer />,
+        },
+        {
+          path: "/customer-details/:id",
+          element: <CustomerDetails />,
         },
         {
           path: "/user-accounts",

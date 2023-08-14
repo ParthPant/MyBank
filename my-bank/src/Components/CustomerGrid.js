@@ -1,5 +1,5 @@
 import React from "react";
-import CustomerRow from "./CustomerDetails";
+import CustomerCard from "./CustomerCard";
 import axios from "axios";
 
 function CustomerGrid() {
@@ -27,13 +27,13 @@ function CustomerGrid() {
   console.log(post);
   let customers = [];
   for (let i = 0; i < post.length; ++i) {
-    customers.push({ customerID: post[i].custId + i, name: post[i].name });
+    customers.push({ customerID: post[i].custId, name: post[i].name });
   }
   return (
-    <div class="pl-10 pr-10 grid gap-4">
+    <div class="grid grid-cols-3 gap-10 p-10 place-content-center w-screen">
       {customers.map((customer, index) => {
         return (
-          <CustomerRow
+          <CustomerCard
             key={index}
             customerID={customer.customerID}
             customerName={customer.name}

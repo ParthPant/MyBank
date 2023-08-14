@@ -48,15 +48,15 @@ function AddCustomer() {
   return (
     <>
       <Navbar />
-      <div class="mt-10 mb-10">
+      <div class="pt-10 pb-10 glass">
         <div class="min-h-screen flex items-center justify-center">
-          <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
-            <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
+          <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
               {mode === "editCust" ? <>Update</> : <>New</>} Customer
             </h1>
             <form onSubmit={handleSubmit}>
               <div class="mb-4">
-                <label for="username" class="block mb-2 text-sm text-gray-600">
+                <label for="username" class="block mb-2 text-sm text-gray-300">
                   Name
                 </label>
                 <input
@@ -70,7 +70,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-4">
-                <label for="email" class="block mb-2 text-sm text-gray-600">
+                <label for="email" class="block mb-2 text-sm text-gray-300">
                   Email
                 </label>
                 <input
@@ -84,7 +84,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-4">
-                <label for="contact" class="block mb-2 text-sm text-gray-600">
+                <label for="contact" class="block mb-2 text-sm text-gray-300">
                   Contact
                 </label>
                 <input
@@ -100,7 +100,7 @@ function AddCustomer() {
               <div class="mb-6">
                 <label
                   for="cardNumber"
-                  class="block mb-2 text-sm text-gray-600"
+                  class="block mb-2 text-sm text-gray-300"
                 >
                   Card Number
                 </label>
@@ -115,7 +115,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-6">
-                <label for="pinNo" class="block mb-2 text-sm text-gray-600">
+                <label for="pinNo" class="block mb-2 text-sm text-gray-300">
                   Pin Number
                 </label>
                 <input
@@ -129,7 +129,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-6">
-                <label for="city" class="block mb-2 text-sm text-gray-600">
+                <label for="city" class="block mb-2 text-sm text-gray-300">
                   City
                 </label>
                 <input
@@ -143,7 +143,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-6">
-                <label for="accNo" class="block mb-2 text-sm text-gray-600">
+                <label for="accNo" class="block mb-2 text-sm text-gray-300">
                   Account Number
                 </label>
                 <input
@@ -156,10 +156,11 @@ function AddCustomer() {
                   required
                 />
               </div>
+              
               <button
                 type="submit"
                 onClick={createPost}
-                class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2"
+                className="font-helvetica btn btn-primary bg-purple-600 mx-auto block mb-2 rounded-none hover:border-black"
               >
                 Register
               </button>
