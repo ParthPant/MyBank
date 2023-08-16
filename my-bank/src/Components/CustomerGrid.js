@@ -30,7 +30,7 @@ function CustomerGrid() {
     customers.push({ customerID: post[i].custId, name: post[i].name });
   }
   return (
-    <div class="grid grid-cols-3 gap-10 p-10 place-content-center w-screen">
+    <div class="grid grid-cols-3 grid-auto-cols gap-10 p-10 place-content-center max-w-screen">
       {customers.map((customer, index) => {
         return (
           <CustomerCard

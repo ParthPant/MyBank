@@ -80,7 +80,7 @@ function CustomerCard(props) {
   //     </div> */}
   //   </div>
   // </div>
-  <div className="customer-card card w-96 glass shadow-xl transition-all duration-700">
+  <div className="shrink customer-card card w-96 glass shadow-xl transition-all duration-700">
       <FrontOfCard />
       <BackOfCard />
     </div>
