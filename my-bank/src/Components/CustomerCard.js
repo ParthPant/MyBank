@@ -21,16 +21,16 @@ function CustomerCard(props) {
   function BackOfCard() {
     return (
       <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'none'} : {display: 'flex'}} className="rounded glass absolute inset-0 w-full h-full flex justify-center items-center bg-black transition-all z-10 card-back hover:opacity-100">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           
           <Link to={"/customer-details/" + props.customerID}>
             <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">View</button>
           </Link>
           <button className="btn btn-ghost hover:cursor-pointer">Delete</button>
-        </div>
         <Link to={"/add-account/" + props.customerID}>
             <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">Add</button>
-            </Link>
+          </Link>
+        </div>
       </div>
     );
   }
