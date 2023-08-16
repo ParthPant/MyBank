@@ -28,7 +28,7 @@ const Routes = () => {
           element: <DashBoard />,
         },
         {
-          path: "/customer",
+          path: "/customer/:mode/:id?",
           element: <AddCustomer />,
         },
         {

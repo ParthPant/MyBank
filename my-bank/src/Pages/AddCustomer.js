@@ -8,7 +8,9 @@ function AddCustomer() {
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const { mode } = useParams();
-  console.log(mode);
+  const {id} = useParams();
+  // console.log(mode);
+  // console.log(id);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -23,27 +25,62 @@ function AddCustomer() {
   };
 
   function createPost() {
-    axios
-      .post(
-        baseURL + "customers/",
+    if(mode === "add"){
+      axios
+        .post(
+          baseURL + "customers/",
+          {
+            name: formData.name,
+            email: formData.email,
+            contact: formData.contact,
+            cardNo: formData.cardNo,
+            pinNo: formData.pinNo,
+            city: formData.city,
+            accNo: formData.accNo,
+          },
+          {
+            headers: configheaders,
+          },
+        )
+        .then((response) => {
+          console.log(response);
+          setPost(response.data);
+        })
+    }
+    else {
+      axios.put(
+        baseURL + "customers/" + id,
         {
-          name: formData.username,
+          headers: configheaders
+        },
+        {
+          name: formData.name,
           email: formData.email,
           contact: formData.contact,
-          cardNumber: formData.cardNumber,
+          cardNo: formData.cardNo,
           pinNo: formData.pinNo,
           city: formData.city,
           accNo: formData.accNo,
         },
-        {
-          headers: configheaders,
-        },
-      )
-      .then((response) => {
+      ).then((response) => {  
         console.log(response);
-        setPost(response.data);
-      });
+        setPost(response.data);}
+      )
+    }
   }
+
+   
+  React.useEffect(() => {
+    if(mode === "edit"){
+      let requestURL = baseURL + "customers/" + id;
+      axios.get(requestURL, {
+        headers: {
+          "Authorization": "Bearer" + " " + localStorage.getItem("token")
+        }}).then((response) => {
+        setFormData(response.data);
+      });
+    }  
+  }, []);
 
   return (
     <>
@@ -52,18 +89,18 @@ function AddCustomer() {
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
-              {mode === "editCust" ? <>Update</> : <>New</>} Customer
+              {mode === "edit" ? <>Update</> : <>New</>} Customer
             </h1>
             <form onSubmit={handleSubmit}>
               <div class="mb-4">
-                <label for="username" class="block mb-2 text-sm text-gray-300">
+                <label for="name" class="block mb-2 text-sm text-gray-300">
                   Name
                 </label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username || ""}
+                  id="name"
+                  name="name"
+                  value={formData.name || ""}
                   onChange={handleChange}
                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
@@ -99,16 +136,16 @@ function AddCustomer() {
               </div>
               <div class="mb-6">
                 <label
-                  for="cardNumber"
+                  for="cardNo"
                   class="block mb-2 text-sm text-gray-300"
                 >
                   Card Number
                 </label>
                 <input
                   type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  value={formData.cardNumber || ""}
+                  id="cardNo"
+                  name="cardNo"
+                  value={formData.cardNo || ""}
                   onChange={handleChange}
                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
@@ -142,27 +179,13 @@ function AddCustomer() {
                   required
                 />
               </div>
-              <div class="mb-6">
-                <label for="accNo" class="block mb-2 text-sm text-gray-300">
-                  Account Number
-                </label>
-                <input
-                  type="text"
-                  id="accNo"
-                  name="accNo"
-                  value={formData.accNo || ""}
-                  onChange={handleChange}
-                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  required
-                />
-              </div>
               
               <button
                 type="submit"
                 onClick={createPost}
                 className="font-helvetica btn btn-primary bg-purple-600 mx-auto block mb-2 rounded-none hover:border-black"
               >
-                Register
+                {mode==="add" ? "Register": "Update"}
               </button>
             </form>
           </div>

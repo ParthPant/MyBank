@@ -1,5 +1,5 @@
 import React from "react";
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 
@@ -50,7 +50,9 @@ function CustomerDetails() {
           <h2 className="">{post.pinNo}</h2>
           <h2 className="">{post.cardNo}</h2>
             <div className="card-actions justify-end">
+              <Link to={"/customer/edit/" + id}>
                 <button className="btn btn-primary rounded-none">Edit</button>
+              </Link>
                 <button className="btn btn-ghost">Delete</button>
             </div>
         </div>
