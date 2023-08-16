@@ -9,6 +9,7 @@ namespace MyBank.API.DbContexts
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Admin> Admins { get; set; } = null!;
+        public DbSet<Transaction> Transactions { get; set; } = null!;
 
         public MyBankContext(DbContextOptions<MyBankContext> options) : base(options)
         {
@@ -16,6 +17,11 @@ namespace MyBank.API.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // modelBuilder.Entity<Transaction>()
+            //     .Property(t => t.Time)
+            //     .HasColumnType("datetime2")
+            //     .HasDefaultValue("getdate()");
+
             modelBuilder.Entity<Customer>().HasData(
                     new Customer("Parth Pant", "parthpant4@gmail.com", "Bengaluru")
                     {
@@ -40,6 +46,13 @@ namespace MyBank.API.DbContexts
                         AccNo = 2342343245,
                         Balance = 787,
                         CustId = 1,
+                    },
+                    new Account
+                    {
+                        AccountType = AccountType.Saving,
+                        AccNo = 3454395723,
+                        Balance = 234,
+                        CustId = 1,
                     }
             );
 
@@ -47,6 +60,17 @@ namespace MyBank.API.DbContexts
                     new Admin("Admin", "admin", "admin@admin.com", "password")
                     {
                         Id = 1,
+                    }
+            );
+
+            modelBuilder.Entity<Transaction>().HasData(
+                    new Transaction(2342343245, TransactionType.Debit, 200)
+                    {
+                        Id = 1,
+                    },
+                    new Transaction(3454395723, TransactionType.Credit, 600)
+                    {
+                        Id = 2,
                     }
             );
         }

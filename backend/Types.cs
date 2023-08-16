@@ -17,6 +17,15 @@ namespace MyBank.API.Types
         RecurringDeposit,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum TransactionType
+    {
+        [EnumMember(Value = "Credit")]
+        Credit,
+        [EnumMember(Value = "Debit")]
+        Debit,
+    }
+
     public class UserInfo
     {
         public int Id { get; set; }
