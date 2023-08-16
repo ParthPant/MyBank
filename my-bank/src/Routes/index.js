@@ -6,6 +6,7 @@ import AddCustomer from "../Pages/AddCustomer.js";
 import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
+import AddAccount from "../Pages/AddAccount";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -33,6 +34,10 @@ const Routes = () => {
         {
           path: "/customer-details/:id",
           element: <CustomerDetails />,
+        },
+        {
+          path: "/add-account/:id",
+          element: <AddAccount />,
         },
         {
           path: "/user-accounts",
