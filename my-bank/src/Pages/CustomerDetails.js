@@ -35,13 +35,27 @@ function CustomerDetails() {
 //   for (let i = 0; i < post.length; ++i) {
 //     customers.push({ customerID: post[i].custId + i, name: post[i].name });
 //   }
+
+function deleteCustomer(){
+  axios
+        .delete(
+          baseURL + "customers/" + id,
+          {
+            headers: configheaders,
+          },
+        )
+        .then((response) => {
+          console.log(response);
+        });
+}
+
   return (
     <div>
       <Navbar />
       <div className="grid place-items-center">
       <div className="card card-side glass m-20 flex">
         <figure className="grow"><img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="Person Smiling" /></figure>
-        <div className="card-body font-helvetica shrink">
+        <div className="card-body font-helvetica pr-10">
           <h1 className="card-title">{post.name}</h1>
           <hr className="p-0"></hr>
           <h2 className="">{post.email}</h2>
@@ -51,9 +65,12 @@ function CustomerDetails() {
           <h2 className="">{post.cardNo}</h2>
             <div className="card-actions justify-end">
               <Link to={"/customer/edit/" + id}>
-                <button className="btn btn-primary rounded-none">Edit</button>
+                <button className="btn bg-purple-600 btn-primary rounded-none hover:cursor-pointer">Edit</button>
               </Link>
-                <button className="btn btn-ghost">Delete</button>
+              <Link to={"/add-account/" + id}>
+                <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">Add</button>
+              </Link>
+                <button onClick={deleteCustomer} className="btn btn-ghost">Delete</button>
             </div>
         </div>
       </div>

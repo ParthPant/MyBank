@@ -1,11 +1,18 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {baseURL} from "../utils"
+import axios from 'axios'
 import './CustomerCard.css'
 
 function CustomerCard(props) {
 
   const [isToggle, setisToggle] = useState(false);
   var url = `https://api.dicebear.com/6.x/initials/svg?seed=${props.customerName}`
+  const configheaders = {
+    "content-type": "application/json",
+    Accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
+};
 
   function FrontOfCard() {
     return (
@@ -26,13 +33,26 @@ function CustomerCard(props) {
           <Link to={"/customer-details/" + props.customerID}>
             <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">View</button>
           </Link>
-          <button className="btn btn-ghost hover:cursor-pointer">Delete</button>
-        <Link to={"/add-account/" + props.customerID}>
+          <Link to={"/add-account/" + props.customerID}>
             <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">Add</button>
           </Link>
+          <button onClick={deleteCustomer} className="btn btn-ghost hover:cursor-pointer">Delete</button>
         </div>
       </div>
     );
+  }
+
+  function deleteCustomer(){
+    axios
+          .delete(
+            baseURL + "customers/" + props.customerID,
+            {
+              headers: configheaders,
+            },
+          )
+          .then((response) => {
+            console.log(response);
+          });
   }
 
   return (
