@@ -6,7 +6,11 @@ import AddCustomer from "../Pages/AddCustomer.js";
 import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
+<<<<<<< HEAD
 import AddAccount from "../Pages/AddAccount";
+=======
+import About from "../Pages/About";
+>>>>>>> 87d99e5ab5ec2a320cb603d647bd0ce5ae385c95
 
 const Routes = () => {
   const { token } = useAuth();
@@ -28,7 +32,7 @@ const Routes = () => {
           element: <DashBoard />,
         },
         {
-          path: "/customer",
+          path: "/customer/:mode/:id?",
           element: <AddCustomer />,
         },
         {
@@ -47,6 +51,10 @@ const Routes = () => {
           path: "/logout",
           element: <DashBoard />,
         },
+        {
+          path: "/about",
+          element: <About />,
+        },
       ],
     },
   ];
@@ -59,6 +67,10 @@ const Routes = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/about",
+      element: <About />,
     },
   ];
 

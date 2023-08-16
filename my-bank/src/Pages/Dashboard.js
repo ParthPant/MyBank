@@ -70,7 +70,7 @@ function DashBoard() {
         </ul>
       </div> */}
       <CustomerGrid />
-      <Link to="/customer">
+      <Link to="/customer/add">
         <button className="m-10 btn bg-purple-600 btn-primary rounded-none">New Customer</button>
       </Link>
       </div>

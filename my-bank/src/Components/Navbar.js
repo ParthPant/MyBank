@@ -20,16 +20,27 @@ function Navbar() {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>About</a>
+              <Link to="/about">
+                <a>About</a>
+              </Link>
             </li>
             {token ? (
-              <li>
-                <a href="./" onClick={handleLogout}>
-                  Logout
-                </a>
-              </li>
+              <>
+                <li>
+                  <a href="/dashboard">
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a href="./" onClick={handleLogout}>
+                    Logout
+                  </a>
+                </li>
+              </>
             ) : (
-              <></>
+              <li>
+                <a href="/login">Sign In</a>
+              </li>
             )}
           </ul>
         </div>
