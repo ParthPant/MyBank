@@ -5,11 +5,12 @@ import './CustomerCard.css'
 function CustomerCard(props) {
 
   const [isToggle, setisToggle] = useState(false);
+  var url = `https://api.dicebear.com/6.x/initials/svg?seed=${props.customerName}`
 
   function FrontOfCard() {
     return (
       <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'block'} : {display: 'none'}} className="bg-black card-front rounded glass transition-all duration-100 delay-200 z-20 hover:display-none">
-        <figure><img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="Person smiling" /></figure>
+        <figure><img src={url} alt="Person smiling" /></figure>
         <div className="card-body">
           <h2 className="card-title">{props.customerID + ": " + props.customerName}</h2>
         </div>
