@@ -6,11 +6,8 @@ import AddCustomer from "../Pages/AddCustomer.js";
 import DashBoard from "../Pages/Dashboard.js";
 import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
-<<<<<<< HEAD
-import AddAccount from "../Pages/AddAccount";
-=======
 import About from "../Pages/About";
->>>>>>> 87d99e5ab5ec2a320cb603d647bd0ce5ae385c95
+import AddAccount from "../Pages/AddAccount";
 
 const Routes = () => {
   const { token } = useAuth();
