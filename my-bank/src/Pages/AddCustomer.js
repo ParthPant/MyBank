@@ -49,10 +49,7 @@ function AddCustomer() {
     }
     else {
       axios.put(
-        baseURL + "customers/" + id,
-        {
-          headers: configheaders
-        },
+        baseURL + "customers/" + id, 
         {
           name: formData.name,
           email: formData.email,
@@ -60,7 +57,10 @@ function AddCustomer() {
           cardNo: formData.cardNo,
           pinNo: formData.pinNo,
           city: formData.city,
-          accNo: formData.accNo,
+          
+        },
+        {
+          headers: configheaders
         },
       ).then((response) => {  
         console.log(response);
