@@ -8,7 +8,7 @@ namespace MyBank.API
 {
     [ApiController]
     [Authorize]
-    [Route("api/customers/{custId}/accounts/{accNo}/transactions")]
+    [Route("api/transactions/{accNo}")]
     public class TransactionsController : ControllerBase
     {
         private readonly ILogger<CustomersController> _logger;
@@ -25,12 +25,9 @@ namespace MyBank.API
 		[HttpGet]
 		public async Task<IActionResult> GetTransactions(long custId, long accNo)
 		{
-            if (!await _repository.CustomerExists(custId))
-            {
-                return NotFound();
-            }
+            if (!await _repository.AccountExists(accNo)) return NotFound();
 
-			var transactionEntities = await _repository.GetTransactionsAsync(custId, accNo);
+			var transactionEntities = await _repository.GetTransactionsAsync(accNo);
 			var transactionDtos = _mapper.Map<IEnumerable<TransactionDto>>(transactionEntities);
 			return Ok(transactionDtos);
 		}

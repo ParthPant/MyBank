@@ -8,8 +8,8 @@ function LoginCard({ onSubmit, error }) {
 
   return (
     <div className="card w-96 bg-gray-900">
-      <div className="card-body items-center text-center">
-        
+      <form className="card-body items-center text-center">
+      <div className="card-title">Admin Login</div>
         <input
           type="text"
           placeholder="Username"
@@ -36,24 +36,30 @@ function LoginCard({ onSubmit, error }) {
         )}
         { isSignIn ? <div className="card-actions">
           <button
-            class="btn btn-primary bg-purple-600 rounded-none"
-            onClick={() => onSubmit(userName, password)}
+            class="btn btn-active btn-primary bg-purple-600"
+            onClick={(e) => {
+              e.preventDefault();
+              onSubmit(userName, password)
+            }}
           >
             Login
           </button>
         </div> : <></>}
         { !isSignIn ? <div className="card-actions">
           <button
-            class="btn btn-primary bg-purple-600 rounded-none"
-            onClick={() => onSubmit(userName, password)}
+            class="btn btn-active btn-primary bg-purple-600"
+            onClick={(e) => {
+              e.preventDefault();
+              onSubmit(userName, password)
+            }}
           >
             Sign up
           </button>
         </div> : <></>}
         { !isSignIn ? <div onClick={()=> {setisSignin(!isSignIn)}}class="text-blue-400 hover:underline">Already have an account? Log in</div> : <></>}
- 
+
         { isSignIn ? <div onClick={()=> {setisSignin(!isSignIn)}}class="text-blue-400 hover:underline">New user? Create new account</div> : <></>}
-      </div>
+      </form>
     </div>
 
   );
