@@ -23,7 +23,7 @@ namespace MyBank.API
         }
 
 		[HttpGet]
-		public async Task<IActionResult> GetTransactions(long custId, long accNo)
+		public async Task<IActionResult> GetTransactions(long accNo)
 		{
             if (!await _repository.AccountExists(accNo)) return NotFound();
 

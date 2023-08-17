@@ -8,67 +8,83 @@ import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
 import About from "../Pages/About";
 import AddAccount from "../Pages/AddAccount";
+import Layout from "../Components/Layout.js"
 
-const Routes = () => {
+const Routes = ({children}) => {
   const { token } = useAuth();
 
   const routesForPublic = [
     {
-      path: "/",
-      element: <LandingPage />,
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <LandingPage />,
+        }
+      ]
     },
   ];
 
   const routesForAuthenticatedOnly = [
     {
-      path: "/",
-      elemenent: <ProtectedRoute />,
+      element: <Layout/>,
       children: [
         {
-          path: "/dashboard",
-          element: <DashBoard />,
-        },
-        {
-          path: "/customer/:mode/:id?",
-          element: <AddCustomer />,
-        },
-        {
-          path: "/customer-details/:id",
-          element: <CustomerDetails />,
-        },
-        {
-          path: "/add-account/:id",
-          element: <AddAccount />,
-        },
-        {
-          path: "/user-accounts",
-          element: <DashBoard />,
-        },
-        {
-          path: "/logout",
-          element: <DashBoard />,
-        },
-        {
-          path: "/about",
-          element: <About />,
-        },
+        path: "/",
+        element: <ProtectedRoute />,
+        children: [
+            {
+              path: "/dashboard",
+              element: <DashBoard />,
+            },
+            {
+              path: "/customer/:mode/:id?",
+              element: <AddCustomer />,
+            },
+            {
+              path: "/customer-details/:id",
+              element: <CustomerDetails />,
+            },
+            {
+              path: "/add-account/:id",
+              element: <AddAccount />,
+            },
+            {
+              path: "/user-accounts",
+              element: <DashBoard />,
+            },
+            {
+              path: "/logout",
+              element: <DashBoard />,
+            },
+            {
+              path: "/about",
+              element: <About />,
+            },
+          ],
+        }
       ],
     },
   ];
 
   const routesForNonAuthenticatedOnly = [
     {
-      path: "/",
-      element: <LandingPage />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/about",
-      element: <About />,
-    },
+      element: <Layout/>,
+      children: [
+        {
+          path: "/",
+          element: <LandingPage />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+      ]
+    }
   ];
 
   const router = createBrowserRouter([
@@ -76,7 +92,7 @@ const Routes = () => {
     ...(!token ? routesForNonAuthenticatedOnly : routesForAuthenticatedOnly),
   ]);
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router}> {children} </RouterProvider>
 };
 
 export default Routes;

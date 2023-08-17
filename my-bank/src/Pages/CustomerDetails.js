@@ -1,14 +1,13 @@
 import React from "react";
 import {useNavigate, useParams, Link} from 'react-router-dom';
 import axios from "axios";
-import Navbar from "../Components/Navbar";
 
 function CustomerDetails() {
 
     const {id} = useParams();
 
     const [post, setPost] = React.useState(null);
-  
+
     const baseURL = "http://localhost:5296/api/customers/" + id;
 
     const configheaders = {
@@ -54,7 +53,6 @@ function deleteCustomer(){
 
   return (
     <div>
-      <Navbar />
       <div className="grid place-items-center">
       <div className="card card-side glass m-20 flex">
         <figure className="grow"><img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="Person Smiling" /></figure>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
 import { useParams} from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
@@ -11,10 +10,10 @@ function AddAccount() {
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const [detail, setDetail] = React.useState(null);
-  
-  
+
+
   const detailURL = "http://localhost:5296/api/customers/" + id;
- 
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -66,11 +65,10 @@ if (!detail) return null;
 
   return (
     <>
-      <Navbar />
       <div class="pt-10 pb-10 glass">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
-            
+
             <form onSubmit={handleSubmit}>
                <div class="mb-4">
                 <label for="username" class="block mb-2 text-sm text-gray-300">
@@ -113,11 +111,11 @@ if (!detail) return null;
                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
                 />
-              </div> 
-              
-              
-               
-               
+              </div>
+
+
+
+
               <div class="mb-4">
                 <label for="acctype" class="block mb-2 text-sm text-gray-300">
                   Account Type
@@ -141,8 +139,8 @@ if (!detail) return null;
                   type="text"
                   id="acctype"
                   name="acctype"
-                  
-                  
+
+
                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
                 >
@@ -152,7 +150,7 @@ if (!detail) return null;
                 <option value={formData.acctype || ""} onChange={handleChange}>Recurring Deposit</option>
                 </select>
               </div> */}
-              
+
               <div class="mb-4">
                 <label for="balance" class="block mb-2 text-sm text-gray-300">
                   Balance

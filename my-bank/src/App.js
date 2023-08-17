@@ -14,7 +14,7 @@ class App extends Component {
       //   </Routes>
       // </Router>
       <AuthProvider>
-        <Routes />
+        <Routes/>
       </AuthProvider>
     );
   }
