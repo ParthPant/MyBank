@@ -30,11 +30,6 @@ function Sidebar() {
       <li>
         <a>Transactions</a>
       </li>
-    <Link to="/">
-      <li>
-        <a>Log out</a>
-      </li>
-    </Link>
     </ul>
   </div>
 
