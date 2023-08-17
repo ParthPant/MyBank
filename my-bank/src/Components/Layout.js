@@ -12,10 +12,8 @@ const Layout = ({children}) => {
     return(
 		<>
 			<Navbar/>
-			<div className="flex flex initial">
-			{ token ? <Sidebar />:<></>}
-			<Outlet/>
-			</div>
+			{token ? <div className="flex flex initial"><Sidebar /><Outlet /></div> : <Outlet />}
+			
 			<Footer/>
 		</>
 	);
