@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
