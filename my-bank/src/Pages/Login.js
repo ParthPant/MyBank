@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
 import LoginCard from "../Components/LoginCard";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Provider/AuthProvider.js";
@@ -36,7 +35,6 @@ const Login = () => {
 
   return (
     <div className="">
-      <Navbar />
       <div className="glass grid h-[80vh] place-items-center">
         <LoginCard className="" onSubmit={handleLogin} error={error} />
       </div>

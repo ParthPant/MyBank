@@ -14,32 +14,32 @@ function Navbar() {
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link to="/">
-            <a className="btn btn-ghost normal-case text-xl">MyBank</a>
+            <div className="btn btn-ghost normal-case text-xl">MyBank</div>
           </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/about">
-                <a>About</a>
+                <div>About</div>
               </Link>
             </li>
             {token ? (
               <>
                 <li>
-                  <a href="/dashboard">
+                  <Link to="/dashboard">
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="./" onClick={handleLogout}>
+                  <Link to="./" onClick={handleLogout}>
                     Logout
-                  </a>
+                  </Link>
                 </li>
               </>
             ) : (
               <li>
-                <a href="/login">Sign In</a>
+                <Link to="/login">Sign In</Link>
               </li>
             )}
           </ul>

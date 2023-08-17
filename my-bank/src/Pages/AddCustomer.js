@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
@@ -49,7 +48,7 @@ function AddCustomer() {
     }
     else {
       axios.put(
-        baseURL + "customers/" + id, 
+        baseURL + "customers/" + id,
         {
           name: formData.name,
           email: formData.email,
@@ -57,19 +56,19 @@ function AddCustomer() {
           cardNo: formData.cardNo,
           pinNo: formData.pinNo,
           city: formData.city,
-          
+
         },
         {
           headers: configheaders
         },
-      ).then((response) => {  
+      ).then((response) => {
         console.log(response);
         setPost(response.data);}
       )
     }
   }
 
-   
+
   React.useEffect(() => {
     if(mode === "edit"){
       let requestURL = baseURL + "customers/" + id;
@@ -79,12 +78,11 @@ function AddCustomer() {
         }}).then((response) => {
         setFormData(response.data);
       });
-    }  
+    }
   }, []);
 
   return (
     <>
-      <Navbar />
       <div class="pt-10 pb-10 glass">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
@@ -179,7 +177,7 @@ function AddCustomer() {
                   required
                 />
               </div>
-              
+
               <button
                 type="submit"
                 onClick={createPost}

@@ -8,6 +8,7 @@ namespace MyBank.API.Models
         [MaxLength(50)]
         public string Name { get; set; } = String.Empty;
         [Required]
+        [RegularExpression(@"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", ErrorMessage = "Valid Email not provided")]
         [MaxLength(50)]
         public string Email { get; set; } = String.Empty;
         [Required]
