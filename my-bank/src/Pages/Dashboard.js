@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CustomerGrid from "../Components/CustomerGrid";
+import Sidebar from "../Components/Sidebar";
 
 function DashBoard() {
   return (
     <div>
+
+      <div>
       <div className="flex-column items-center text-center">
       {/* <div class="min-h-screen my-8 flex r justify-center">
         <ul class="menu bg-base-200 w-3/6 h-48 mt-1 rounded-box font-semibold flex justify-center text-xl place-content-center">
@@ -67,6 +70,7 @@ function DashBoard() {
           </li>
         </ul>
       </div> */}
+      </div>
       <CustomerGrid />
       <Link to="/customer/add">
         <button className="m-10 btn bg-purple-600 btn-primary rounded-none">New Customer</button>
