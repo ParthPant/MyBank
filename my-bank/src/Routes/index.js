@@ -9,8 +9,9 @@ import CustomerDetails from "../Pages/CustomerDetails";
 import About from "../Pages/About";
 import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
+import ViewAccount from "../Pages/ViewAccount";
 
-const Routes = ({children}) => {
+const Routes = ({ children }) => {
   const { token } = useAuth();
 
   const routesForPublic = [
@@ -61,6 +62,10 @@ const Routes = ({children}) => {
               path: "/about",
               element: <About />,
             },
+            {
+              path: "/view-account/:id",
+              element: <ViewAccount />
+            }
           ],
         },
       ],
