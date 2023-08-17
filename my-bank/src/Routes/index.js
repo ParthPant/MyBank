@@ -10,6 +10,7 @@ import About from "../Pages/About";
 import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
 import ViewAccount from "../Pages/ViewAccount";
+import Transactions from "../Pages/Transactions";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -65,6 +66,10 @@ const Routes = ({ children }) => {
             {
               path: "/view-account/:id",
               element: <ViewAccount />
+            },
+            {
+              path: "transactions/:accNo",
+              element: <Transactions />
             }
           ],
         },

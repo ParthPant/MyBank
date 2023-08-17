@@ -84,7 +84,7 @@ function ViewAccount() {
                     <th>Account Type</th>
                     <th>Balance</th>
                     <th></th>
-                    <th></th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -96,12 +96,10 @@ function ViewAccount() {
                         <td>{account.accNo}</td>
                         <td>{account.accountType}</td>
                         <td>{account.balance}</td>
-                        <th>
-                          <button>Delete</button>
-                        </th>
+                        
 
-                        <Link to={"/view-transactions/" + id + account.accNo}>
-                          <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">
+                        <Link to={"/transactions/" + account.accNo}>
+                          <button className="btn btn-ghost btn-xs">
                             Transactions
                           </button>
                         </Link>
