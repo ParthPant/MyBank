@@ -56,8 +56,10 @@ namespace MyBank.API
 
             if (!await _repository.CustomerExists(custId)) return NotFound();
 
-            var accountentity = await _repository.GetAccountAsync(custId, accNo);
-            var accountDto = _mapper.Map<AccountDto>(accountentity);
+            var accountEntity = await _repository.GetAccountAsync(custId, accNo);
+            if (accountEntity == null) return NotFound();
+
+            var accountDto = _mapper.Map<AccountDto>(accountEntity);
             return Ok(accountDto);
         }
 
