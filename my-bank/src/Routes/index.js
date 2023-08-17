@@ -8,9 +8,9 @@ import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
 import About from "../Pages/About";
 import AddAccount from "../Pages/AddAccount";
-import Layout from "../Components/Layout.js"
+import Layout from "../Components/Layout.js";
 
-const Routes = ({children}) => {
+const Routes = ({ children }) => {
   const { token } = useAuth();
 
   const routesForPublic = [
@@ -20,19 +20,19 @@ const Routes = ({children}) => {
         {
           path: "/",
           element: <LandingPage />,
-        }
-      ]
+        },
+      ],
     },
   ];
 
   const routesForAuthenticatedOnly = [
     {
-      element: <Layout/>,
+      element: <Layout />,
       children: [
         {
-        path: "/",
-        element: <ProtectedRoute />,
-        children: [
+          path: "/",
+          element: <ProtectedRoute />,
+          children: [
             {
               path: "/dashboard",
               element: <DashBoard />,
@@ -62,14 +62,14 @@ const Routes = ({children}) => {
               element: <About />,
             },
           ],
-        }
+        },
       ],
     },
   ];
 
   const routesForNonAuthenticatedOnly = [
     {
-      element: <Layout/>,
+      element: <Layout />,
       children: [
         {
           path: "/",
@@ -83,8 +83,8 @@ const Routes = ({children}) => {
           path: "/about",
           element: <About />,
         },
-      ]
-    }
+      ],
+    },
   ];
 
   const router = createBrowserRouter([
@@ -92,7 +92,7 @@ const Routes = ({children}) => {
     ...(!token ? routesForNonAuthenticatedOnly : routesForAuthenticatedOnly),
   ]);
 
-  return <RouterProvider router={router}> {children} </RouterProvider>
+  return <RouterProvider router={router}> {children} </RouterProvider>;
 };
 
 export default Routes;

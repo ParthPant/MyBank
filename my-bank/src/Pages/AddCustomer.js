@@ -7,7 +7,7 @@ function AddCustomer() {
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const { mode } = useParams();
-  const {id} = useParams();
+  const { id } = useParams();
   // console.log(mode);
   // console.log(id);
 
@@ -24,7 +24,7 @@ function AddCustomer() {
   };
 
   function createPost() {
-    if(mode === "add"){
+    if (mode === "add") {
       axios
         .post(
           baseURL + "customers/",
@@ -44,40 +44,42 @@ function AddCustomer() {
         .then((response) => {
           console.log(response);
           setPost(response.data);
-        })
-    }
-    else {
-      axios.put(
-        baseURL + "customers/" + id,
-        {
-          name: formData.name,
-          email: formData.email,
-          contact: formData.contact,
-          cardNo: formData.cardNo,
-          pinNo: formData.pinNo,
-          city: formData.city,
-
-        },
-        {
-          headers: configheaders
-        },
-      ).then((response) => {
-        console.log(response);
-        setPost(response.data);}
-      )
+        });
+    } else {
+      axios
+        .put(
+          baseURL + "customers/" + id,
+          {
+            name: formData.name,
+            email: formData.email,
+            contact: formData.contact,
+            cardNo: formData.cardNo,
+            pinNo: formData.pinNo,
+            city: formData.city,
+          },
+          {
+            headers: configheaders,
+          },
+        )
+        .then((response) => {
+          console.log(response);
+          setPost(response.data);
+        });
     }
   }
 
-
   React.useEffect(() => {
-    if(mode === "edit"){
+    if (mode === "edit") {
       let requestURL = baseURL + "customers/" + id;
-      axios.get(requestURL, {
-        headers: {
-          "Authorization": "Bearer" + " " + localStorage.getItem("token")
-        }}).then((response) => {
-        setFormData(response.data);
-      });
+      axios
+        .get(requestURL, {
+          headers: {
+            Authorization: "Bearer" + " " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          setFormData(response.data);
+        });
     }
   }, []);
 
@@ -133,10 +135,7 @@ function AddCustomer() {
                 />
               </div>
               <div class="mb-6">
-                <label
-                  for="cardNo"
-                  class="block mb-2 text-sm text-gray-300"
-                >
+                <label for="cardNo" class="block mb-2 text-sm text-gray-300">
                   Card Number
                 </label>
                 <input
@@ -183,7 +182,7 @@ function AddCustomer() {
                 onClick={createPost}
                 className="font-helvetica btn btn-primary bg-purple-600 mx-auto block mb-2 rounded-none hover:border-black"
               >
-                {mode==="add" ? "Register": "Update"}
+                {mode === "add" ? "Register" : "Update"}
               </button>
             </form>
           </div>

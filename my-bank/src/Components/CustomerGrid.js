@@ -3,9 +3,8 @@ import CustomerCard from "./CustomerCard";
 import axios from "axios";
 
 function CustomerGrid() {
-  
   const [post, setPost] = React.useState(null);
-  
+
   const baseURL = "http://localhost:5296/api/customers/";
 
   const configheaders = {
@@ -15,12 +14,15 @@ function CustomerGrid() {
   };
 
   React.useEffect(() => {
-    axios.get(baseURL, {
-      headers: {
-        "Authorization": "Bearer" + " " + localStorage.getItem("token")
-      }}).then((response) => {
-      setPost(response.data);
-    });
+    axios
+      .get(baseURL, {
+        headers: {
+          Authorization: "Bearer" + " " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
   }, []);
 
   if (!post) return null;

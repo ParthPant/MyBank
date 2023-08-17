@@ -1,25 +1,32 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {baseURL} from "../utils"
-import axios from 'axios'
-import './CustomerCard.css'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { baseURL } from "../utils";
+import axios from "axios";
+import "./CustomerCard.css";
 
 function CustomerCard(props) {
-
   const [isToggle, setisToggle] = useState(false);
-  var url = `https://api.dicebear.com/6.x/initials/svg?seed=${props.customerName}`
+  var url = `https://api.dicebear.com/6.x/initials/svg?seed=${props.customerName}`;
   const configheaders = {
     "content-type": "application/json",
     Accept: "application/json",
     "Access-Control-Allow-Origin": "*",
-};
+  };
 
   function FrontOfCard() {
     return (
-      <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'block'} : {display: 'none'}} className="bg-black card-front rounded glass transition-all duration-100 delay-200 z-20 hover:display-none">
-        <figure><img src={url} alt="User Profile" /></figure>
+      <div
+        onClick={() => setisToggle(!isToggle)}
+        style={!isToggle ? { display: "block" } : { display: "none" }}
+        className="bg-black card-front rounded glass transition-all duration-100 delay-200 z-20 hover:display-none"
+      >
+        <figure>
+          <img src={url} alt="User Profile" />
+        </figure>
         <div className="card-body">
-          <h2 className="card-title">{props.customerID + ": " + props.customerName}</h2>
+          <h2 className="card-title">
+            {props.customerID + ": " + props.customerName}
+          </h2>
         </div>
       </div>
     );
@@ -27,37 +34,45 @@ function CustomerCard(props) {
 
   function BackOfCard() {
     return (
-      <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'none'} : {display: 'flex'}} className="rounded glass absolute inset-0 w-full h-full flex justify-center items-center bg-black transition-all z-10 card-back hover:opacity-100">
+      <div
+        onClick={() => setisToggle(!isToggle)}
+        style={!isToggle ? { display: "none" } : { display: "flex" }}
+        className="rounded glass absolute inset-0 w-full h-full flex justify-center items-center bg-black transition-all z-10 card-back hover:opacity-100"
+      >
         <div className="grid grid-cols-3 gap-4">
-
           <Link to={"/customer-details/" + props.customerID}>
-            <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">View</button>
+            <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">
+              View
+            </button>
           </Link>
           <Link to={"/add-account/" + props.customerID}>
-            <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">Add</button>
+            <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">
+              Add
+            </button>
           </Link>
-          <button onClick={deleteCustomer} className="btn btn-ghost hover:cursor-pointer">Delete</button>
+          <button
+            onClick={deleteCustomer}
+            className="btn btn-ghost hover:cursor-pointer"
+          >
+            Delete
+          </button>
         </div>
       </div>
     );
   }
 
-  function deleteCustomer(){
+  function deleteCustomer() {
     axios
-          .delete(
-            baseURL + "customers/" + props.customerID,
-            {
-              headers: configheaders,
-            },
-          )
-          .then((response) => {
-            console.log(response);
-            window.location.reload(true);
-          });
+      .delete(baseURL + "customers/" + props.customerID, {
+        headers: configheaders,
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload(true);
+      });
   }
 
   return (
-
     // <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     //   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     //     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -97,16 +112,16 @@ function CustomerCard(props) {
     //         <button className="btn btn-ghost">Delete</button>
     //         </div>
     //     </div>
-  //   <div className="card group/item hover:bg-slate-100 w-96 glass shadow-xl">
-  //   <figure><img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="Shoes" /></figure>
-  //   <div className="card-body">
-  //     <h2 className="card-title">{props.customerID + ": " + props.customerName}</h2>
-  //     {/* <div className="card-actions justify-end">
-  //       <button className="btn btn-primary">Buy Now</button>
-  //     </div> */}
-  //   </div>
-  // </div>
-  <div className="shrink customer-card card w-96 glass shadow-xl transition-all duration-700">
+    //   <div className="card group/item hover:bg-slate-100 w-96 glass shadow-xl">
+    //   <figure><img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="Shoes" /></figure>
+    //   <div className="card-body">
+    //     <h2 className="card-title">{props.customerID + ": " + props.customerName}</h2>
+    //     {/* <div className="card-actions justify-end">
+    //       <button className="btn btn-primary">Buy Now</button>
+    //     </div> */}
+    //   </div>
+    // </div>
+    <div className="shrink customer-card card w-96 glass shadow-xl transition-all duration-700">
       <FrontOfCard />
       <BackOfCard />
     </div>

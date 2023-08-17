@@ -9,7 +9,7 @@ namespace MyBank.API
 {
     [ApiController]
     [Authorize]
-    [Route("api/admins}")]
+    [Route("api/admins")]
     public class AdminsController : ControllerBase
     {
         private readonly ILogger<AccountsController> _logger;

@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
 
 // const navigate = useNavigate();h
 
 function AddAccount() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const [detail, setDetail] = React.useState(null);
 
-
   const detailURL = "http://localhost:5296/api/customers/" + id;
-
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -25,24 +23,26 @@ function AddAccount() {
     event.preventDefault();
     console.log(JSON.stringify(formData));
     alert(JSON.stringify(formData));
-
   };
-  console.log("Check " + formData.acctype)
+  console.log("Check " + formData.acctype);
 
   React.useEffect(() => {
-    axios.get(detailURL, {
-       params: {
-           includeAccounts: false
-       },
-       headers: {
-        "Authorization": "Bearer" + " " + localStorage.getItem("token")
-    }}).then((response) => {
-    setDetail(response.data);
-    });
-}, []);
+    axios
+      .get(detailURL, {
+        params: {
+          includeAccounts: false,
+        },
+        headers: {
+          Authorization: "Bearer" + " " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setDetail(response.data);
+      });
+  }, []);
 
-if (!detail) return null;
-   console.log(detail);
+  if (!detail) return null;
+  console.log(detail);
 
   function createPost() {
     axios
@@ -50,7 +50,7 @@ if (!detail) return null;
         baseURL + `customers/${id}/accounts`,
         {
           accountType: formData.acctype,
-          balance: formData.balance
+          balance: formData.balance,
         },
         {
           headers: configheaders,
@@ -68,9 +68,8 @@ if (!detail) return null;
       <div class="pt-10 pb-10 glass">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
-
             <form onSubmit={handleSubmit}>
-               <div class="mb-4">
+              <div class="mb-4">
                 <label for="username" class="block mb-2 text-sm text-gray-300">
                   Name
                 </label>
@@ -112,9 +111,6 @@ if (!detail) return null;
                   required
                 />
               </div>
-
-
-
 
               <div class="mb-4">
                 <label for="acctype" class="block mb-2 text-sm text-gray-300">

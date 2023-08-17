@@ -27,9 +27,7 @@ function Navbar() {
             {token ? (
               <>
                 <li>
-                  <Link to="/dashboard">
-                    Dashboard
-                  </Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
                   <Link to="./" onClick={handleLogout}>

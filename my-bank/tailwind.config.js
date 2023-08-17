@@ -4,13 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'helvetica': [' Helvetica', 'sans-serif'],
+        helvetica: [" Helvetica", "sans-serif"],
       },
-      daisyui:{
+      daisyui: {
         themes: ["dark"],
       },
     },
   },
   plugins: [require("daisyui")],
-  
 };
