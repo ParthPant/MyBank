@@ -86,6 +86,14 @@ namespace MyBank.API
             return NoContent();
         }
 
+        [HttpGet("accounts/{accNo}/balance")]
+        public async Task<IActionResult> GetAccountBalance(long custId, long accNo)
+        {
+            var accountEntity = await _repository.GetAccountAsync(custId, accNo);
+            if (accountEntity == null) return NotFound();
+            return Ok(accountEntity.Balance);
+        }
+
         // [HttpPatch("accounts/{accNo}")]
         // public IActionResult PatchCustomerAccount(long custId, long accNo)
         // {

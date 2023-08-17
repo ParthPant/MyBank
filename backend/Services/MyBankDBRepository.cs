@@ -89,12 +89,17 @@ namespace MyBank.API.Services
             _context.Accounts.Remove(account);
         }
 
-        public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long custId, long accNo)
+        public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo)
         {
             return await _context.Transactions
                 .Where(t => t.AccNo == accNo)
                 .OrderBy(t => t.Time)
                 .ToListAsync();
+        }
+
+        public async Task<bool> AccountExists(long accNo)
+        {
+            return await _context.Accounts.AnyAsync(a => a.AccNo == accNo);
         }
     }
 }

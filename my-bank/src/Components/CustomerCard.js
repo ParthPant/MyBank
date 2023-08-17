@@ -17,7 +17,7 @@ function CustomerCard(props) {
   function FrontOfCard() {
     return (
       <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'block'} : {display: 'none'}} className="bg-black card-front rounded glass transition-all duration-100 delay-200 z-20 hover:display-none">
-        <figure><img src={url} alt="Person smiling" /></figure>
+        <figure><img src={url} alt="User Profile" /></figure>
         <div className="card-body">
           <h2 className="card-title">{props.customerID + ": " + props.customerName}</h2>
         </div>
@@ -29,7 +29,7 @@ function CustomerCard(props) {
     return (
       <div onClick={()=>setisToggle(!isToggle)} style={!isToggle ? {display:'none'} : {display: 'flex'}} className="rounded glass absolute inset-0 w-full h-full flex justify-center items-center bg-black transition-all z-10 card-back hover:opacity-100">
         <div className="grid grid-cols-3 gap-4">
-          
+
           <Link to={"/customer-details/" + props.customerID}>
             <button className="btn bg-purple-600 rounded-none hover:cursor-pointer">View</button>
           </Link>
@@ -57,7 +57,7 @@ function CustomerCard(props) {
   }
 
   return (
-    
+
     // <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     //   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     //     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
