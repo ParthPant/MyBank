@@ -3,7 +3,6 @@ import Navbar from "../Components/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
-import "./modification.css";
 
 function ViewAccount() {
   const { id } = useParams();
@@ -73,7 +72,7 @@ function ViewAccount() {
   return (
     <>
       <div class="pt-10 pb-10 glass">
-        <div class="min-h-screen flex items-center justify-center" >
+        <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-lg w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <div className="overflow-x-auto">
               <table className="table table-zebra">
@@ -85,7 +84,6 @@ function ViewAccount() {
                     <th>Account Type</th>
                     <th>Balance</th>
                     <th></th>
-                    
                   </tr>
                 </thead>
                 <tbody>
@@ -97,7 +95,6 @@ function ViewAccount() {
                         <td>{account.accNo}</td>
                         <td>{account.accountType}</td>
                         <td>{account.balance}</td>
-                        
 
                         <Link to={"/transactions/" + account.accNo}>
                           <button className="btn btn-ghost btn-xs">

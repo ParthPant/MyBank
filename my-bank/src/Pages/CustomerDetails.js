@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
-
 function CustomerDetails() {
   const { id } = useParams();
 
@@ -53,11 +52,11 @@ function CustomerDetails() {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="card card-side glass m-20 flex">
-          <figure className="grow">
+        <div className="card card-side glass m-20 min-w-[60%] flex">
+          <figure className="w-1/2">
             <img
-              src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
-              alt="Person Smiling"
+              src={`https://api.dicebear.com/6.x/initials/svg?seed=${post.name}`}
+              alt="Profile Pic"
             />
           </figure>
           <div className="card-body font-helvetica pr-10">
@@ -70,26 +69,26 @@ function CustomerDetails() {
             <h2 className="">{post.cardNo}</h2>
             <div className="card-actions justify-end">
               <Link to={"/customer/edit/" + id}>
-                <button className="btn bg-purple-600 btn-primary rounded-none hover:cursor-pointer">
+                <button className="btn btn-primary hover:cursor-pointer">
                   Edit
                 </button>
               </Link>
               <Link to={"/add-account/" + id}>
-                <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">
+                <button className="btn btn-primary hover:cursor-pointer">
                   Add
                 </button>
               </Link>
-              <button onClick={deleteCustomer} className="btn btn-ghost">
+              <Link to={"/view-account/" + id}>
+                <button className="btn btn-primary hover:cursor-pointer">
+                  Accounts
+                </button>
+              </Link>
+              <button onClick={deleteCustomer} className="btn btn-error">
                 Delete
               </button>
             </div>
           </div>
 
-          <Link to={"/view-account/" + id}>
-            <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">
-              Accounts
-            </button>
-          </Link>
         </div>
       </div>
     </div>

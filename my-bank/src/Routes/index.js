@@ -65,12 +65,12 @@ const Routes = ({ children }) => {
             },
             {
               path: "/view-account/:id",
-              element: <ViewAccount />
+              element: <ViewAccount />,
             },
             {
               path: "transactions/:accNo",
-              element: <Transactions />
-            }
+              element: <Transactions />,
+            },
           ],
         },
       ],
