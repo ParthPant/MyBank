@@ -97,6 +97,10 @@ namespace MyBank.API.Services
                 .ToListAsync();
         }
 
+        public void AddAdmin(Admin adminEntity) {
+            _context.Admins.Add(adminEntity);
+        }
+
         public async Task<bool> AccountExists(long accNo)
         {
             return await _context.Accounts.AnyAsync(a => a.AccNo == accNo);
