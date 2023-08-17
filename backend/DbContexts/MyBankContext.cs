@@ -36,6 +36,20 @@ namespace MyBank.API.DbContexts
                         Contact = 2342354234,
                         CardNo = 888888888,
                         PinNo = 5345324,
+                    },
+                    new Customer("Homelander", "homie@vaught.com", "New York")
+                    {
+                        CustId = 3,
+                        Contact = 23546456,
+                        CardNo = 888888888,
+                        PinNo = 5345324,
+                    },
+                    new Customer("Batman", "thatman@vaught.com", "Gotham")
+                    {
+                        CustId = 4,
+                        Contact = 64654646,
+                        CardNo = 322112,
+                        PinNo = 544151,
                     }
             );
 
@@ -53,7 +67,15 @@ namespace MyBank.API.DbContexts
                         AccNo = 3454395723,
                         Balance = 234,
                         CustId = 1,
+                    },
+                    new Account
+                    {
+                        AccountType = AccountType.Salary,
+                        AccNo = 3454395724,
+                        Balance = 23423,
+                        CustId = 4,
                     }
+
             );
 
             modelBuilder.Entity<Admin>().HasData(
@@ -71,6 +93,14 @@ namespace MyBank.API.DbContexts
                     new Transaction(3454395723, TransactionType.Credit, 600)
                     {
                         Id = 2,
+                    },
+                    new Transaction(2342343245, TransactionType.Credit, 234)
+                    {
+                        Id = 3,
+                    },
+                    new Transaction(3454395723, TransactionType.Debit, 123)
+                    {
+                        Id = 4,
                     }
             );
         }
