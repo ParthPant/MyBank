@@ -84,6 +84,12 @@ function CustomerDetails() {
               </button>
             </div>
           </div>
+
+          <Link to={"/view-account/" + id}>
+            <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">
+              Accounts
+            </button>
+          </Link>
         </div>
       </div>
     </div>
