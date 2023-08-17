@@ -1,5 +1,5 @@
 import React from "react";
-import {useParams, Link} from 'react-router-dom';
+import {useNavigate, useParams, Link} from 'react-router-dom';
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 
@@ -9,13 +9,15 @@ function CustomerDetails() {
 
     const [post, setPost] = React.useState(null);
   
-     const baseURL = "http://localhost:5296/api/customers/" + id;
+    const baseURL = "http://localhost:5296/api/customers/" + id;
 
-     const configheaders = {
+    const configheaders = {
          "content-type": "application/json",
          Accept: "application/json",
          "Access-Control-Allow-Origin": "*",
      };
+
+     const navigate = useNavigate();
 
      React.useEffect(() => {
          axios.get(baseURL, {
@@ -39,13 +41,14 @@ function CustomerDetails() {
 function deleteCustomer(){
   axios
         .delete(
-          baseURL + "customers/" + id,
+          baseURL,
           {
             headers: configheaders,
           },
         )
         .then((response) => {
           console.log(response);
+          navigate('/dashboard', { replace: true });
         });
 }
 

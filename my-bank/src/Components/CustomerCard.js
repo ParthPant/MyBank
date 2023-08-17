@@ -52,6 +52,7 @@ function CustomerCard(props) {
           )
           .then((response) => {
             console.log(response);
+            window.location.reload(true);
           });
   }
 
