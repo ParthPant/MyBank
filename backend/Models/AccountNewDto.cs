@@ -6,10 +6,10 @@ namespace MyBank.API.Models
 {
     public class AccountNewDto
     {
-        [Required]
+        [Required(ErrorMessage = "Account Type is necessary")]
         [DefaultValue(AccountType.Saving)]
         public AccountType AccountType { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Balace is necessary")]
         [DefaultValue(0)]
         public long Balance { get; set; }
         // [Required]
