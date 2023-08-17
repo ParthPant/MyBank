@@ -8,6 +8,7 @@ import LandingPage from "../Pages/LandingPage";
 import CustomerDetails from "../Pages/CustomerDetails";
 import About from "../Pages/About";
 import AddAccount from "../Pages/AddAccount";
+import ViewAccount from "../Pages/ViewAccount";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -39,6 +40,10 @@ const Routes = () => {
         {
           path: "/add-account/:id",
           element: <AddAccount />,
+        },
+        {
+          path: "/view-account/:id",
+          element: <ViewAccount />,
         },
         {
           path: "/user-accounts",

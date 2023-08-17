@@ -75,6 +75,9 @@ function deleteCustomer(){
               </Link>
                 <button onClick={deleteCustomer} className="btn btn-ghost">Delete</button>
             </div>
+            <Link to={"/view-account/" + id}>
+                <button className="btn btn-primary bg-purple-600 rounded-none hover:cursor-pointer">Accounts</button>
+              </Link>
         </div>
       </div>
       </div>
