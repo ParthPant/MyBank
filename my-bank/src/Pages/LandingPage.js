@@ -5,7 +5,7 @@ import { useAuth } from "../Provider/AuthProvider";
 function LandingPage() {
   const { token } = useAuth();
   return (
-    <div>
+    <div className="static">
      
       {/* <div class="px-6 py-12 text-center md:px-12 lg:text-left">
         <div class="w-100 mx-auto sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl xl:px-32">
