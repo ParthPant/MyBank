@@ -17,14 +17,28 @@ function CustomerCard(props) {
     return (
       <div
         onClick={() => setisToggle(!isToggle)}
-        style={!isToggle ? { display: "block", borderRadius: "20px", border: "10px black", padding: "20px", height : "200px" } : { visibility: "hidden" }}
+        style={
+          !isToggle
+            ? {
+                display: "block",
+                borderRadius: "20px",
+                border: "10px black",
+                padding: "20px",
+                height: "200px",
+              }
+            : { visibility: "hidden" }
+        }
         className="bg-black card-front rounded glass transition-all duration-100 delay-200 z-20 hover:display-none"
       >
         <figure>
-          <img src={url} alt="User Profile" style={{borderRadius: "20em", height : "100px"}} />
+          <img
+            src={url}
+            alt="User Profile"
+            style={{ borderRadius: "20em", height: "100px" }}
+          />
         </figure>
         <div className="card-body">
-          <h2 className="card-title" style= {{textAlign: "center"}}>
+          <h2 className="card-title" style={{ textAlign: "center" }}>
             {props.customerID + ": " + props.customerName}
           </h2>
         </div>
@@ -36,7 +50,11 @@ function CustomerCard(props) {
     return (
       <div
         onClick={() => setisToggle(!isToggle)}
-        style={!isToggle ? { visibility: "hidden" } : { display: "flex", height: "200px" }}
+        style={
+          !isToggle
+            ? { visibility: "hidden" }
+            : { display: "flex", height: "200px" }
+        }
         className="rounded glass absolute inset-0 w-full h-full flex justify-center items-center bg-black transition-all z-10 card-back hover:opacity-100"
       >
         <div className="grid grid-cols-3 gap-4">

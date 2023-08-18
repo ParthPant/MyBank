@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
     <>
       <Navbar />
       {token ? (
-          <Sidebar>
-            <Outlet />
-          </Sidebar>
+        <Sidebar>
+          <Outlet />
+        </Sidebar>
       ) : (
         <>
           <Outlet />

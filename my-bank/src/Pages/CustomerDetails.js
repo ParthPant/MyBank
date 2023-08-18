@@ -88,7 +88,6 @@ function CustomerDetails() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>

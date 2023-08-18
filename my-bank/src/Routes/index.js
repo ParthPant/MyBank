@@ -27,10 +27,6 @@ const Routes = ({ children }) => {
         },
       ],
     },
-    {
-      path: "/mini-stat",
-      element: <MiniStatement />,
-    },
   ];
 
   const routesForAuthenticatedOnly = [
@@ -75,11 +71,15 @@ const Routes = ({ children }) => {
             },
             {
               path: "/balance-enquiry",
-              element: <BalanceEnquiry />
+              element: <BalanceEnquiry />,
             },
             {
               path: "transactions/:accNo?",
               element: <Transactions />,
+            },
+            {
+              path: "mini-statement/:accNo?",
+              element: <MiniStatement />,
             },
           ],
         },

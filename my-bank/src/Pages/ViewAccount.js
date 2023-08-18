@@ -3,9 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
 
-
 function ViewAccount() {
-
   const { id } = useParams();
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
@@ -53,21 +51,19 @@ function ViewAccount() {
   };
 
   function deleteAccount(accNo) {
-      axios
-          .delete(
-              baseURL + "customers/" + id + "/accounts/" + accNo,
-              {
-                  headers: configheaders
-              }
-          )
-          .then((response) => {
-              console.log(response);
-              // window.location.reload(true);
-          }).catch(err => {
-              console.log(err);
-              console.log(err.response.data);
-              console.log(err.response.headers.statsu)
-          });
+    axios
+      .delete(baseURL + "customers/" + id + "/accounts/" + accNo, {
+        headers: configheaders,
+      })
+      .then((response) => {
+        console.log(response);
+        // window.location.reload(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response.data);
+        console.log(err.response.headers.statsu);
+      });
   }
 
   return (
@@ -106,7 +102,10 @@ function ViewAccount() {
                         </td>
 
                         <td>
-                          <button className="btn btn-error btn-xs" onClick={(e) => deleteAccount(account.accNo)}>
+                          <button
+                            className="btn btn-error btn-xs"
+                            onClick={(e) => deleteAccount(account.accNo)}
+                          >
                             Delete
                           </button>
                         </td>
@@ -116,7 +115,6 @@ function ViewAccount() {
                 </tbody>
               </table>
             </div>
-            
           </div>
         </div>
       </div>

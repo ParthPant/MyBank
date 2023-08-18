@@ -4,7 +4,6 @@ using MyBank.API.Models;
 using MyBank.API.Entities;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MyBank.API.Types;
 
 namespace MyBank.API
