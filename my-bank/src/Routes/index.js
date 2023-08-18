@@ -11,6 +11,7 @@ import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
 import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
+import MiniStatement from "../Pages/MiniStatements";
 import BalanceEnquiry from "../Pages/BalanceEnquiry";
 
 const Routes = ({ children }) => {
@@ -25,6 +26,10 @@ const Routes = ({ children }) => {
           element: <LandingPage />,
         },
       ],
+    },
+    {
+      path: "/mini-stat",
+      element: <MiniStatement />,
     },
   ];
 
@@ -73,7 +78,7 @@ const Routes = ({ children }) => {
               element: <BalanceEnquiry />
             },
             {
-              path: "transactions/:accNo",
+              path: "transactions/:accNo?",
               element: <Transactions />,
             },
           ],
