@@ -32,26 +32,5 @@ namespace MyBank.API
 			var transactionDtos = _mapper.Map<IEnumerable<TransactionDto>>(transactionEntities);
 			return Ok(transactionDtos);
 		}
-
-        [HttpPost("fundtransfer")]
-        public async Task<IActionResult> FundTransfer(long custIdFrom, long accNoFrom, long custIdTo, long accNoTo, long amountToTransfer)
-        {
-            if(!await _repository.AccountExists(accNoFrom)) return NotFound();
-            if(!await _repository.AccountExists(accNoTo)) return NotFound();
-
-            var accountEntityFrom = await _repository.GetAccountAsync(custIdFrom, accNoFrom);
-            var accountEntityTo = await _repository.GetAccountAsync(custIdTo, accNoTo);
-
-            if (accountEntityFrom.Balance < amountToTransfer) return BadRequest();
-
-            accountEntityFrom.Balance = accountEntityFrom.Balance - amountToTransfer;
-            accountEntityTo.Balance = accountEntityTo.Balance + amountToTransfer;
-
-            await _repository.SaveChangesAsync();
-
-            var accountDtoFrom = _mapper.Map<AccountDto>(accountEntityFrom);
-            return Ok(accountEntityFrom);
-
-        }
     }
 }

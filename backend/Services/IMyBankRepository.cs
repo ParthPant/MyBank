@@ -19,6 +19,7 @@ namespace MyBank.API.Services
         Task<bool> AccountExists(long accNo);
 
         Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo);
+        void AddTransaction(Transaction transaction);
 
         Task<UserInfo?> GetAdmin(string userName, string password);
         void AddAdmin(Admin admin);
