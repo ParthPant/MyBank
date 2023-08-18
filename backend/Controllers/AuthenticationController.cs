@@ -56,7 +56,7 @@ namespace MyBank.API
                         _configuration["Authentication:Audience"],
                         claimsForToken,
                         DateTime.UtcNow,
-                        DateTime.UtcNow.AddHours(1),
+                        DateTime.UtcNow.AddHours(10),
                         signingCredentials
                         );
 

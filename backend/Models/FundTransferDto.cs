@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using MyBank.API.Types;
 
 namespace MyBank.API.Models
 {

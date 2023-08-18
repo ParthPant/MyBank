@@ -28,15 +28,15 @@ namespace MyBank.API
         [HttpPost]
         public async Task<IActionResult> CreateFundTransfer(FundTransferDto fundTransfer)
         {
+            if (!await _repository.AccountExists(fundTransfer.AccNoFrom)) return NotFound("Source account does not exist");
+            if (!await _repository.AccountExists(fundTransfer.AccNoTo)) return NotFound("Destination account does not exist");
+
             var AccFromEntity = await _repository.GetAccountAsync(fundTransfer.AccNoFrom);
             var AccToEntity = await _repository.GetAccountAsync(fundTransfer.AccNoTo);
+
             var AmountToTransfer = fundTransfer.TransactionAmount;
             var AccNoFrom = AccFromEntity.AccNo;
             var AccNoTo = AccToEntity.AccNo;
-
-
-            if (!await _repository.AccountExists(AccNoFrom)) return NotFound();
-            if (!await _repository.AccountExists(AccNoTo)) return NotFound();
 
             if (AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
 
@@ -45,16 +45,15 @@ namespace MyBank.API
 
             Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer);
             Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer);
+            _repository.AddTransaction(transactionFrom);
+            _repository.AddTransaction(transactionTo);
+
             await _repository.SaveChangesAsync();
 
-            var transactionFromDto = _mapper.Map<TransactionDto>(transactionFrom);
-            var transactionToDto = _mapper.Map<TransactionDto>(transactionTo);
-
-            return Ok(transactionFromDto);
+            return NoContent();
         }
 
     }
 
 
 }
-
