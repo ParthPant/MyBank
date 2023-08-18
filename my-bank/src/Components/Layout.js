@@ -9,9 +9,9 @@ const Layout = ({ children }) => {
   const { token } = useAuth();
   return (
     <>
-      <Navbar />
       {token ? (
           <Sidebar>
+            <Navbar />
             <Outlet />
           </Sidebar>
       ) : (
