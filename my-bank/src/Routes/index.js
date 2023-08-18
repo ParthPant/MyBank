@@ -11,11 +11,8 @@ import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
 import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
-<<<<<<< HEAD
 import MiniStatement from "../Pages/MiniStatements";
-=======
 import BalanceEnquiry from "../Pages/BalanceEnquiry";
->>>>>>> a33e21c12ac1acd92c89122dc9a806c538d49601
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -77,13 +74,10 @@ const Routes = ({ children }) => {
               element: <ViewAccount />,
             },
             {
-<<<<<<< HEAD
-=======
               path: "/balance-enquiry",
               element: <BalanceEnquiry />
             },
             {
->>>>>>> a33e21c12ac1acd92c89122dc9a806c538d49601
               path: "transactions/:accNo?",
               element: <Transactions />,
             },
