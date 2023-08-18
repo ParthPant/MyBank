@@ -21,7 +21,8 @@ const BalanceEnquiry = () => {
     }
 
     return (
-        <div className="grid items-center justify-center min-h-full min-w-full">
+        <div className="flex justify-center items-center">
+        <div className="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">Balance Enquiry</h1>
             <div className="flex gap-4 m-6">
                 <input type="number" className="input input-bordered w-full max-w-xs" placeholder="Enter Account Number" value={search} onChange={(e) => setSearch(e.target.value)}/>
@@ -35,6 +36,7 @@ const BalanceEnquiry = () => {
             </div>
             : <></>
             }
+        </div>
         </div>
     );
 }

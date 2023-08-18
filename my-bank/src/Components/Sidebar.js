@@ -8,8 +8,8 @@ function Sidebar({children}) {
     <>
       <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <div className="min-w-full backg">
+        <div className="drawer-content flex flex-col items-center justify-center backg">
+          <div className="min-w-full">
             {children}
           </div>
         </div>
