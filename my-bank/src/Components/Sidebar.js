@@ -24,6 +24,9 @@ function Sidebar({children}) {
               <Link to="/dashboard">View Customers</Link>
             </li>
             <li>
+              <Link to="/balance-enquiry">Balance Enquiry</Link>
+            </li>
+            <li>
               <Link to="/transactions">Transactions</Link>
             </li>
           </ul>
