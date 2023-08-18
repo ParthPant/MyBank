@@ -44,8 +44,9 @@ namespace MyBank.API
 
             Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer);
             Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer);
-            _repository.AddTransaction(transactionFrom);
-            _repository.AddTransaction(transactionTo);
+
+            AccFromEntity.Transactions.Add(transactionFrom);
+            AccToEntity.Transactions.Add(transactionTo);
 
             await _repository.SaveChangesAsync();
 

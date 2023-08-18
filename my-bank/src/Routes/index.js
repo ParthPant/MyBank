@@ -13,6 +13,7 @@ import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
 import MiniStatement from "../Pages/MiniStatements";
 import BalanceEnquiry from "../Pages/BalanceEnquiry";
+import FundsTransfer from "../Pages/FundsTransfer.js";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -81,6 +82,10 @@ const Routes = ({ children }) => {
               path: "mini-statement/:accNo?",
               element: <MiniStatement />,
             },
+            {
+              path: "funds-transfer",
+              element: <FundsTransfer />,
+            }
           ],
         },
       ],

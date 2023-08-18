@@ -30,6 +30,9 @@ function Sidebar({ children }) {
             <li>
               <Link to="/mini-statement">Mini Statement</Link>
             </li>
+            <li>
+              <Link to="/funds-transfer">Funds Transfer</Link>
+            </li>
           </ul>
         </div>
       </div>

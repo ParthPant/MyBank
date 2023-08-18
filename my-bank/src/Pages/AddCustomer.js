@@ -9,8 +9,6 @@ function AddCustomer() {
   const [post, setPost] = React.useState(null);
   const { mode } = useParams();
   const { id } = useParams();
-  // console.log(mode);
-  // console.log(id);
 
   const handleChange = (event) => {
     const name = event.target.name;
