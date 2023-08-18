@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Models;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace MyBank.API
 {
@@ -31,5 +32,5 @@ namespace MyBank.API
 			var transactionDtos = _mapper.Map<IEnumerable<TransactionDto>>(transactionEntities);
 			return Ok(transactionDtos);
 		}
-	}
+    }
 }

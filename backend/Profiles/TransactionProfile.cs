@@ -9,6 +9,7 @@ namespace MyBank.API.Profiles
         public TransactionProfile()
         {
             CreateMap<Transaction, TransactionDto>();
+            CreateMap<TransactionDto, Transaction>();
         }
     }
 }
