@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
+import "./background.css";
 
 function AddCustomer() {
   const [formData, setFormData] = useState({});
@@ -85,7 +86,7 @@ function AddCustomer() {
 
   return (
     <>
-      <div class="pt-10 pb-10 glass">
+      <div class="backg">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
