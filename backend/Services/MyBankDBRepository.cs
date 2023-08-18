@@ -93,7 +93,11 @@ namespace MyBank.API.Services
         {
             _context.Accounts.Remove(account);
         }
+        public void AddTransaction(Transaction transaction)
+        {
 
+            _context.Transactions.Add(transaction);
+        }
         public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo)
         {
             return await _context.Transactions
