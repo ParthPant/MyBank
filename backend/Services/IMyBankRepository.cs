@@ -18,7 +18,7 @@ namespace MyBank.API.Services
         void DeleteAccount(Account account);
         Task<bool> AccountExists(long accNo);
 
-        Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo);
+        Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo, int? numTransactions = null);
         void AddTransaction(Transaction transaction);
 
         Task<UserInfo?> GetAdmin(string userName, string password);

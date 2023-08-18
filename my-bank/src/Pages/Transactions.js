@@ -25,7 +25,6 @@ function Transactions() {
       .get(baseURL + "transactions/" + accNo, configheaders)
       .then((response) => {
         setPost(response.data);
-        console.log(response.data);
       })
       .catch((err) => console.log(err));
   }, [accNo]);
@@ -74,6 +73,7 @@ function Transactions() {
                       <th>Account No</th>
                       <th>Transaction Type</th>
                       <th>Amount</th>
+                      <th>Time</th>
                       {/* <th></th> */}
                       {/* <th></th> */}
                     </tr>
@@ -88,6 +88,7 @@ function Transactions() {
                             <td>{accNo}</td>
                             <td>{transactions.transactionType}</td>
                             <td>{transactions.amount}</td>
+                            <td>{transactions.time}</td>
                           </tr>
                         );
                       })}

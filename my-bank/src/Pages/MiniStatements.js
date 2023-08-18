@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { baseURL, configheaders } from "../utils.js";
+import axios from "axios";
 
 function Statement({transactions, balance}) {
   return (
@@ -6,44 +8,37 @@ function Statement({transactions, balance}) {
       <div className="text-m text-center text-white-500 mt-8 mb-6">
         Balance : <span className="font-bold text-xl underline">{balance}</span>
       </div>
-      <table className="table table-zebra">
-        {/* head */}
-        <thead>
-          <tr>
-            <th></th>
-            <th>Account No</th>
-            <th>Transaction Type</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions &&
-            transactions.map((transaction, index) => {
-              // {console.log(account.accType)}
-              return (
-                <tr>
-                  <th>{index}</th>
-                  <td>{transaction.accNo}</td>
-                  <td>{transaction.transactionType}</td>
-                  <td>{transaction.amount}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+      <div className = "overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Account No</th>
+              <th>Transaction Type</th>
+              <th>Amount</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions &&
+              transactions.map((transaction, index) => {
+                // {console.log(account.accType)}
+                return (
+                  <tr>
+                    <th>{index}</th>
+                    <td>{transaction.accNo}</td>
+                    <td>{transaction.transactionType}</td>
+                    <td>{transaction.amount}</td>
+                    <td>{transaction.time}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </>
   )
-}
-
-const dummy = {
-  transactions: [
-    {
-      accNo: 1,
-      transactionType: "credit",
-      amount: 2334
-    }
-  ],
-  balance: 2343
 }
 
 function MiniStatement() {
@@ -51,7 +46,17 @@ function MiniStatement() {
   const [statement, setStatement] = useState();
 
   const getStatement = () => {
-    setStatement(dummy)
+    axios
+      .get(baseURL + "statement/" + accNo, configheaders)
+      .then((res) => {
+        setStatement(res.data);
+      })
+      .catch((err) => {
+          alert(err.response.data);
+          setAccNo("");
+          setStatement(null);
+        }
+      );
   }
 
   return (
