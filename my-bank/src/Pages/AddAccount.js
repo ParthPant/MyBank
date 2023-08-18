@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
+import './background.css';
 
 // const navigate = useNavigate();h
 
@@ -65,7 +66,7 @@ function AddAccount() {
 
   return (
     <>
-      <div class="pt-10 pb-10 glass">
+      <div class="backg">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <form onSubmit={handleSubmit}>

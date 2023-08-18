@@ -37,7 +37,7 @@ function Transactions() {
 
   return (
     <>
-      <div class="pt-10 pb-10 glass">
+      <div class="pt-10 pb-10 backg">
         <div class="min-h-screen flex items-center justify-center">
           <div class="max-w-lg w-full p-6 bg-gray-800 rounded-lg shadow-lg">
             <div className="overflow-x-auto">
