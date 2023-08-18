@@ -3,7 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
 
+
 function ViewAccount() {
+
   const { id } = useParams();
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
@@ -114,6 +116,7 @@ function ViewAccount() {
                 </tbody>
               </table>
             </div>
+            
           </div>
         </div>
       </div>

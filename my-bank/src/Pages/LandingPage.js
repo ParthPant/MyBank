@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Provider/AuthProvider";
+import './background.css'
 
 function LandingPage() {
   const { token } = useAuth();
   return (
-    <div>
+    <div className="backg">
       {/* <div class="px-6 py-12 text-center md:px-12 lg:text-left">
         <div class="w-100 mx-auto sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl xl:px-32">
           <div class="grid items-center lg:grid-cols-2">
@@ -46,7 +47,7 @@ function LandingPage() {
         </div>
       </div> */}
 
-      <div className="card card-side glass image-full m-10 flex h-[79.5vh]">
+      <div className="backg glass card card-side image-full m-10 flex h-[79.5vh]" >
         <figure>
           <img
             src="https://images.unsplash.com/photo-1556740772-1a741367b93e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../Pages/background.css'
 
 function Sidebar({children}) {
   return (
@@ -8,7 +9,7 @@ function Sidebar({children}) {
       <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
-          <div className="min-w-full">
+          <div className="min-w-full backg">
             {children}
           </div>
         </div>
