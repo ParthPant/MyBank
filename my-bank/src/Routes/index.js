@@ -73,7 +73,7 @@ const Routes = ({ children }) => {
               element: <BalanceEnquiry />
             },
             {
-              path: "transactions/:accNo",
+              path: "transactions/:accNo?",
               element: <Transactions />,
             },
           ],
