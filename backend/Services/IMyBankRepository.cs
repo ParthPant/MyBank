@@ -13,6 +13,7 @@ namespace MyBank.API.Services
 
         Task<IEnumerable<Account>> GetAccountsAsync(long custId);
         Task<Account?> GetAccountAsync(long custId, long accNo);
+        Task<Account> GetAccountAsync(long accNo);
         Task AddAccount(long custId, Account account);
         void DeleteAccount(Account account);
         Task<bool> AccountExists(long accNo);

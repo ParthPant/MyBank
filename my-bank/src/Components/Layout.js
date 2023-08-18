@@ -16,7 +16,6 @@ const Layout = ({ children }) => {
           </Sidebar>
       ) : (
         <>
-          <Navbar />
           <Outlet />
         </>
       )}

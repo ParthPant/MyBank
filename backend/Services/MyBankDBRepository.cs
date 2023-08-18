@@ -75,6 +75,11 @@ namespace MyBank.API.Services
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<Account> GetAccountAsync(long accNo) 
+        {
+            return await _context.Accounts.Where(acc => acc.AccNo == accNo).FirstAsync();
+        }
+
         public async Task AddAccount(long custId, Account account)
         {
             var customer = await GetCustomerAsync(custId, false);

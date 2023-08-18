@@ -11,6 +11,7 @@ import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
 import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
+import BalanceEnquiry from "../Pages/BalanceEnquiry";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -66,6 +67,10 @@ const Routes = ({ children }) => {
             {
               path: "/view-account/:id",
               element: <ViewAccount />,
+            },
+            {
+              path: "/balance-enquiry",
+              element: <BalanceEnquiry />
             },
             {
               path: "transactions/:accNo?",
