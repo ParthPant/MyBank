@@ -68,7 +68,7 @@ const Routes = ({ children }) => {
               element: <ViewAccount />,
             },
             {
-              path: "transactions/:accNo",
+              path: "transactions/:accNo?",
               element: <Transactions />,
             },
           ],
