@@ -11,6 +11,7 @@ import AddAccount from "../Pages/AddAccount";
 import Layout from "../Components/Layout.js";
 import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
+import MiniStatement from "../Pages/MiniStatements";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -24,6 +25,10 @@ const Routes = ({ children }) => {
           element: <LandingPage />,
         },
       ],
+    },
+    {
+      path: "/mini-stat",
+      element: <MiniStatement />,
     },
   ];
 
@@ -68,7 +73,7 @@ const Routes = ({ children }) => {
               element: <ViewAccount />,
             },
             {
-              path: "transactions/:accNo",
+              path: "transactions/:accNo?",
               element: <Transactions />,
             },
           ],
