@@ -22,14 +22,14 @@ namespace MyBank.API
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-		[HttpGet]
-		public async Task<IActionResult> GetTransactions(long accNo)
-		{
+        [HttpGet]
+        public async Task<IActionResult> GetTransactions(long accNo)
+        {
             if (!await _repository.AccountExists(accNo)) return NotFound();
 
-			var transactionEntities = await _repository.GetTransactionsAsync(accNo);
-			var transactionDtos = _mapper.Map<IEnumerable<TransactionDto>>(transactionEntities);
-			return Ok(transactionDtos);
-		}
+            var transactionEntities = await _repository.GetTransactionsAsync(accNo);
+            var transactionDtos = _mapper.Map<IEnumerable<TransactionDto>>(transactionEntities);
+            return Ok(transactionDtos);
+        }
     }
 }

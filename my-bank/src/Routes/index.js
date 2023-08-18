@@ -85,7 +85,7 @@ const Routes = ({ children }) => {
             {
               path: "funds-transfer",
               element: <FundsTransfer />,
-            }
+            },
           ],
         },
       ],

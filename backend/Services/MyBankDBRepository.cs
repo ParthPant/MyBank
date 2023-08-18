@@ -96,13 +96,16 @@ namespace MyBank.API.Services
 
         public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo, int? numTransactions = null)
         {
-            if (numTransactions != null) {
+            if (numTransactions != null)
+            {
                 return await _context.Transactions
                     .Where(t => t.AccNo == accNo)
                     .OrderByDescending(t => t.Time)
                     .Take(numTransactions.Value)
                     .ToListAsync();
-            } else {
+            }
+            else
+            {
                 return await _context.Transactions
                     .Where(t => t.AccNo == accNo)
                     .OrderByDescending(t => t.Time)
@@ -110,7 +113,8 @@ namespace MyBank.API.Services
             }
         }
 
-        public void AddAdmin(Admin adminEntity) {
+        public void AddAdmin(Admin adminEntity)
+        {
             _context.Admins.Add(adminEntity);
         }
 

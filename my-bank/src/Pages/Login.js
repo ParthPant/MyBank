@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <div className="">
-      <div className="glass grid h-[80vh] place-items-center">
+      <div className="grid h-screen place-items-center">
         <LoginCard className="" onSubmit={handleLogin} error={error} />
       </div>
     </div>

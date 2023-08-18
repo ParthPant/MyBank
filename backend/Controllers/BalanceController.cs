@@ -3,11 +3,13 @@ using MyBank.API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 
-namespace MyBank.API {
+namespace MyBank.API
+{
     [ApiController]
     [Authorize]
     [Route("api/balance/{accNo}")]
-    public class BalanceController: ControllerBase {
+    public class BalanceController : ControllerBase
+    {
         private readonly ILogger<CustomersController> _logger;
         private readonly IMyBankRepository _repository;
         private readonly IMapper _mapper;

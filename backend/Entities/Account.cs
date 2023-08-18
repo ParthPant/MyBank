@@ -22,6 +22,6 @@ namespace MyBank.API.Entities
         [ForeignKey("CustId")]
         public Customer? Customer { get; set; }
 
-        public ICollection<Transaction> Transactions {get; set;} = new List<Transaction>();
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
