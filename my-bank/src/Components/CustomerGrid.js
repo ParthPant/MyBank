@@ -22,7 +22,7 @@ function CustomerGrid() {
       })
       .then((response) => {
         setPost(response.data);
-      });
+      }).catch(err => {});
   }, []);
 
   if (!post) return null;

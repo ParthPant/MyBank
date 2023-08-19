@@ -86,6 +86,10 @@ const Routes = ({ children }) => {
               path: "funds-transfer",
               element: <FundsTransfer />,
             },
+            {
+              path: "/login",
+              element: <LandingPage />,
+            },
           ],
         },
       ],
@@ -96,10 +100,6 @@ const Routes = ({ children }) => {
     {
       element: <Layout />,
       children: [
-        {
-          path: "/",
-          element: <LandingPage />,
-        },
         {
           path: "/login",
           element: <Login />,
@@ -114,7 +114,8 @@ const Routes = ({ children }) => {
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNonAuthenticatedOnly : routesForAuthenticatedOnly),
+    ...(token ? routesForAuthenticatedOnly : []),
+    ...routesForNonAuthenticatedOnly,
   ]);
 
   return <RouterProvider router={router}> {children} </RouterProvider>;

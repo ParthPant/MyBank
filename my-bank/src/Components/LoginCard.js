@@ -42,7 +42,7 @@ function LoginCard({ onSubmit, error }) {
         {isSignIn ? (
           <div className="card-actions">
             <button
-              class="btn btn-active btn-primary bg-purple-600"
+              className="btn btn-active btn-primary bg-purple-600"
               onClick={(e) => {
                 e.preventDefault();
                 onSubmit(userName, password);
@@ -57,7 +57,7 @@ function LoginCard({ onSubmit, error }) {
         {!isSignIn ? (
           <div className="card-actions">
             <button
-              class="btn btn-active btn-primary bg-purple-600"
+              className="btn btn-active btn-primary bg-purple-600"
               onClick={(e) => {
                 e.preventDefault();
                 onSubmit(userName, password);
@@ -74,7 +74,7 @@ function LoginCard({ onSubmit, error }) {
             onClick={() => {
               setisSignin(!isSignIn);
             }}
-            class="text-blue-400 hover:underline"
+            className="text-blue-400 hover:underline"
           >
             Already have an account? Log in
           </div>
@@ -87,7 +87,7 @@ function LoginCard({ onSubmit, error }) {
             onClick={() => {
               setisSignin(!isSignIn);
             }}
-            class="text-blue-400 hover:underline"
+            className="text-blue-400 hover:underline"
           >
             New user? Create new account
           </div>
