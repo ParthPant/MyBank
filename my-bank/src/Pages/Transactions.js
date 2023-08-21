@@ -42,7 +42,7 @@ function Transactions() {
   return (
     <>
       <div class="min-h-screen flex items-center justify-center">
-        <div class="m-10 w-full p-6 bg-gray-800 rounded-lg shadow-lg">
+        <div class="m-10 min-w-md p-6 bg-gray-800 rounded-lg shadow-lg">
           <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
             Transactions
           </h1>
