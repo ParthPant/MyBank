@@ -40,7 +40,7 @@ function CustomerGrid() {
   }
   return (
     <>
-    <div className="flex gap-4 m-6 items-center justify-center">
+    <div className="flex gap-4 m-6 items-center justify-center flex-column">
             <input
               type="text"
               className="input input-bordered w-full max-w-xs"

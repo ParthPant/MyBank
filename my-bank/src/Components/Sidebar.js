@@ -8,7 +8,7 @@ function Sidebar({ children }) {
       <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
-          <div className="min-w-full">{children}</div>
+          <div className="min-w-full min-h-full">{children}</div>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
