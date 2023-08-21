@@ -12,12 +12,12 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="navbar bg-base-100">
-  <div className="flex-1">
+        <div className="flex-1">
           <Link to="/">
             <div className="btn btn-ghost normal-case text-xl">MyBank</div>
           </Link>
-  </div>
-  <div className="flex-none">
+        </div>
+        <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/about">
@@ -41,8 +41,8 @@ function Navbar() {
               </li>
             )}
           </ul>
-  </div>
-</div>
+        </div>
+      </div>
       <hr></hr>
     </div>
   );

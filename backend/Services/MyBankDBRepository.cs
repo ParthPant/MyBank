@@ -75,7 +75,7 @@ namespace MyBank.API.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Account> GetAccountAsync(long accNo) 
+        public async Task<Account> GetAccountAsync(long accNo)
         {
             return await _context.Accounts.Where(acc => acc.AccNo == accNo).FirstAsync();
         }
@@ -93,20 +93,28 @@ namespace MyBank.API.Services
         {
             _context.Accounts.Remove(account);
         }
-        public void AddTransaction(Transaction transaction)
-        {
 
-            _context.Transactions.Add(transaction);
-        }
-        public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo)
+        public async Task<IEnumerable<Transaction>> GetTransactionsAsync(long accNo, int? numTransactions = null)
         {
-            return await _context.Transactions
-                .Where(t => t.AccNo == accNo)
-                .OrderBy(t => t.Time)
-                .ToListAsync();
+            if (numTransactions != null)
+            {
+                return await _context.Transactions
+                    .Where(t => t.AccNo == accNo)
+                    .OrderByDescending(t => t.Time)
+                    .Take(numTransactions.Value)
+                    .ToListAsync();
+            }
+            else
+            {
+                return await _context.Transactions
+                    .Where(t => t.AccNo == accNo)
+                    .OrderByDescending(t => t.Time)
+                    .ToListAsync();
+            }
         }
 
-        public void AddAdmin(Admin adminEntity) {
+        public void AddAdmin(Admin adminEntity)
+        {
             _context.Admins.Add(adminEntity);
         }
 

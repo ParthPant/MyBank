@@ -12,4 +12,9 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
+  variants: {
+    extend: {
+      display: ["group-hover"],
+    },
+  },
 };

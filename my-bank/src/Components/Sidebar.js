@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../Pages/background.css'
 
-function Sidebar({children}) {
+function Sidebar({ children }) {
   return (
     // <!-- Sidenav -->
     <>
       <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center backg">
-          <div className="min-w-full">
-            {children}
-          </div>
+        <div className="drawer-content flex flex-col items-center justify-center">
+          <div className="min-w-full">{children}</div>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -28,6 +25,12 @@ function Sidebar({children}) {
             </li>
             <li>
               <Link to="/transactions">Transactions</Link>
+            </li>
+            <li>
+              <Link to="/mini-statement">Mini Statement</Link>
+            </li>
+            <li>
+              <Link to="/funds-transfer">Funds Transfer</Link>
             </li>
           </ul>
         </div>

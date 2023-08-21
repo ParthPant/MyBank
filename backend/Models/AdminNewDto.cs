@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MyBank.API.Models {
+namespace MyBank.API.Models
+{
     public class AdminNewDto
     {
         [Required]
         [MaxLength(50)]
-        public string Name; 
+        public string Name;
         [Required]
         [MaxLength(50)]
         public string UserName;

@@ -10,9 +10,17 @@ const AuthProvider = ({ children }) => {
     setToken_(newToken);
   };
 
+  axios.interceptors.response.use(res => res, err => {
+    if (err.response.status === 401) {
+      setToken(null);
+      alert("Session Expired");
+    }
+    return Promise.reject(err);
+  })
+
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common["Authorization"] = "Bearer" + " " + token;
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       localStorage.setItem("token", token);
     } else {
       delete axios.defaults.headers.common["Authorization"];

@@ -52,7 +52,7 @@ function CustomerDetails() {
   return (
     <div>
       <div className="grid place-items-center">
-        <div className="card card-side glass m-20 min-w-[60%] flex">
+        <div className="card card-side m-20 min-w-[60%] flex bg-white/10 backdrop-blur-lg">
           <figure className="w-1/2">
             <img
               src={`https://api.dicebear.com/6.x/initials/svg?seed=${post.name}`}
@@ -88,7 +88,6 @@ function CustomerDetails() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>

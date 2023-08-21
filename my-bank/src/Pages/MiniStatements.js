@@ -1,39 +1,92 @@
-import React, {useState} from 'react';
+import { useState } from "react";
+import { baseURL, configheaders } from "../utils.js";
+import axios from "axios";
 
+function Statement({ transactions, balance }) {
+  return (
+    <>
+      <div className="text-m text-center text-white-500 mt-8 mb-6">
+        Balance : <span className="font-bold text-xl underline">{balance}</span>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Account No</th>
+              <th>Transaction Type</th>
+              <th>Amount</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions &&
+              transactions.map((transaction, index) => {
+                // {console.log(account.accType)}
+                return (
+                  <tr>
+                    <th>{index}</th>
+                    <td>{transaction.accNo}</td>
+                    <td>{transaction.transactionType}</td>
+                    <td>{transaction.amount}</td>
+                    <td>{transaction.time}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
 
-function MiniStatement(){
-    const [accountNo, setAccountNo] = useState();
-    return(
-        <>
-        <div className='place-content-center flex justify-center items-center h-screen'>
-        <div className="card w-96 bg-gray-900 flex justify-center items-center">
-      <form className="card-body flex justify-center items-center text-center">
-        <div className="card-title">Account Number</div>
-        <input
-          type="text"
-          placeholder="Enter account number"
-          className="input border-black input-bordered input-primary w-full max-w-xs"
-          onChange={(e) => setAccountNo(e.target.value)}
-        />
-        <div className="card-actions">
-            <button
-              class="btn btn-active btn-primary bg-purple-600"
-              onClick={(e) => {
-                e.preventDefault();
-                onsubmit(accountNo);
-              }}
-            >
-              Submit
+function MiniStatement() {
+  const [accNo, setAccNo] = useState();
+  const [statement, setStatement] = useState();
+
+  const getStatement = () => {
+    axios
+      .get(baseURL + "statement/" + accNo, configheaders)
+      .then((res) => {
+        setStatement(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data);
+        setAccNo("");
+        setStatement(null);
+      });
+  };
+
+  return (
+    <>
+      <div class="min-h-screen flex items-center justify-center">
+        <div class="max-w-lg w-full p-6 bg-gray-800 rounded-lg shadow-lg">
+          <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
+            Mini Statement
+          </h1>
+          <div className="flex gap-4 m-6">
+            <input
+              type="number"
+              className="input input-bordered w-full max-w-xs"
+              placeholder="Enter Account Number"
+              value={accNo}
+              onChange={(e) => setAccNo(e.target.value)}
+            />
+            <button className="btn btn-primary" onClick={() => getStatement()}>
+              Get Statement
             </button>
           </div>
-        </form>
+          {statement && (
+            <Statement
+              transactions={statement.transactions}
+              balance={statement.balance}
+            />
+          )}
         </div>
-        </div>
-</>
-        
-
-    );
-
+      </div>
+    </>
+  );
 }
 
 export default MiniStatement;

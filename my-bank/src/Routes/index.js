@@ -13,6 +13,7 @@ import ViewAccount from "../Pages/ViewAccount";
 import Transactions from "../Pages/Transactions";
 import MiniStatement from "../Pages/MiniStatements";
 import BalanceEnquiry from "../Pages/BalanceEnquiry";
+import FundsTransfer from "../Pages/FundsTransfer.js";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -26,10 +27,6 @@ const Routes = ({ children }) => {
           element: <LandingPage />,
         },
       ],
-    },
-    {
-      path: "/mini-stat",
-      element: <MiniStatement />,
     },
   ];
 
@@ -75,11 +72,23 @@ const Routes = ({ children }) => {
             },
             {
               path: "/balance-enquiry",
-              element: <BalanceEnquiry />
+              element: <BalanceEnquiry />,
             },
             {
               path: "transactions/:accNo?",
               element: <Transactions />,
+            },
+            {
+              path: "mini-statement/:accNo?",
+              element: <MiniStatement />,
+            },
+            {
+              path: "funds-transfer",
+              element: <FundsTransfer />,
+            },
+            {
+              path: "/login",
+              element: <LandingPage />,
             },
           ],
         },
@@ -91,10 +100,6 @@ const Routes = ({ children }) => {
     {
       element: <Layout />,
       children: [
-        {
-          path: "/",
-          element: <LandingPage />,
-        },
         {
           path: "/login",
           element: <Login />,
@@ -109,7 +114,8 @@ const Routes = ({ children }) => {
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNonAuthenticatedOnly : routesForAuthenticatedOnly),
+    ...(token ? routesForAuthenticatedOnly : []),
+    ...routesForNonAuthenticatedOnly,
   ]);
 
   return <RouterProvider router={router}> {children} </RouterProvider>;
