@@ -14,6 +14,8 @@ import Transactions from "../Pages/Transactions";
 import MiniStatement from "../Pages/MiniStatements";
 import BalanceEnquiry from "../Pages/BalanceEnquiry";
 import FundsTransfer from "../Pages/FundsTransfer.js";
+import PinChange from "../Pages/PinChange.js";
+import PageNotFound from "../Pages/PageNotFound.js";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -87,8 +89,16 @@ const Routes = ({ children }) => {
               element: <FundsTransfer />,
             },
             {
+              path: "pin-change",
+              element: <PinChange />,
+            },
+            {
               path: "/login",
               element: <LandingPage />,
+            },
+            {
+              path: "*",
+              element: <PageNotFound />,
             },
           ],
         },
@@ -107,6 +117,10 @@ const Routes = ({ children }) => {
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path: "*",
+          element: <PageNotFound />,
         },
       ],
     },
