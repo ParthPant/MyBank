@@ -27,29 +27,21 @@ namespace MyBank.API.DbContexts
                     {
                         CustId = 1,
                         Contact = 7876082603,
-                        CardNo = 999999999,
-                        PinNo = 23421,
                     },
                     new Customer("John Doe", "doejohn@gmail.com", "Delhi")
                     {
                         CustId = 2,
                         Contact = 2342354234,
-                        CardNo = 888888888,
-                        PinNo = 5345324,
                     },
                     new Customer("Homelander", "homie@vaught.com", "New York")
                     {
                         CustId = 3,
                         Contact = 23546456,
-                        CardNo = 888888888,
-                        PinNo = 5345324,
                     },
                     new Customer("Batman", "thatman@vaught.com", "Gotham")
                     {
                         CustId = 4,
                         Contact = 64654646,
-                        CardNo = 322112,
-                        PinNo = 544151,
                     }
             );
 
@@ -60,12 +52,16 @@ namespace MyBank.API.DbContexts
                         AccNo = 2342343245,
                         Balance = 787,
                         CustId = 1,
+                        CardNo = 12345,
+                        PinNo = 0
                     },
                     new Account
                     {
                         AccountType = AccountType.Saving,
                         AccNo = 3454395723,
                         Balance = 234,
+                        CardNo = 2345325,
+                        PinNo = 0,
                         CustId = 1,
                     },
                     new Account
@@ -73,6 +69,8 @@ namespace MyBank.API.DbContexts
                         AccountType = AccountType.Salary,
                         AccNo = 3454395724,
                         Balance = 23423,
+                        CardNo = 23423523,
+                        PinNo = 0,
                         CustId = 4,
                     }
 

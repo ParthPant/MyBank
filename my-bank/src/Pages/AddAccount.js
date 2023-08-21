@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
-import './background.css';
+import "./background.css";
 
 // const navigate = useNavigate();h
 
@@ -129,6 +129,7 @@ function AddAccount() {
                 value={formData.acctype || ""}
                 onChange={handleChange}
                 class="input input-bordered w-full max-w-xs"
+                placeholder="Account Type"
                 required
               />
             </div>
@@ -141,6 +142,22 @@ function AddAccount() {
                 id="balance"
                 name="balance"
                 value={formData.balance || ""}
+                onChange={handleChange}
+                placeholder="Balance"
+                class="input input-bordered w-full max-w-xs"
+                required
+              />
+            </div>
+            <div>
+              <label for="pinNo" class="label">
+                <span className="label-text">Pin Number</span>
+              </label>
+              <input
+                type="text"
+                id="pinNo"
+                name="pinNo"
+                placeholder="Pin No."
+                value={formData.pinNo || ""}
                 onChange={handleChange}
                 class="input input-bordered w-full max-w-xs"
                 required

@@ -21,12 +21,6 @@ namespace MyBank.API.Entities
         public long Contact { get; set; }
 
         [Required]
-        public long CardNo { get; set; }
-
-        [Required]
-        public long PinNo { get; set; }
-
-        [Required]
         [MaxLength(50)]
         public string City { get; set; }
 

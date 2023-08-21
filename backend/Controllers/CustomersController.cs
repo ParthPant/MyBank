@@ -46,24 +46,6 @@ namespace MyBank.API
             }, createdCustomer);
         }
 
-        [HttpPut("{custId}/pinChange")]
-        public async Task<IActionResult> ChangePin(long custId, PinChangeDto pinChangeDto) 
-        {
-            var customerEntity = await _repository.GetCustomerAsync(custId);
-            if (customerEntity == null)
-            {
-                return NotFound("The customer does not exist.");
-            }
-            if (customerEntity.PinNo != pinChangeDto.OldPin)
-            {
-                return BadRequest("Provides Current Pin is incorrect.");
-            }
-
-            customerEntity.PinNo = pinChangeDto.NewPin;
-            await _repository.SaveChangesAsync();
-            return NoContent();
-        }
-
         [HttpGet("{custId}", Name = "GetCustomer")]
         public async Task<IActionResult> GetCustomer(long custId, bool includeAccounts = false)
         {

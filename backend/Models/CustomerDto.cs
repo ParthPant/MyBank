@@ -6,8 +6,6 @@ namespace MyBank.API.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public long Contact { get; set; }
-        public long CardNo { get; set; }
-        public long PinNo { get; set; }
         public string City { get; set; }
         public ICollection<AccountDto> Accounts { get; set; } = new List<AccountDto>();
 

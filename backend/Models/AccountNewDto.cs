@@ -12,7 +12,8 @@ namespace MyBank.API.Models
         [Required(ErrorMessage = "Balace is necessary")]
         [DefaultValue(0)]
         public long Balance { get; set; }
-        // [Required]
-        // public long CustId { get; set; }
+        [Required]
+        [DefaultValue(0)]
+        public long PinNo { get; set; }
     }
 }

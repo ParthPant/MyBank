@@ -25,31 +25,32 @@ function Transactions() {
       .catch((err) => {
         console.log(err);
         alert("This account does not exist!");
-        setPost(null)}
-        );
+        setPost(null);
+      });
     // navigate("/transactions/" + formData);
   };
 
   useEffect(() => {
-    axios
-      .get(baseURL + "transactions/" + accNo, configheaders)
-      .then((response) => {
-        setPost(response.data);
-      })
-      .catch((err) => console.log(err));
+    if (accNo !== undefined) {
+      axios
+        .get(baseURL + "transactions/" + accNo, configheaders)
+        .then((response) => {
+          setPost(response.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, [accNo]);
 
   return (
     <>
-      <div class="min-h-screen flex items-center justify-center">
+      <div class="min-h-full flex items-center justify-center">
         <div class="m-10 min-w-md p-6 bg-gray-800 rounded-lg shadow-lg">
           <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
             Transactions
           </h1>
           <div className="overflow-x-auto">
-            {accNo === undefined && 
-              (<div className="flex justify-between">
-                {" "}
+            {accNo === undefined && (
+              <div className="join justify-between">
                 <input
                   type="text"
                   id="name"
@@ -57,25 +58,31 @@ function Transactions() {
                   value={formData || ""}
                   placeholder="Account Number"
                   onChange={handleChange}
-                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="join-item input input-bordered w-full max-w-xs"
                   required
                 />
-                <button className="btn btn-primary ml-5" onClick={handleClick}>
+                <button
+                  className="join-item btn btn-primary"
+                  onClick={handleClick}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    height="2em"
-                    viewBox="0 0 512 512"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
                   >
-                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
                   </svg>
                 </button>
-              </div>)}
-            {post && 
-            <TransactionTable
-              post = {post}
-              />
-              
-            }
+              </div>
+            )}
+            {post && <TransactionTable post={post} />}
           </div>
         </div>
       </div>
