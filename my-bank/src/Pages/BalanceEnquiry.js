@@ -21,7 +21,7 @@ const BalanceEnquiry = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center">
       <div className="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
           Balance Enquiry
