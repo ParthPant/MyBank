@@ -58,10 +58,6 @@ namespace MyBank.API
             {
                 return BadRequest("Provides Current Pin is incorrect.");
             }
-            if (pinChangeDto.OldPin != pinChangeDto.NewPin)
-            {
-                return BadRequest("Current Pin and New Pin do not match");
-            }
 
             customerEntity.PinNo = pinChangeDto.NewPin;
             await _repository.SaveChangesAsync();
