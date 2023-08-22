@@ -4,7 +4,7 @@ import { baseURL, configheaders } from "../utils.js";
 import { apiKey } from "../apiUtils.js"
 
 export default function CurrencyConversion() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({currency: "INR"});
   const [balance, setBalance] = useState(null);
   const [exchangeRates, setExchangeRates] = useState({});
 
@@ -41,15 +41,15 @@ export default function CurrencyConversion() {
     .catch((err) => {console.log(err.response.data)});}, [])
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="max-w-2xl w-full p-6 bg-gray-800 rounded-lg shadow-lg">
+    <div className="min-h-screen flex justify-center items-center text-center">
+      <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
           Currency Conversion
         </h1>
-        <div className="flex gap-4 m-6">
+        <div className="join">
           <input
             type="number"
-            className="input input-bordered w-full min-w"
+            className="join-item grow input input-bordered"
             placeholder="Enter Account Number"
             name="accNo"
             value={formData.accNo}
@@ -57,13 +57,14 @@ export default function CurrencyConversion() {
           />
           <input
             type="text"
-            className="input input-bordered w-full min-w"
-            placeholder="Enter Currency"
+            className="join-item flex-none w-20 input input-bordered"
+            placeholder="Currenry"
             name="currency"
+            heading="Currency"
             value={formData.currency}
             onChange={handleChange}
           />
-          <button className="btn btn-primary" onClick={getAmount}>
+          <button className="join-item btn btn-primary" onClick={getAmount}>
             View Amount
           </button>
         </div>
