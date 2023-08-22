@@ -8,5 +8,7 @@ namespace MyBank.API.Models
         public AccountType AccountType { get; set; }
         public long Balance { get; set; }
         public long CustId { get; set; }
+        public long CardNo { get; set; }
+        public long PinNo { get; set; }
     }
 }

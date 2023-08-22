@@ -65,15 +65,18 @@ function MiniStatement() {
           <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
             Mini Statement
           </h1>
-          <div className="flex gap-4 m-6">
+          <div className="join">
             <input
               type="number"
-              className="input input-bordered w-full max-w-xs"
+              className="join-item input input-bordered w-full max-w-xs"
               placeholder="Enter Account Number"
               value={accNo}
               onChange={(e) => setAccNo(e.target.value)}
             />
-            <button className="btn btn-primary" onClick={() => getStatement()}>
+            <button
+              className="join-item btn btn-primary"
+              onClick={() => getStatement()}
+            >
               Get Statement
             </button>
           </div>

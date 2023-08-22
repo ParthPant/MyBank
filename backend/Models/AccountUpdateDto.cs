@@ -11,5 +11,6 @@ namespace MyBank.API.Models
         [DefaultValue(0)]
         public long Balance { get; set; }
         public long CustId { get; set; }
+        public long PinNo { get; set; }
     }
 }

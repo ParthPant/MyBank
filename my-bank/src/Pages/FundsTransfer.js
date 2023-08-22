@@ -10,11 +10,10 @@ const FundsTransfer = () => {
     axios
       .post(baseURL + "fundtransfer/", formData, configheaders)
       .then((res) => {
-        alert("Succesfully make transaction");
+        alert("Succesfully made transaction");
       })
       .catch((err) => {
         alert(err.response.data);
-        setFormData({});
       });
   };
 

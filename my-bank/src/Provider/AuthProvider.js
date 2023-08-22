@@ -10,13 +10,16 @@ const AuthProvider = ({ children }) => {
     setToken_(newToken);
   };
 
-  axios.interceptors.response.use(res => res, err => {
-    if (err.response.status === 401) {
-      setToken(null);
-      alert("Session Expired");
-    }
-    return Promise.reject(err);
-  })
+  axios.interceptors.response.use(
+    (res) => res,
+    (err) => {
+      if (err.response.status === 401) {
+        setToken(null);
+        alert("Session Expired");
+      }
+      return Promise.reject(err);
+    },
+  );
 
   useEffect(() => {
     if (token) {

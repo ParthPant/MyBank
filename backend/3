@@ -15,10 +15,9 @@ namespace MyBank.API.Entities
 
         [Required]
         public long Balance { get; set; }
-
+        
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long CardNo { get; set; } = new Random().Next(0, 1000000);
+        public long CardNo { get; set; }
 
         [Required]
         public long PinNo { get; set; }
