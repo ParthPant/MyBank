@@ -35,6 +35,9 @@ function Sidebar({ children }) {
             <li>
               <Link to="/pin-change">Pin Change</Link>
             </li>
+            <li>
+              <Link to="/currency-conversion">Currency Conversion</Link>
+            </li>
           </ul>
         </div>
       </div>
