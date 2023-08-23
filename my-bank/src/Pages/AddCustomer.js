@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
+import { ErrorAlert, SuccessAlert, InfoAlert } from "../Components/Alert.js";
 
 function AddCustomer() {
+  let navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [post, setPost] = React.useState(null);
   const { mode } = useParams();
@@ -18,7 +20,7 @@ function AddCustomer() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(JSON.stringify(formData));
-    alert(JSON.stringify(formData));
+    // alert(JSON.stringify(formData));
   };
 
   function createPost() {
@@ -42,6 +44,9 @@ function AddCustomer() {
         .then((response) => {
           console.log(response);
           setPost(response.data);
+        }).catch((err) => {
+          // <ErrorAlert path={"dashboard"}></ErrorAlert>
+          console.log(err)
         });
     } else {
       axios
@@ -62,6 +67,10 @@ function AddCustomer() {
         .then((response) => {
           console.log(response);
           setPost(response.data);
+        })
+        .catch((err) => {
+          // <ErrorAlert path={"dashboard"}></ErrorAlert>
+          console.log(err)
         });
     }
   }
@@ -160,6 +169,16 @@ function AddCustomer() {
             >
               {mode === "add" ? "Register" : "Update"}
             </button>
+            {(post)?(
+              <>
+              <SuccessAlert message={formData.name} path={`/customer-details/${post.custId}`}/>
+              
+              </>
+            ):(
+              <>
+              
+              </>
+            )}
           </form>
         </div>
       </div>
