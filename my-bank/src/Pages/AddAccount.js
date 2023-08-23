@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { configheaders, baseURL } from "../utils.js";
 import "./background.css";
+import { ErrorAlert, SuccessAlert, InfoAlert } from "../Components/Alert.js";
 
 // const navigate = useNavigate();h
 
@@ -170,6 +171,16 @@ function AddAccount() {
             >
               Add Account
             </button>
+            {(post)?(
+              <>
+              <SuccessAlert message={"Account"} path={`/view-account/${post.custId}`}/>
+              
+              </>
+            ):(
+              <>
+              
+              </>
+            )}
           </form>
         </div>
       </div>
