@@ -18,6 +18,7 @@ import PinChange from "../Pages/PinChange.js";
 import PageNotFound from "../Pages/PageNotFound.js";
 import CurrencyConversion from "../Pages/CurrencyConversion";
 import Withdrawals from "../Pages/Withdrawals"
+import ChequeEnquiry from "../Pages/ChequeEnquiry";
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -81,6 +82,10 @@ const Routes = ({ children }) => {
             {
               path: "transactions/:accNo?",
               element: <Transactions />,
+            },
+            {
+              path: "cheque/:accNo?",
+              element: <ChequeEnquiry />,
             },
             {
               path: "mini-statement/:accNo?",
