@@ -17,8 +17,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "test:watch": "npm run test -- --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -39,7 +40,27 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
     "daisyui": "^3.5.1",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0",
+    "supertest": "^6.3.3",
     "tailwindcss": "^3.3.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "text-summary",
+      "lcov",
+      "cobertura"
+    ],
+    "testMatch": [
+      "**/*.test.js"
+    ]
   }
 }

@@ -47,6 +47,20 @@ namespace MyBankDBTest
 			Assert.IsType<List<Customer>>(customerresult);
 			
 		}
-		
+		/*[Fact]
+        public async Task AddCustomerTest_ShouldAddCustomer()
+        {
+            var _mockrepo = new Mock<IMyBankRepository>();
+            var _repository= repository ?? throw new ArgumentNullException(nameof(repository));
+
+            var customerList = await _repository.GetAccountsAsync();
+            var newcustomer = new Customer("Tanal", "tp@gmail.com", "Surat");
+            customerList.Add(newcustomer);
+
+            _mockrepo.Setup(x => x.AddCustomer()).Returns();
+            var result = _mockrepo.Object();
+        }*/
+
+
 	}
 }
