@@ -15,7 +15,7 @@ function LandingPage() {
         </figure>
         <div className="card-body items-center text-center m-auto">
           <h1 className="font-helvetica text-7xl">
-            <span className="text-purple-600">Know your </span>
+            <span className="text-purple-600 heading">Know your </span>
             <br /> Customers
           </h1>
           <div className="card-actions justify-end">

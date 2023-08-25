@@ -113,6 +113,11 @@ namespace MyBank.API.Services
             }
         }
 
+        public async Task<Transaction> GetTransactionAsync(long tid)
+        {
+            return await _context.Transactions.Where(t => t.Id == tid).FirstAsync();
+        }
+
         public void AddAdmin(Admin adminEntity)
         {
             _context.Admins.Add(adminEntity);

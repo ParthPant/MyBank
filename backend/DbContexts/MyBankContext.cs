@@ -84,21 +84,25 @@ namespace MyBank.API.DbContexts
             );
 
             modelBuilder.Entity<Transaction>().HasData(
-                    new Transaction(2342343245, TransactionType.Debit, 200)
+                    new Transaction(2342343245, TransactionType.Debit, 200, true)
                     {
                         Id = 1,
                     },
-                    new Transaction(3454395723, TransactionType.Credit, 600)
+                    new Transaction(3454395723, TransactionType.Credit, 600, true)
                     {
                         Id = 2,
                     },
-                    new Transaction(2342343245, TransactionType.Credit, 234)
+                    new Transaction(2342343245, TransactionType.Credit, 234, true)
                     {
                         Id = 3,
                     },
-                    new Transaction(3454395723, TransactionType.Debit, 123)
+                    new Transaction(3454395723, TransactionType.Debit, 123, true)
                     {
                         Id = 4,
+                    },
+                    new Transaction(2342343245, TransactionType.Cheque, 200, false)
+                    {
+                        Id = 5,
                     }
             );
         }

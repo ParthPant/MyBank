@@ -17,6 +17,7 @@ import FundsTransfer from "../Pages/FundsTransfer.js";
 import PinChange from "../Pages/PinChange.js";
 import PageNotFound from "../Pages/PageNotFound.js";
 import CurrencyConversion from "../Pages/CurrencyConversion";
+import Withdrawals from "../Pages/Withdrawals"
 
 const Routes = ({ children }) => {
   const { token } = useAuth();
@@ -96,6 +97,10 @@ const Routes = ({ children }) => {
             {
               path: "currency-conversion",
               element: <CurrencyConversion />,
+            },
+            {
+              path: "withdrawals/:accNum",
+              element: <Withdrawals />,
             },
             {
               path: "/login",

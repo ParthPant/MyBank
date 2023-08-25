@@ -15,6 +15,8 @@ namespace MyBank.API.Entities
         public TransactionType TransactionType { get; set; }
         [Required]
         public long Amount { get; set; }
+        [Required]
+        public bool Approved { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DataType(DataType.DateTime)]
         public DateTime Time { get; set; } = DateTime.Now;
@@ -22,11 +24,12 @@ namespace MyBank.API.Entities
         [ForeignKey("AccNo")]
         public Account? Account { get; set; }
 
-        public Transaction(long accNo, TransactionType transactionType, long amount)
+        public Transaction(long accNo, TransactionType transactionType, long amount, bool approved)
         {
             AccNo = accNo;
             Amount = amount;
             TransactionType = transactionType;
+            Approved = approved;
         }
     }
 }

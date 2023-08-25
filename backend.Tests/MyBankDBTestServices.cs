@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Types;
 
-
 namespace MyBankDBTest
 {
 	public class MyBankDBTestServices
 	{
 		[Fact]
+		
 		public async Task GetCustomerAsyncTest_ShouldReturnCustomer_WhenCustomerExists()
 		{
 			var _mockrepo = new Mock<IMyBankRepository>();
@@ -45,6 +45,7 @@ namespace MyBankDBTest
 			Assert.Equal(customerList, customerresult);
 			Assert.NotEmpty(customerresult);
 			Assert.IsType<List<Customer>>(customerresult);
+			
 		}
 		[Fact]
 		public async Task CustomerExists_ShouldReturnTrue_IfCustomerExists()
