@@ -14,8 +14,8 @@ public class UnitTest1
 		{
 			var _mockrepo = new Mock<IMyBankRepository>();
 			var transactionList = new List<Transaction> {
-				new Transaction(1234567, TransactionType.Credit, 1000 ),
-				new Transaction(1223357, TransactionType.Debit, 2220 ),
+				new Transaction(1234567, TransactionType.Credit, 1000, false ),
+				new Transaction(1223357, TransactionType.Debit, 2220, false ),
 			};
 			long accNo = 1234567;
 			_mockrepo.Setup(x => x.GetTransactionsAsync(accNo,null)).ReturnsAsync(transactionList);
