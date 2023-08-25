@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zzJC6mCX4h9AbAkYR6Eh+RQPwtjzofgvk7PlvFb/43808iDKsnxklWCVui5bTtUCKIv+PejenrDVggAhgUo2IQ==",
+  "dgSpecHash": "OzPWK6WZTy0SBynfBnd7zpsGPjRPHsvFLgv3IqkQbCcy5qBm3ktzPbJEe/V1ziXrUjR2aWCA2vtrrYP8cjw7Jw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\source\\MyBank\\backend.Tests\\backendTests.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\MyBank\\backend.tests\\backendTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -4,12 +4,14 @@ using MyBank.API.Entities;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc;
+using MyBank.API.Types;
 
 namespace MyBankDBTest
 {
 	public class MyBankDBTestServices
 	{
 		[Fact]
+		
 		public async Task GetCustomerAsyncTest_ShouldReturnCustomer_WhenCustomerExists()
 		{
 			var _mockrepo = new Mock<IMyBankRepository>();
@@ -43,21 +45,8 @@ namespace MyBankDBTest
 			Assert.Equal(customerList, customerresult);
 			Assert.NotEmpty(customerresult);
 			Assert.IsType<List<Customer>>(customerresult);
+			
 		}
-		/*[Fact]
-        public async Task AddCustomerTest_ShouldAddCustomer()
-        {
-            var _mockrepo = new Mock<IMyBankRepository>();
-            var _repository= repository ?? throw new ArgumentNullException(nameof(repository));
-
-            var customerList = await _repository.GetAccountsAsync();
-            var newcustomer = new Customer("Tanal", "tp@gmail.com", "Surat");
-            customerList.Add(newcustomer);
-
-            _mockrepo.Setup(x => x.AddCustomer()).Returns();
-            var result = _mockrepo.Object();
-        }*/
-
-
+		
 	}
 }
