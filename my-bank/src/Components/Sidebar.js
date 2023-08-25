@@ -27,6 +27,9 @@ function Sidebar({ children }) {
               <Link to="/transactions">Transactions</Link>
             </li>
             <li>
+              <Link to="/cheque">Cheques</Link>
+            </li>
+            <li>
               <Link to="/mini-statement">Mini Statement</Link>
             </li>
             <li>
