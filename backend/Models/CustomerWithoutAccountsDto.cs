@@ -7,6 +7,7 @@ namespace MyBank.API.Models
         public string Email { get; set; }
         public long Contact { get; set; }
         public string City { get; set; }
+        public bool Enabled {get; set;}
 
         public CustomerWithoutAccountsDto(string name, string email, string city)
         {

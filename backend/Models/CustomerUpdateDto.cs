@@ -16,5 +16,6 @@ namespace MyBank.API.Models
         [Required]
         [MaxLength(50)]
         public string City { get; set; } = String.Empty;
+        public bool Enabled { get; set; } = true;
     }
 }

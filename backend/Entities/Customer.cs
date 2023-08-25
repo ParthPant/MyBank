@@ -20,6 +20,8 @@ namespace MyBank.API.Entities
         [Required]
         public long Contact { get; set; }
 
+        public bool Enabled { get; set; } = true;
+
         [Required]
         [MaxLength(50)]
         public string City { get; set; }

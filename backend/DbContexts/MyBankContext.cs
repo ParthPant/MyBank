@@ -22,7 +22,13 @@ namespace MyBank.API.DbContexts
             //     .HasColumnType("datetime2")
             //     .HasDefaultValue("getdate()");
 
-            modelBuilder.Entity<Customer>().HasData(
+
+            // modelBuilder.Entity<Customer>()
+            //     .Property(c => c.Enabled)
+            //     .HasDefaultValue(true);
+
+            modelBuilder.Entity<Customer>()
+                .HasData(
                     new Customer("Parth Pant", "parthpant4@gmail.com", "Bengaluru")
                     {
                         CustId = 1,
@@ -53,7 +59,7 @@ namespace MyBank.API.DbContexts
                         Balance = 787,
                         CustId = 1,
                         CardNo = 12345,
-                        PinNo = 0
+                        PinNo = 0,
                     },
                     new Account
                     {
