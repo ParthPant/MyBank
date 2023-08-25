@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = backendTests
-build_property.ProjectDir = C:\Users\Administrator\source\MyBank\backend.Tests\
+build_property.ProjectDir = C:\Users\Administrator\dev\MyBank\backend.Tests\

@@ -44,7 +44,30 @@ namespace MyBankDBTest
 			Assert.NotEmpty(customerresult);
 			Assert.IsType<List<Customer>>(customerresult);
 		}
-		/*[Fact]
+
+        [Fact]
+        public async Task DeleteCustomerAsyncTest_ShouldReturnNoContent()
+        {
+            var _mockrepo = new Mock<IMyBankRepository>();
+			var custId = 1;
+            var customer = new Customer("Tanal", "tp@gmail.com", "Surat");
+
+            _mockrepo.Setup(x => x.GetCustomerAsync(custId, false)).ReturnsAsync(customer);
+			_mockrepo.Setup(x => x.DeleteCustomer(customer));
+			
+
+            var result = _mockrepo.Object;
+            var customerresult = await result.GetCustomerAsync(custId);
+			
+            
+
+            Assert.Equal(customer, customerresult);
+			Assert.Null(result.DeleteCustomer(customer));
+            Assert.NotEmpty(customerresult);
+            Assert.IsType<List<Customer>>(customerresult);
+        }
+
+        /*[Fact]
         public async Task AddCustomerTest_ShouldAddCustomer()
         {
             var _mockrepo = new Mock<IMyBankRepository>();
@@ -59,5 +82,5 @@ namespace MyBankDBTest
         }*/
 
 
-	}
+    }
 }
