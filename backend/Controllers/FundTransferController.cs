@@ -42,8 +42,8 @@ namespace MyBank.API
             AccFromEntity.Balance = AccFromEntity.Balance - AmountToTransfer;
             AccToEntity.Balance = AccToEntity.Balance + AmountToTransfer;
 
-            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer);
-            Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer);
+            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer, true);
+            Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer, true);
 
             AccFromEntity.Transactions.Add(transactionFrom);
             AccToEntity.Transactions.Add(transactionTo);

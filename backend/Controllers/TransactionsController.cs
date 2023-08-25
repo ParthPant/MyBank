@@ -46,7 +46,9 @@ namespace MyBank.API
             var AmountToTransfer = transaction.Amount;
             var AccNoFrom = AccFromEntity.AccNo;
             var TransactionType = transaction.TransactionType;
-            var checkTransactionType = TransactionType.ToString();  
+            var checkTransactionType = TransactionType.ToString();
+            bool approvedStatus = transaction.Approved;
+            approvedStatus = true;
 
             if (checkTransactionType.Equals("Debit") && AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
 
@@ -60,9 +62,38 @@ namespace MyBank.API
                 AccFromEntity.Balance = AccFromEntity.Balance + AmountToTransfer;
             }
 
-            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType, AmountToTransfer);
+            if(checkTransactionType.Equals("Cheque"))
+            {
+                approvedStatus = false;
+            }
+
+            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType, AmountToTransfer, approvedStatus);
 
             AccFromEntity.Transactions.Add(transactionFrom);
+
+            await _repository.SaveChangesAsync();
+
+            return Ok(AccFromEntity.Balance);
+        }
+
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> ChequeApproval(long AccNo, long Id)
+        {
+            if (!await _repository.AccountExists(AccNo)) return NotFound("account does not exist");
+            //if (!await _repository.AccountExists(fundTransfer.AccNoTo)) return NotFound("Destination account does not exist");
+
+            var AccFromEntity = await _repository.GetAccountAsync(AccNo);
+
+            var transactionEntity = await _repository.GetTransactionAsync(Id);
+            
+
+            if (! transactionEntity.Approved) 
+            {
+                transactionEntity.Approved = true;
+                AccFromEntity.Balance = AccFromEntity.Balance + transactionEntity.Amount;
+            }   
+
+            
 
             await _repository.SaveChangesAsync();
 
