@@ -24,6 +24,8 @@ namespace MyBank.API.Types
         Credit,
         [EnumMember(Value = "Debit")]
         Debit,
+        [EnumMember(Value = "Cheque")]
+        Cheque,
     }
 
     public class UserInfo
