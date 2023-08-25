@@ -4,6 +4,7 @@ using MyBank.API.Models;
 using MyBank.API.Entities;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace MyBank.API
 {
@@ -44,6 +45,26 @@ namespace MyBank.API
                 custId = createdCustomer.CustId,
                 includeAccounts = false,
             }, createdCustomer);
+        }
+        
+        [HttpPost("{custId}/disable")]
+        public async Task<IActionResult> DisableCustomer(long custId)
+        {
+            var customerEntity = await _repository.GetCustomerAsync(custId);
+            if (customerEntity == null) return NotFound("Customer Not Found");
+            customerEntity.Enabled = false;
+            await _repository.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPost("{custId}/enable")]
+        public async Task<IActionResult> EnableCustomer(long custId)
+        {
+            var customerEntity = await _repository.GetCustomerAsync(custId);
+            if (customerEntity == null) return NotFound("Customer Not Found");
+            customerEntity.Enabled = true;
+            await _repository.SaveChangesAsync();
+            return Ok();
         }
 
         [HttpGet("{custId}", Name = "GetCustomer")]
