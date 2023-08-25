@@ -87,6 +87,14 @@ function ViewAccount() {
                       </td>
 
                       <td>
+                        <Link to={"/withdrawals/" + account.accNo}>
+                          <button className="btn btn-primary btn-xs">
+                            Deposit/Withdraw
+                          </button>
+                        </Link>
+                      </td>
+
+                      <td>
                         <button
                           className="btn btn-error btn-xs"
                           onClick={(e) => deleteAccount(account.accNo)}
