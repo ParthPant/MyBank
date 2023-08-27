@@ -67,7 +67,7 @@ function CustomerGrid() {
           </button>
         </Link>
       </div>
-      <div class="grid grid-cols-3 grid-auto-cols gap-10 p-10 place-content-center max-w-screen">
+      <div class="flex flex-wrap gap-10 justify-start m-10 max-w-screen">
         {customers.map((customer, index) => {
           return (
             <CustomerCard
