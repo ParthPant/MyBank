@@ -48,7 +48,7 @@ function Transactions() {
           <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
             Transactions
           </h1>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto text-center">
             {accNo === undefined && (
               <div className="join justify-between">
                 <input

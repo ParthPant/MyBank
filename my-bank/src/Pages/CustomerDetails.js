@@ -1,42 +1,41 @@
 import React from "react";
+import {baseURL, configheaders} from "../utils.js";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
+
 function CustomerDetails() {
   const { id } = useParams();
-
   const [post, setPost] = React.useState(null);
-
-  const baseURL = "http://localhost:5296/api/customers/" + id;
-
-  const configheaders = {
-    "content-type": "application/json",
-    Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-  };
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
     axios
-      .get(baseURL, {
+      .get(baseURL + "customers/" + id, {
         params: {
           includeAccounts: false,
         },
-        headers: {
-          Authorization: "Bearer" + " " + localStorage.getItem("token"),
-        },
+        configheaders
       })
       .then((response) => {
         setPost(response.data);
-      });
+      })
+      .catch(err => console.log(err.response))
   }, []);
 
   if (!post) return null;
   console.log(post);
-  //   let customers = [];
-  //   for (let i = 0; i < post.length; ++i) {
-  //     customers.push({ customerID: post[i].custId + i, name: post[i].name });
-  //   }
+
+  function toggleCustomer() {
+    let url = baseURL + "customers/" + id + (post.enabled ? "/disable" : "/enable");
+    console.log(url)
+    axios
+      .post(url, configheaders)
+      .then(res => {console.log(res)})
+      .catch(err => {console.log(err.response)})
+
+    setPost({...post, enabled: !post.enabled})
+  }
 
   function deleteCustomer() {
     axios
@@ -61,6 +60,7 @@ function CustomerDetails() {
           </figure>
           <div className="card-body font-helvetica pr-10">
             <h1 className="card-title">{post.name}</h1>
+            {!post.enabled && <h1 className="badge badge-primary">Disabled</h1>}
             <hr className="p-0"></hr>
             <h2 className="">{post.email}</h2>
             <h2 className="">{post.contact}</h2>
@@ -69,21 +69,24 @@ function CustomerDetails() {
             <h2 className="">{post.cardNo}</h2>
             <div className="card-actions justify-end">
               <Link to={"/customer/edit/" + id}>
-                <button className="btn btn-primary hover:cursor-pointer">
+                <button className="btn btn-primary btn-sm">
                   Edit
                 </button>
               </Link>
               <Link to={"/add-account/" + id}>
-                <button className="btn btn-primary hover:cursor-pointer">
+                <button className="btn btn-primary btn-sm">
                   Add
                 </button>
               </Link>
               <Link to={"/view-account/" + id}>
-                <button className="btn btn-primary hover:cursor-pointer">
+                <button className="btn btn-primary btn-sm">
                   Accounts
                 </button>
               </Link>
-              <button onClick={deleteCustomer} className="btn btn-error">
+              <button onClick={toggleCustomer} className="btn btn-warning btn-sm">
+                {post.enabled ? "Disable" : "Enable"}
+              </button>
+              <button onClick={deleteCustomer} className="btn btn-error btn-sm">
                 Delete
               </button>
             </div>
