@@ -14,7 +14,21 @@ function AddCustomer() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setFormData((values) => ({ ...values, [name]: value }));
+    if(name === "name") {
+      const regex = /^[A-Za-z ]+$/;
+      if (regex.test(value) || value === "") {
+        setFormData((values) => ({ ...values, [name]: value }));
+      }
+    }
+    else if(name === "contact") {
+      const limit = 10;
+      const regex = /^[0-9\b]+$/;
+      if (regex.test(value) || value === "") {
+        setFormData((values) => ({ ...values, [name]: value.slice(0, limit) }));
+      }
+    }
+    else
+      setFormData((values) => ({ ...values, [name]: value }));
   };
 
   const handleSubmit = (event) => {
@@ -115,6 +129,7 @@ function AddCustomer() {
                 value={formData.name || ""}
                 onChange={handleChange}
                 class="input input-bordered w-full max-w-xs"
+                onkeydown="return /[a-zA-Z]/i.test(event.key)"
                 required
               />
             </div>
@@ -145,6 +160,7 @@ function AddCustomer() {
                 value={formData.contact || ""}
                 onChange={handleChange}
                 class="input input-bordered w-full max-w-xs"
+                maxLength={10}
                 required
               />
             </div>

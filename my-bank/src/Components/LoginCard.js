@@ -15,12 +15,14 @@ function LoginCard({ onSubmit, error }) {
           placeholder="Username"
           className="input border-black input-bordered input-primary w-full max-w-xs"
           onChange={(e) => setUserName(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Password"
           className="input border-black input-bordered input-primary w-full max-w-xs"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         {!isSignIn ? (
           <input
@@ -28,6 +30,7 @@ function LoginCard({ onSubmit, error }) {
             placeholder="Confirm Password"
             className="input border-black input-bordered input-primary w-full max-w-xs"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         ) : (
           <></>
