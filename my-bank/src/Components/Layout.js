@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="h-screen backg">
+      <div className="h-full backg">
         {token ? (
           <Sidebar>
             <Outlet />
