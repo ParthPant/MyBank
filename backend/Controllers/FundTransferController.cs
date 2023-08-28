@@ -33,9 +33,22 @@ namespace MyBank.API
             var AccFromEntity = await _repository.GetAccountAsync(fundTransfer.AccNoFrom);
             var AccToEntity = await _repository.GetAccountAsync(fundTransfer.AccNoTo);
 
+            var fromCustEntity = await _repository.GetCustomerAsync(AccFromEntity.CustId); 
+            var toCustEntity = await _repository.GetCustomerAsync(AccToEntity.CustId); 
+
+            if (fromCustEntity == null || toCustEntity == null) NotFound("Customer Not Found");
+
+            if (fromCustEntity != null && !fromCustEntity.Enabled)
+            {
+                return BadRequest("From Customer is disabled");
+            }
+
+            if (toCustEntity != null && !toCustEntity.Enabled)
+            {
+                return BadRequest("To Customer is disabled");
+            }
+
             var AmountToTransfer = fundTransfer.TransactionAmount;
-            var AccNoFrom = AccFromEntity.AccNo;
-            var AccNoTo = AccToEntity.AccNo;
 
             if (AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBank.API.DbContexts;
 
@@ -10,9 +11,11 @@ using MyBank.API.DbContexts;
 namespace backend.Migrations
 {
     [DbContext(typeof(MyBankContext))]
-    partial class MyBankContextModelSnapshot : ModelSnapshot
+    [Migration("20230825092343_AddEnabled")]
+    partial class AddEnabled
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
@@ -197,9 +200,6 @@ namespace backend.Migrations
                     b.Property<long>("Amount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Approved")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("Time")
                         .HasColumnType("TEXT");
 
@@ -218,8 +218,7 @@ namespace backend.Migrations
                             Id = 1L,
                             AccNo = 2342343245L,
                             Amount = 200L,
-                            Approved = true,
-                            Time = new DateTime(2023, 8, 25, 10, 37, 23, 325, DateTimeKind.Local).AddTicks(9181),
+                            Time = new DateTime(2023, 8, 25, 14, 53, 43, 430, DateTimeKind.Local).AddTicks(205),
                             TransactionType = 1
                         },
                         new
@@ -227,8 +226,7 @@ namespace backend.Migrations
                             Id = 2L,
                             AccNo = 3454395723L,
                             Amount = 600L,
-                            Approved = true,
-                            Time = new DateTime(2023, 8, 25, 10, 37, 23, 325, DateTimeKind.Local).AddTicks(9197),
+                            Time = new DateTime(2023, 8, 25, 14, 53, 43, 430, DateTimeKind.Local).AddTicks(223),
                             TransactionType = 0
                         },
                         new
@@ -236,8 +234,7 @@ namespace backend.Migrations
                             Id = 3L,
                             AccNo = 2342343245L,
                             Amount = 234L,
-                            Approved = true,
-                            Time = new DateTime(2023, 8, 25, 10, 37, 23, 325, DateTimeKind.Local).AddTicks(9198),
+                            Time = new DateTime(2023, 8, 25, 14, 53, 43, 430, DateTimeKind.Local).AddTicks(225),
                             TransactionType = 0
                         },
                         new
@@ -245,18 +242,8 @@ namespace backend.Migrations
                             Id = 4L,
                             AccNo = 3454395723L,
                             Amount = 123L,
-                            Approved = true,
-                            Time = new DateTime(2023, 8, 25, 10, 37, 23, 325, DateTimeKind.Local).AddTicks(9199),
+                            Time = new DateTime(2023, 8, 25, 14, 53, 43, 430, DateTimeKind.Local).AddTicks(226),
                             TransactionType = 1
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            AccNo = 2342343245L,
-                            Amount = 200L,
-                            Approved = false,
-                            Time = new DateTime(2023, 8, 25, 10, 37, 23, 325, DateTimeKind.Local).AddTicks(9200),
-                            TransactionType = 2
                         });
                 });
 

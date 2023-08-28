@@ -45,31 +45,32 @@ namespace MyBank.API
             Console.WriteLine(AccFromEntity.ToString());
             var AmountToTransfer = transaction.Amount;
             var AccNoFrom = AccFromEntity.AccNo;
-            var TransactionType = transaction.TransactionType;
-            var checkTransactionType = TransactionType.ToString();
-            bool approvedStatus = transaction.Approved;
-            approvedStatus = true;
+            var transactionType = transaction.TransactionType;
+            bool approvedStatus = true;
 
-            if (checkTransactionType.Equals("Debit") && AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
-
-            if (checkTransactionType.Equals("Debit"))
+            switch (transactionType)
             {
-                AccFromEntity.Balance = AccFromEntity.Balance - AmountToTransfer;
+                case TransactionType.Debit :
+                {
+                    if (AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceed the account balance");
+                    AccFromEntity.Balance = AccFromEntity.Balance - AmountToTransfer;
+                    break;
+                }
+                case TransactionType.Credit :
+                {
+                    AccFromEntity.Balance = AccFromEntity.Balance + AmountToTransfer;
+                    break;
+                }
+                case TransactionType.Cheque :
+                {
+                    approvedStatus = false;
+                    break;
+                }
             }
 
-            if (checkTransactionType.Equals("Credit"))
-            {
-                AccFromEntity.Balance = AccFromEntity.Balance + AmountToTransfer;
-            }
+            Transaction transactionEntity = new Transaction(AccFromEntity.AccNo, transactionType, AmountToTransfer, approvedStatus);
 
-            if(checkTransactionType.Equals("Cheque"))
-            {
-                approvedStatus = false;
-            }
-
-            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType, AmountToTransfer, approvedStatus);
-
-            AccFromEntity.Transactions.Add(transactionFrom);
+            AccFromEntity.Transactions.Add(transactionEntity);
 
             await _repository.SaveChangesAsync();
 
@@ -85,15 +86,15 @@ namespace MyBank.API
             var AccFromEntity = await _repository.GetAccountAsync(AccNo);
 
             var transactionEntity = await _repository.GetTransactionAsync(Id);
-            
 
-            if (! transactionEntity.Approved) 
+
+            if (! transactionEntity.Approved)
             {
                 transactionEntity.Approved = true;
                 AccFromEntity.Balance = AccFromEntity.Balance + transactionEntity.Amount;
-            }   
+            }
 
-            
+
 
             await _repository.SaveChangesAsync();
 

@@ -38,12 +38,12 @@ function Cheques({ transactions, balance }) {
             <tr>
               <th></th>
               <th>Account No</th>
-              
+
               <th>Amount</th>
               <th>Status</th>
               <th>Time</th>
               <th></th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -55,7 +55,7 @@ function Cheques({ transactions, balance }) {
                   <tr>
                     <th>{transaction.id}</th>
                     <td>{transaction.accNo}</td>
-                    
+
                     <td>{transaction.amount}</td>
                     <td>{transaction.approved? ("Approved") : (<button onClick={event=> handleCheque(event, transaction.accNo, transaction.id)} className="btn btn-primary btn-xs">Pending</button>)}</td>
                     <td>{transaction.time}</td>
@@ -75,12 +75,12 @@ function ChequeEnquiry() {
     const { accNo } = useParams();
     const [formData, setFormData] = useState("");
     const [post, setPost] = React.useState(null);
-  
+
     const handleChange = (event) => {
       setFormData(event.target.value);
       console.log(formData);
     };
-  
+
     const handleClick = (event) => {
       event.preventDefault();
       console.log(formData);
@@ -96,7 +96,7 @@ function ChequeEnquiry() {
         });
       // navigate("/transactions/" + formData);
     };
-  
+
     useEffect(() => {
       if (accNo !== undefined) {
         axios
@@ -107,7 +107,7 @@ function ChequeEnquiry() {
           .catch((err) => console.log(err));
       }
     }, [accNo]);
-  
+
     return (
       <>
         <div class="min-h-full flex items-center justify-center">
@@ -115,7 +115,7 @@ function ChequeEnquiry() {
             <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
               Cheque
             </h1>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto text-center">
               {accNo === undefined && (
                 <div className="join justify-between">
                   <input
@@ -148,11 +148,10 @@ function ChequeEnquiry() {
                     </svg>
                   </button>
                 </div>
-                
+
               )}
-              {console.log(post)}
               {post && (
-                
+
                   <Cheques
                     transactions={post}
                     balance={post.balance}
@@ -164,6 +163,5 @@ function ChequeEnquiry() {
       </>
     );
   }
-  
+
   export default ChequeEnquiry;
-  
