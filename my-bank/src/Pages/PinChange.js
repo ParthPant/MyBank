@@ -7,7 +7,9 @@ export default function PinChange() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (formData.confirmPin === formData.newPin) {
+    if(formData.oldPin === formData.newPin) {
+      alert("The old pin and new pin should not be the same!");
+    } else if (formData.confirmPin === formData.newPin) {
       axios
         .put(
           baseURL + "accounts/" + formData.accNo + "/pinChange",
@@ -19,14 +21,14 @@ export default function PinChange() {
         )
         .then((res) => {
           console.log(res);
-          alert("Pin Changed Successfully !");
+          alert("Pin Changed Successfully");
         })
         .catch((err) => {
           console.log(err);
           alert(err.response.data);
         });
     } else {
-      alert("New Pin and Confirm New Pin should match !!");
+      alert("New Pin and Confirm New Pin should match!!");
     }
   };
 
@@ -65,11 +67,11 @@ export default function PinChange() {
               <span className="label-text">Old PIN</span>
             </label>
             <input
+              type="password"
               required
               onChange={handleChange}
               name="oldPin"
               value={formData.oldPin}
-              type="password"
               className="input input-bordered w-full max-w-xs"
             />
           </div>
@@ -79,11 +81,11 @@ export default function PinChange() {
               <span className="label-text">New PIN</span>
             </label>
             <input
+              type="password"
               required
               onChange={handleChange}
               name="newPin"
               value={formData.newPin}
-              type="password"
               className="input input-bordered w-full max-w-xs"
             />
           </div>
@@ -93,11 +95,11 @@ export default function PinChange() {
               <span className="label-text">Confirm New PIN</span>
             </label>
             <input
+              type="password"
               required
               onChange={handleChange}
               name="confirmPin"
               value={formData.confirmPin}
-              type="password"
               className="input input-bordered w-full max-w-xs"
             />
           </div>
