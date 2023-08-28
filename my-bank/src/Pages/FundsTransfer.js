@@ -5,6 +5,20 @@ import { baseURL, configheaders } from "../utils.js";
 const FundsTransfer = () => {
   const [formData, setFormData] = useState({});
 
+  const checkBalance = () => {
+    axios
+      .get(baseURL + "balance/" + formData.accNoFrom, configheaders)
+      .then((res) => {
+        alert("The Balance for this account is :" +res.data);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          alert("The account does not exist");
+        }
+        console.log(err.response);
+      });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -15,12 +29,14 @@ const FundsTransfer = () => {
       .catch((err) => {
         alert(err.response.data);
       });
+      formData.transactionAmount = 0;
   };
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setFormData((values) => ({ ...values, [name]: value }));
+    console.log(name +" : " + value)
   };
 
   return (
@@ -77,6 +93,10 @@ const FundsTransfer = () => {
               className="input input-bordered w-full max-w-xs"
             />
           </div>
+
+          <button onClick={checkBalance} className="btn btn-primary">
+            Check Balance
+          </button>
 
           <button onClick={handleSubmit} className="btn btn-primary">
             Transfer
