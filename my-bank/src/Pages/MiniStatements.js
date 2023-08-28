@@ -61,11 +61,11 @@ function MiniStatement() {
   return (
     <>
       <div class="min-h-screen flex items-center justify-center">
-        <div class="m-10 min-w-md p-6 bg-gray-800 rounded-lg shadow-lg">
+        <div class="m-10 min-w-md p-6 text-center bg-gray-800 rounded-lg shadow-lg">
           <h1 className="text-2xl font-semibold text-center text-white-500 mt-8 mb-6">
             Mini Statement
           </h1>
-          <div className="join">
+          <div className="join text-center">
             <input
               type="number"
               className="join-item input input-bordered w-full max-w-xs"

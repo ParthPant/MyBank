@@ -52,7 +52,7 @@ function Transactions() {
             {accNo === undefined && (
               <div className="join justify-between">
                 <input
-                  type="text"
+                  type="number"
                   id="name"
                   name="name"
                   value={formData || ""}
@@ -82,7 +82,7 @@ function Transactions() {
                 </button>
               </div>
             )}
-            
+
             {post && <TransactionTable post={post} />}
           </div>
         </div>

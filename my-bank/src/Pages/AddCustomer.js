@@ -138,7 +138,7 @@ function AddCustomer() {
                 <span className="label-text">Contact</span>
               </label>
               <input
-                type="text"
+                type="number"
                 id="contact"
                 name="contact"
                 placeholder="Phone No."

@@ -119,7 +119,7 @@ function ChequeEnquiry() {
               {accNo === undefined && (
                 <div className="join justify-between">
                   <input
-                    type="text"
+                    type="number"
                     id="name"
                     name="name"
                     value={formData || ""}
