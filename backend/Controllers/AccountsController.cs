@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBank.API.Models;
 using MyBank.API.Entities;
 using MyBank.API.Services;
+using MyBank.API.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MyBank.API
@@ -56,42 +57,51 @@ namespace MyBank.API
 
             if (!await _repository.CustomerExists(custId)) return NotFound();
 
-            var accountEntity = await _repository.GetAccountAsync(custId, accNo);
-            if (accountEntity == null) return NotFound();
+            try {
+                var accountEntity = await _repository.GetAccountAsync(custId, accNo);
 
-            var accountDto = _mapper.Map<AccountDto>(accountEntity);
-            return Ok(accountDto);
+                var accountDto = _mapper.Map<AccountDto>(accountEntity);
+                return Ok(accountDto);
+            } catch (AccountNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpDelete("accounts/{accNo}")]
         public async Task<IActionResult> DeleteCustomerAccount(long custId, long accNo)
         {
-            var deleteCustomterAccountEntity = await _repository.GetAccountAsync(custId, accNo);
-            if (deleteCustomterAccountEntity == null) return NotFound();
-            _repository.DeleteAccount(deleteCustomterAccountEntity);
-            await _repository.SaveChangesAsync();
-
-            return NoContent();
-
+            try {
+                var deleteCustomterAccountEntity = await _repository.GetAccountAsync(custId, accNo);
+                _repository.DeleteAccount(deleteCustomterAccountEntity);
+                await _repository.SaveChangesAsync();
+                return NoContent();
+            } catch (AccountNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPut("accounts/{accNo}")]
         public async Task<IActionResult> UpdateCustomerAccount(long custId, long accNo, AccountUpdateDto updateDto)
         {
-            var accountToUpdate = await _repository.GetAccountAsync(custId, accNo);
-            if (accountToUpdate == null) return NotFound();
-            _mapper.Map(updateDto, accountToUpdate);
-            await _repository.SaveChangesAsync();
-
-            return NoContent();
+            try {
+                var accountToUpdate = await _repository.GetAccountAsync(custId, accNo);
+                _mapper.Map(updateDto, accountToUpdate);
+                await _repository.SaveChangesAsync();
+                return NoContent();
+            } catch (AccountNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpGet("accounts/{accNo}/balance")]
         public async Task<IActionResult> GetAccountBalance(long custId, long accNo)
         {
-            var accountEntity = await _repository.GetAccountAsync(custId, accNo);
-            if (accountEntity == null) return NotFound();
-            return Ok(accountEntity.Balance);
+            try {
+                var accountEntity = await _repository.GetAccountAsync(custId, accNo);
+                return Ok(accountEntity.Balance);
+            } catch (AccountNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
         }
 
         // [HttpPatch("accounts/{accNo}")]

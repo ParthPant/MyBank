@@ -5,6 +5,7 @@ using MyBank.API.Entities;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using MyBank.API.Types;
+using MyBank.API.Exceptions;
 
 namespace MyBank.API
 {
@@ -30,40 +31,44 @@ namespace MyBank.API
             if (!await _repository.AccountExists(fundTransfer.AccNoFrom)) return NotFound("Source account does not exist");
             if (!await _repository.AccountExists(fundTransfer.AccNoTo)) return NotFound("Destination account does not exist");
 
-            var AccFromEntity = await _repository.GetAccountAsync(fundTransfer.AccNoFrom);
-            var AccToEntity = await _repository.GetAccountAsync(fundTransfer.AccNoTo);
+            try {
+                var AccFromEntity = await _repository.GetAccountAsync(fundTransfer.AccNoFrom);
+                var AccToEntity = await _repository.GetAccountAsync(fundTransfer.AccNoTo);
 
-            var fromCustEntity = await _repository.GetCustomerAsync(AccFromEntity.CustId); 
-            var toCustEntity = await _repository.GetCustomerAsync(AccToEntity.CustId); 
+                var fromCustEntity = await _repository.GetCustomerAsync(AccFromEntity.CustId);
+                var toCustEntity = await _repository.GetCustomerAsync(AccToEntity.CustId);
 
-            if (fromCustEntity == null || toCustEntity == null) NotFound("Customer Not Found");
+                if (fromCustEntity != null && !fromCustEntity.Enabled)
+                {
+                    return BadRequest("From Customer is disabled");
+                }
 
-            if (fromCustEntity != null && !fromCustEntity.Enabled)
-            {
-                return BadRequest("From Customer is disabled");
+                if (toCustEntity != null && !toCustEntity.Enabled)
+                {
+                    return BadRequest("To Customer is disabled");
+                }
+
+                var AmountToTransfer = fundTransfer.TransactionAmount;
+
+                if (AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
+
+                AccFromEntity.Balance = AccFromEntity.Balance - AmountToTransfer;
+                AccToEntity.Balance = AccToEntity.Balance + AmountToTransfer;
+
+                Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer, true);
+                Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer, true);
+
+                AccFromEntity.Transactions.Add(transactionFrom);
+                AccToEntity.Transactions.Add(transactionTo);
+
+                await _repository.SaveChangesAsync();
+
+                return NoContent();
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
+            } catch (AccountNotFoundException ex) {
+                return NotFound(ex.Message);
             }
-
-            if (toCustEntity != null && !toCustEntity.Enabled)
-            {
-                return BadRequest("To Customer is disabled");
-            }
-
-            var AmountToTransfer = fundTransfer.TransactionAmount;
-
-            if (AccFromEntity.Balance < AmountToTransfer) return BadRequest("Amount to Transfer exceeds the account balance");
-
-            AccFromEntity.Balance = AccFromEntity.Balance - AmountToTransfer;
-            AccToEntity.Balance = AccToEntity.Balance + AmountToTransfer;
-
-            Transaction transactionFrom = new Transaction(AccFromEntity.AccNo, TransactionType.Debit, AmountToTransfer, true);
-            Transaction transactionTo = new Transaction(AccToEntity.AccNo, TransactionType.Credit, AmountToTransfer, true);
-
-            AccFromEntity.Transactions.Add(transactionFrom);
-            AccToEntity.Transactions.Add(transactionTo);
-
-            await _repository.SaveChangesAsync();
-
-            return NoContent();
         }
 
     }

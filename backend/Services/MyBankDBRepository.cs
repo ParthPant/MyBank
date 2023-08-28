@@ -1,4 +1,5 @@
 ﻿using MyBank.API.Entities;
+using MyBank.API.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using MyBank.API.DbContexts;
 using MyBank.API.Types;
@@ -28,13 +29,23 @@ namespace MyBank.API.Services
             return null;
         }
 
-        public async Task<Customer?> GetCustomerAsync(long custId, bool includeAccounts = false)
+        public async Task<Customer> GetCustomerAsync(long custId, bool includeAccounts = false)
         {
+            Customer res;
             if (includeAccounts)
             {
-                return await _context.Customers.Include(c => c.Accounts).Where(c => c.CustId == custId).FirstOrDefaultAsync();
+                // throw new CustomerNotFoundException(custId)
+                res = await _context.Customers.Include(c => c.Accounts).Where(c => c.CustId == custId).FirstAsync();
+            } else {
+                res = await _context.Customers.Where(c => c.CustId == custId).FirstAsync();
             }
-            return await _context.Customers.Where(c => c.CustId == custId).FirstOrDefaultAsync();
+
+            if (res == null)
+            {
+                throw new CustomerNotFoundException(custId);
+            }
+
+            return res;
         }
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync()
@@ -68,16 +79,26 @@ namespace MyBank.API.Services
                 .Where(acc => acc.CustId == custId).ToListAsync();
         }
 
-        public async Task<Account?> GetAccountAsync(long custId, long accNo)
+        public async Task<Account> GetAccountAsync(long custId, long accNo)
         {
-            return await _context.Accounts
+            var res = await _context.Accounts
                 .Where(acc => acc.CustId == custId && acc.AccNo == accNo)
-                .FirstOrDefaultAsync();
+                .FirstAsync();
+            if (res == null) {
+                throw new AccountNotFoundException(accNo);
+            } else {
+                return res;
+            }
         }
 
         public async Task<Account> GetAccountAsync(long accNo)
         {
-            return await _context.Accounts.Where(acc => acc.AccNo == accNo).FirstAsync();
+            var res = await _context.Accounts.Where(acc => acc.AccNo == accNo).FirstAsync();
+            if (res == null) {
+                throw new AccountNotFoundException(accNo);
+            } else {
+                return res;
+            }
         }
 
         public async Task AddAccount(long custId, Account account)

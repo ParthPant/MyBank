@@ -4,7 +4,7 @@ using MyBank.API.Models;
 using MyBank.API.Entities;
 using MyBank.API.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
+using MyBank.API.Exceptions;
 
 namespace MyBank.API
 {
@@ -46,70 +46,74 @@ namespace MyBank.API
                 includeAccounts = false,
             }, createdCustomer);
         }
-        
+
         [HttpPost("{custId}/disable")]
         public async Task<IActionResult> DisableCustomer(long custId)
         {
-            var customerEntity = await _repository.GetCustomerAsync(custId);
-            if (customerEntity == null) return NotFound("Customer Not Found");
-            customerEntity.Enabled = false;
-            await _repository.SaveChangesAsync();
-            return Ok();
+            try {
+                var customerEntity = await _repository.GetCustomerAsync(custId);
+                customerEntity.Enabled = false;
+                await _repository.SaveChangesAsync();
+                return Ok();
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost("{custId}/enable")]
         public async Task<IActionResult> EnableCustomer(long custId)
         {
-            var customerEntity = await _repository.GetCustomerAsync(custId);
-            if (customerEntity == null) return NotFound("Customer Not Found");
-            customerEntity.Enabled = true;
-            await _repository.SaveChangesAsync();
-            return Ok();
+            try {
+                var customerEntity = await _repository.GetCustomerAsync(custId);
+                customerEntity.Enabled = true;
+                await _repository.SaveChangesAsync();
+                return Ok();
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
+
         }
 
         [HttpGet("{custId}", Name = "GetCustomer")]
         public async Task<IActionResult> GetCustomer(long custId, bool includeAccounts = false)
         {
-            if (!await _repository.CustomerExists(custId))
-            {
-                return NotFound();
+            try {
+                var customerEntity = await _repository.GetCustomerAsync(custId, includeAccounts);
+                if (!includeAccounts)
+                {
+                    return Ok(_mapper.Map<CustomerWithoutAccountsDto>(customerEntity));
+                }
+                return Ok(_mapper.Map<CustomerDto>(customerEntity));
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
             }
-
-            var customerEntity = await _repository.GetCustomerAsync(custId, includeAccounts);
-            if (!includeAccounts)
-            {
-                return Ok(_mapper.Map<CustomerWithoutAccountsDto>(customerEntity));
-            }
-            return Ok(_mapper.Map<CustomerDto>(customerEntity));
         }
 
         [HttpDelete("{custId}")]
         public async Task<IActionResult> DeleteCustomer(long custId)
         {
-            var customerToDeleteEntity = await _repository.GetCustomerAsync(custId);
-            if (customerToDeleteEntity == null)
-            {
-                return NotFound();
+            try {
+                var customerToDeleteEntity = await _repository.GetCustomerAsync(custId);
+                _repository.DeleteCustomer(customerToDeleteEntity);
+                await _repository.SaveChangesAsync();
+                return NoContent();
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
             }
-
-            _repository.DeleteCustomer(customerToDeleteEntity);
-            await _repository.SaveChangesAsync();
-            return NoContent();
         }
 
         [HttpPut("{custId}")]
         public async Task<IActionResult> UpdateCustomer(long custId, [FromBody] CustomerUpdateDto updateDto)
         {
-            if (!await _repository.CustomerExists(custId))
-            {
-                return NotFound();
+            try {
+                var customerToUpdate = await _repository.GetCustomerAsync(custId, false);
+                _mapper.Map(updateDto, customerToUpdate);
+
+                await _repository.SaveChangesAsync();
+                return NoContent();
+            } catch (CustomerNotFoundException ex) {
+                return NotFound(ex.Message);
             }
-
-            var customerToUpdate = await _repository.GetCustomerAsync(custId, false);
-            _mapper.Map(updateDto, customerToUpdate);
-
-            await _repository.SaveChangesAsync();
-            return NoContent();
         }
 
         // [HttpPatch("{custId}")]
