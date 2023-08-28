@@ -82,6 +82,7 @@ function Transactions() {
                 </button>
               </div>
             )}
+            
             {post && <TransactionTable post={post} />}
           </div>
         </div>

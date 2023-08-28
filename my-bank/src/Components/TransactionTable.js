@@ -22,6 +22,7 @@ export default function TransactionTable(props) {
             {
               console.log(transactions);
             }
+            if(transactions.approved)
             return (
               <tr>
                 <th>{index}</th>

@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { baseURL, configheaders } from "../utils.js";
 import axios from "axios";
 
 function Cheques({ transactions, balance }) {
-//   const [permit, setPermit] = React.useState(null);
-//   const handleCheque = (event, accNo, id) => {
-//     // event.preventDefault();
-//     console.log("Data"+accNo);
-//     axios
-//       .put(baseURL + "transactions/" + accNo + "/approve/" + id,
-//       {
-//         approved : true
-//       }, configheaders)
-//       .then((response) => {
-//         setPermit(response.data);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         alert("This account does not exist!");
-//         setPermit(null);
-//       });
-//     // navigate("/transactions/" + formData);
-//   };
-//   if(permit)
-    // console.log(permit);
+  let navigate = useNavigate();
+  const [permit, setPermit] = React.useState(null);
+  const handleCheque = (event, accNo, id) => {
+    // event.preventDefault();
+    console.log("Data"+accNo);
+    axios
+      .put(baseURL + "transactions/" + accNo + "/approve/" + id,
+      {
+        approved : true
+      }, configheaders)
+      .then((response) => {
+        setPermit(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("This account does not exist!");
+        setPermit(null);
+      });
+      navigate(`/transactions/${accNo}`, {replace:true})
+  };
+  if(permit)
+    console.log(permit);
   return (
     <>
       <div className="text-m text-center text-white-500 mt-8 mb-6">
@@ -56,7 +57,7 @@ function Cheques({ transactions, balance }) {
                     <td>{transaction.accNo}</td>
                     
                     <td>{transaction.amount}</td>
-                    <td>{transaction.approved? ("Approved") : (<button className="btn btn-primary btn-xs">Pending</button>)}</td>
+                    <td>{transaction.approved? ("Approved") : (<button onClick={event=> handleCheque(event, transaction.accNo, transaction.id)} className="btn btn-primary btn-xs">Pending</button>)}</td>
                     <td>{transaction.time}</td>
 
                   </tr>
