@@ -19,14 +19,18 @@ function AddAccount() {
     const name = event.target.name;
     const value = event.target.value;
     setFormData((values) => ({ ...values, [name]: value }));
+    console.log(name);
+    console.log(value);
+    if(name == "accType")
+        console.log(formData.acctype)
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(JSON.stringify(formData));
-    alert(JSON.stringify(formData));
+    // alert(JSON.stringify(formData));
   };
-  console.log("Check " + formData.acctype);
+  console.log("Check " + formData.accType);
 
   React.useEffect(() => {
     axios
@@ -51,7 +55,7 @@ function AddAccount() {
       .post(
         baseURL + `customers/${id}/accounts`,
         {
-          accountType: formData.acctype,
+          accountType: formData.accType,
           balance: formData.balance,
         },
         {
@@ -120,19 +124,22 @@ function AddAccount() {
             </div>
 
             <div>
-              <label for="acctype" class="label">
+              <label for="accType" class="label">
                 <span className="label-text">Account Type</span>
               </label>
-              <input
-                type="text"
-                id="acctype"
-                name="acctype"
-                value={formData.acctype || ""}
-                onChange={handleChange}
-                class="input input-bordered w-full max-w-xs"
-                placeholder="Account Type"
-                required
-              />
+              <select 
+            required 
+            name="accType" 
+            id="accType" 
+            value={formData.acctype}
+            className="select select-bordered w-full min-w-lg" onChange={handleChange}>
+                <option value="" disabled selected hidden>Select Type</option>
+                <option value="Saving">Saving</option>
+                <option value="Salary">Salary</option>
+                <option value="Fixed Deposit">Fixed Deposit</option>
+                <option value="Recurring Deposit">Recurring Deposit</option>
+            </select>
+              
             </div>
             <div>
               <label for="balance" class="label">
