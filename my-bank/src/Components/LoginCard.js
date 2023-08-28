@@ -14,6 +14,7 @@ function LoginCard({ onSubmit, error }) {
           type="text"
           placeholder="Username"
           className="input border-black input-bordered input-primary w-full max-w-xs"
+          required
           onChange={(e) => setUserName(e.target.value)}
           required
         />
@@ -21,6 +22,7 @@ function LoginCard({ onSubmit, error }) {
           type="password"
           placeholder="Password"
           className="input border-black input-bordered input-primary w-full max-w-xs"
+          required
           onChange={(e) => setPassword(e.target.value)}
           required
         />

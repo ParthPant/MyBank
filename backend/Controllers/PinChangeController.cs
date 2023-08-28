@@ -33,6 +33,9 @@ namespace MyBank.API
             {
                 return BadRequest("Provided Current Pin is incorrect.");
             }
+            if (accountEntity.PinNo == pinChangeDto.NewPin) {
+                return BadRequest("New Pin should not be same as the Old Pin");
+            }
 
             accountEntity.PinNo = pinChangeDto.NewPin;
             await _repository.SaveChangesAsync();
