@@ -64,7 +64,7 @@ namespace MyBank.API
                 return Ok(token);
             }
 
-            return Unauthorized();
+            return BadRequest("Wrong Credentials");
         }
     }
 }
