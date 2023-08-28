@@ -16,7 +16,6 @@ function LoginCard({ onSubmit, error }) {
           className="input border-black input-bordered input-primary w-full max-w-xs"
           required
           onChange={(e) => setUserName(e.target.value)}
-          required
         />
         <input
           type="password"
@@ -24,7 +23,6 @@ function LoginCard({ onSubmit, error }) {
           className="input border-black input-bordered input-primary w-full max-w-xs"
           required
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
         {!isSignIn ? (
           <input
