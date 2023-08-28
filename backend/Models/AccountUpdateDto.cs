@@ -8,7 +8,7 @@ namespace MyBank.API.Models
     {
         [DefaultValue(AccountType.Saving)]
         public AccountType AccountType { get; set; }
-        [DefaultValue(0)]
+        [DefaultValue(0), Range(0, long.MaxValue)]
         public long Balance { get; set; }
         public long CustId { get; set; }
         public long PinNo { get; set; }
