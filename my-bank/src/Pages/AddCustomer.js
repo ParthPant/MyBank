@@ -44,6 +44,7 @@ function AddCustomer() {
         .then((response) => {
           console.log(response);
           setPost(response.data);
+          navigate(`/customer-details/${response.data.custId}`)
         }).catch((err) => {
           // <ErrorAlert path={"dashboard"}></ErrorAlert>
           console.log(err)
@@ -65,12 +66,13 @@ function AddCustomer() {
           },
         )
         .then((response) => {
-          console.log(response);
           setPost(response.data);
+          navigate(`/customer-details/${id}`, {replace: true})
         })
         .catch((err) => {
-          // <ErrorAlert path={"dashboard"}></ErrorAlert>
+          <ErrorAlert path={"dashboard"}></ErrorAlert>
           console.log(err)
+          // navigate("/", {replace: true})
         });
     }
   }
@@ -172,11 +174,11 @@ function AddCustomer() {
             {(post)?(
               <>
               <SuccessAlert message={formData.name} path={`/customer-details/${post.custId}`}/>
-              
+
               </>
             ):(
               <>
-              
+
               </>
             )}
           </form>
