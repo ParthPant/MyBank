@@ -66,6 +66,7 @@ export default function Withdrawals() {
                 <option value="" disabled selected hidden>Select Type</option>
                 <option value="Credit">Credit</option>
                 <option value="Debit">Debit</option>
+                <option value="Cheque">Cheque</option>
             </select>
         </div>
 
